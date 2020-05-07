@@ -1,0 +1,87 @@
+
+
+CREATE TABLE IF NOT EXISTS institucion(
+    codigo int primary key not null AUTO_INCREMENT, 
+    nombre text(200) not null
+);
+
+CREATE TABLE IF NOT EXISTS operador(
+    rut varchar(13) primary key,
+    clave text(200),
+    nombre text(200) not null,
+    apellidos text(200) not null,
+    rango text(40) not null,
+    institucion int not null
+);
+ALTER TABLE operador
+ADD CONSTRAINT FK_institucion
+FOREIGN KEY (institucion) REFERENCES institucion(codigo);
+
+CREATE TABLE IF NOT EXISTS sector(
+    codigo int primary key not null AUTO_INCREMENT,
+    nombre text(200) not null,
+    descripcion text(400) not null,
+    institucion int not null
+);
+ALTER TABLE sector
+ADD CONSTRAINT FK_institucion2
+FOREIGN KEY (institucion) REFERENCES institucion(codigo);
+
+
+CREATE TABLE IF NOT EXISTS comuna(
+    codigo int primary key not null AUTO_INCREMENT,
+    nombre text(200) not null,
+    sector int not null
+);
+ALTER TABLE comuna
+ADD CONSTRAINT FK_sector
+FOREIGN KEY (sector) REFERENCES sector(codigo);
+
+
+
+CREATE TABLE IF NOT EXISTS delincuente(
+    rut varchar(13) primary key not null,
+    apellidos text(400) not null,
+    nombres text(400) not null,
+    apodo text(40) not null,
+    domicilio text(40) not null,
+    ultimoLugarVisto text(400) not null,
+    telefonoCasa text(40) not null,
+    telefonoCelular text(40) not null,
+    email text(100) not null,
+    fechaNacimiento date not null,
+    estado text(20) not null,
+    comuna int not null
+    
+);
+ALTER TABLE delincuente
+ADD CONSTRAINT FK_sector2
+FOREIGN KEY (comuna) REFERENCES comuna(codigo);
+
+
+CREATE TABLE IF NOT EXISTS delito(
+    codigo int primary key not null AUTO_INCREMENT,
+    descripcion text(400) not null,
+    direccion text(400) not null,
+    delincuente varchar(13) not null,
+    comuna int not null
+);
+ALTER TABLE delito
+ADD CONSTRAINT FK_delincuente
+FOREIGN KEY (delincuente) REFERENCES delincuente(rut);
+ALTER TABLE delito
+ADD CONSTRAINT FK_comuna3
+FOREIGN KEY (comuna) REFERENCES comuna(codigo);
+
+
+CREATE TABLE IF NOT EXISTS parentesco(
+    delincuente1 varchar(13) not null,
+    parentesco text(200) not null,
+    delincuente2 varchar(13) not null
+);
+ALTER TABLE parentesco
+ADD CONSTRAINT fk_parentesco1
+FOREIGN KEY (delincuente1) REFERENCES delincuente(rut);
+ALTER TABLE parentesco
+ADD CONSTRAINT fk_parentesco2
+FOREIGN KEY (delincuente2) REFERENCES delincuente(rut);

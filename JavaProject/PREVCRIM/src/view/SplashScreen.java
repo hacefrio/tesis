@@ -43,7 +43,7 @@ public class SplashScreen extends javax.swing.JFrame {
         logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PREVCRIMLOGO.png"))); // NOI18N
 
-        jLabel2.setText("Version 0.01");
+        jLabel2.setText("Version 0.05");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel3.setText("Sistema Integrado de Registro para la Prevención");

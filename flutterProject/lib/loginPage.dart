@@ -66,7 +66,7 @@ Future<List> obtenerUsuario() async {
       controller: controlUsuario,
       obscureText: false,
       decoration: InputDecoration(
-        labelText: "USUARIO",
+        labelText: "RUT",
         labelStyle: TextStyle(fontWeight: FontWeight.bold),
       ),
     );

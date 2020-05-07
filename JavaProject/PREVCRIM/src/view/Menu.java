@@ -6,11 +6,15 @@
 package view;
 
 import backend.Operador;
+import conexion.Connect;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import javafx.scene.control.ComboBox;
+import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,14 +22,55 @@ import java.net.URISyntaxException;
  */
 public class Menu extends javax.swing.JFrame {
 
+    private Connect c = new Connect();
+    private Operador operador;
+
     /**
      * Creates new form Menu
+     *
+     * @param operador
      */
     public Menu(Operador operador) {
+        this.operador = operador;
         initComponents();
-        userView.setText(operador.getNombre()+" "+operador.getApellidos());
-        usuariosPane.setVisible(false);
-        institucionesPane.setVisible(false);
+        userView.setText(operador.getNombre() + " " + operador.getApellidos());
+        this.menuNormal.setVisible(true);
+        this.usuariosPane.setVisible(false);
+        this.SectoresPage.setVisible(false);
+        this.institucionesPage.setVisible(false);
+        this.delincuentesPage.setVisible(false);
+        this.delitosPage.setVisible(false);
+        this.reportesPage.setVisible(false);
+        permisos();
+    }
+
+    private void permisos() {
+        String rango = operador.getRango();
+        if (rango.equals("AdministradorGeneral")) {
+            this.homeButton.setVisible(true);
+            this.usuariosButton.setVisible(true);
+            this.sectoresButton.setVisible(true);
+            this.institucionesButton.setVisible(true);
+            this.delincuentesButton.setVisible(true);
+            this.delitosButton.setVisible(true);
+            this.reportesButton.setVisible(true);
+        } else if (rango.equals("JefeDeZona")) {
+            this.homeButton.setVisible(true);
+            this.usuariosButton.setVisible(true);
+            this.sectoresButton.setVisible(true);
+            this.institucionesButton.setVisible(true);
+            this.delincuentesButton.setVisible(true);
+            this.delitosButton.setVisible(true);
+            this.reportesButton.setVisible(true);
+        } else {
+            this.homeButton.setEnabled(false);
+            this.usuariosButton.setEnabled(false);
+            this.sectoresButton.setEnabled(false);
+            this.institucionesButton.setEnabled(false);
+            this.delincuentesButton.setEnabled(true);
+            this.delitosButton.setEnabled(true);
+            this.reportesButton.setEnabled(true);
+        }
     }
 
     /**
@@ -37,7 +82,7 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        paginas = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         menuNormal = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -45,40 +90,57 @@ public class Menu extends javax.swing.JFrame {
         usuariosPane = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        UsuarioRut = new javax.swing.JTextField();
+        UsuarioContrasena = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        UsuarioNombre = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        UsuarioApellido = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jButton8 = new javax.swing.JButton();
+        UsuarioInstitucionBoxUsuarios = new javax.swing.JComboBox<>();
+        RadioAdministradorGeneral = new javax.swing.JRadioButton();
+        RadioJefeDeZona = new javax.swing.JRadioButton();
+        RadioOperador = new javax.swing.JRadioButton();
+        UsuarioCrearUsuario = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        institucionesPane = new javax.swing.JPanel();
+        UsuarioComprobar = new javax.swing.JButton();
+        UsuarioEditarUsuario = new javax.swing.JButton();
+        UsuarioEliminarUsuario = new javax.swing.JButton();
+        institucionesPage = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        userView = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        reportesPage = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
+        jButton17 = new javax.swing.JButton();
+        jButton18 = new javax.swing.JButton();
+        delitosPage = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        delincuentesPage = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        SectoresPage = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        botonera = new javax.swing.JPanel();
+        userView = new javax.swing.JLabel();
+        reportesButton = new javax.swing.JButton();
+        institucionesButton = new javax.swing.JButton();
+        delincuentesButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        usuariosButton = new javax.swing.JButton();
+        delitosButton = new javax.swing.JButton();
+        homeButton = new javax.swing.JButton();
+        sectoresButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(206, 51, 0));
+        paginas.setBackground(new java.awt.Color(206, 51, 0));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PREVCRIM.png"))); // NOI18N
@@ -115,7 +177,7 @@ public class Menu extends javax.swing.JFrame {
             menuNormalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuNormalLayout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 516, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 541, Short.MAX_VALUE)
                 .addComponent(jLabel6))
         );
 
@@ -128,9 +190,9 @@ public class Menu extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("Rut: ");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        UsuarioRut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        UsuarioContrasena.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Contraseña:");
@@ -138,12 +200,12 @@ public class Menu extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setText("Nombre:");
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        UsuarioNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel10.setText("Apellido:");
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        UsuarioApellido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel11.setText("Institucion:");
@@ -151,26 +213,39 @@ public class Menu extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel12.setText("Rango:");
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        UsuarioInstitucionBoxUsuarios.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        UsuarioInstitucionBoxUsuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
 
-        jRadioButton1.setText("jRadioButton1");
+        RadioAdministradorGeneral.setText("Administrador General");
 
-        jRadioButton2.setText("jRadioButton1");
+        RadioJefeDeZona.setText("Jefe de Zona");
 
-        jRadioButton3.setText("jRadioButton1");
+        RadioOperador.setText("Operador");
 
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton8.setText("Crear usuario");
+        UsuarioCrearUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        UsuarioCrearUsuario.setText("Crear usuario");
+        UsuarioCrearUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UsuarioCrearUsuarioActionPerformed(evt);
+            }
+        });
 
         jButton9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jButton9.setText("Ver usuarios");
 
-        jButton10.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton10.setText("Eliminar usuario");
+        UsuarioComprobar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        UsuarioComprobar.setText("Comprobar");
+        UsuarioComprobar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UsuarioComprobarActionPerformed(evt);
+            }
+        });
 
-        jButton11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton11.setText("Modificar usuario");
+        UsuarioEditarUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        UsuarioEditarUsuario.setText("Editar usuario");
+
+        UsuarioEliminarUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        UsuarioEliminarUsuario.setText("Eliminar");
 
         javax.swing.GroupLayout usuariosPaneLayout = new javax.swing.GroupLayout(usuariosPane);
         usuariosPane.setLayout(usuariosPaneLayout);
@@ -180,269 +255,528 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(usuariosPaneLayout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(usuariosPaneLayout.createSequentialGroup()
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, usuariosPaneLayout.createSequentialGroup()
-                            .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(usuariosPaneLayout.createSequentialGroup()
-                            .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))))
                     .addGroup(usuariosPaneLayout.createSequentialGroup()
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(RadioAdministradorGeneral, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, usuariosPaneLayout.createSequentialGroup()
+                                .addComponent(RadioOperador)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(RadioJefeDeZona)))
+                        .addContainerGap())
+                    .addGroup(usuariosPaneLayout.createSequentialGroup()
+                        .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(usuariosPaneLayout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(UsuarioNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, usuariosPaneLayout.createSequentialGroup()
+                                .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(UsuarioContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(UsuarioRut, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(usuariosPaneLayout.createSequentialGroup()
+                                .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(UsuarioInstitucionBoxUsuarios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(UsuarioApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))))
+                        .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(usuariosPaneLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jRadioButton2))
-                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
-                .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton11))
-                .addGap(40, 40, 40))
+                                .addComponent(UsuarioComprobar)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, usuariosPaneLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(77, 77, 77))))))
+            .addGroup(usuariosPaneLayout.createSequentialGroup()
+                .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(usuariosPaneLayout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addComponent(UsuarioCrearUsuario)
+                        .addGap(30, 30, 30)
+                        .addComponent(UsuarioEditarUsuario))
+                    .addGroup(usuariosPaneLayout.createSequentialGroup()
+                        .addGap(264, 264, 264)
+                        .addComponent(UsuarioEliminarUsuario)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         usuariosPaneLayout.setVerticalGroup(
             usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(usuariosPaneLayout.createSequentialGroup()
                 .addComponent(jLabel4)
-                .addGap(115, 115, 115)
+                .addGap(88, 88, 88)
+                .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UsuarioRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(UsuarioComprobar))
+                .addGap(30, 30, 30)
+                .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(UsuarioContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(usuariosPaneLayout.createSequentialGroup()
-                        .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(UsuarioNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton10)))
-                    .addComponent(jButton9))
+                            .addComponent(UsuarioApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(usuariosPaneLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jButton9)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(usuariosPaneLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jButton11))
-                    .addGroup(usuariosPaneLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton2))
-                        .addGap(18, 18, 18)
-                        .addComponent(jRadioButton3)))
+                    .addComponent(UsuarioInstitucionBoxUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton8)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(RadioOperador)
+                    .addComponent(RadioJefeDeZona))
+                .addGap(18, 18, 18)
+                .addComponent(RadioAdministradorGeneral)
+                .addGap(18, 18, 18)
+                .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(UsuarioCrearUsuario)
+                    .addComponent(UsuarioEditarUsuario))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(UsuarioEliminarUsuario)
+                .addContainerGap(122, Short.MAX_VALUE))
         );
 
-        institucionesPane.setBackground(new java.awt.Color(204, 204, 204));
+        institucionesPage.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("Instituciones");
 
-        javax.swing.GroupLayout institucionesPaneLayout = new javax.swing.GroupLayout(institucionesPane);
-        institucionesPane.setLayout(institucionesPaneLayout);
-        institucionesPaneLayout.setHorizontalGroup(
-            institucionesPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(institucionesPaneLayout.createSequentialGroup()
+        javax.swing.GroupLayout institucionesPageLayout = new javax.swing.GroupLayout(institucionesPage);
+        institucionesPage.setLayout(institucionesPageLayout);
+        institucionesPageLayout.setHorizontalGroup(
+            institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(institucionesPageLayout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addComponent(jLabel5)
                 .addContainerGap(696, Short.MAX_VALUE))
         );
-        institucionesPaneLayout.setVerticalGroup(
-            institucionesPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(institucionesPaneLayout.createSequentialGroup()
+        institucionesPageLayout.setVerticalGroup(
+            institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(institucionesPageLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(jLabel5)
-                .addContainerGap(494, Short.MAX_VALUE))
+                .addContainerGap(497, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        reportesPage.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("reportes");
+
+        jButton5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton5.setText("Mostrar delincuentes por comuna de residencia");
+
+        jButton13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton13.setText("Mostrar delincuentes Ordenados alfabeticamente");
+
+        jButton14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton14.setText("Mostrar delincuentes por parentesco entre ellos");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
+        jButton15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton15.setText("Mostrar delincuentes por ultimo lugar visto");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+
+        jButton16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton16.setText("Mostrar rankin comunas con mayor cantidad de delitos dentro de un rango de fechas");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+
+        jButton17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton17.setText("Mostrar delitos por sector dentro de  un rango de fechas");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
+
+        jButton18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton18.setText("Mostrar delitos por sector");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout reportesPageLayout = new javax.swing.GroupLayout(reportesPage);
+        reportesPage.setLayout(reportesPageLayout);
+        reportesPageLayout.setHorizontalGroup(
+            reportesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportesPageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(reportesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
+                    .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(reportesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(reportesPageLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        reportesPageLayout.setVerticalGroup(
+            reportesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reportesPageLayout.createSequentialGroup()
+                .addComponent(jLabel16)
+                .addGap(94, 94, 94)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(149, Short.MAX_VALUE))
+            .addGroup(reportesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(reportesPageLayout.createSequentialGroup()
+                    .addGap(74, 74, 74)
+                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(457, Short.MAX_VALUE)))
+        );
+
+        delitosPage.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("delitos");
+
+        javax.swing.GroupLayout delitosPageLayout = new javax.swing.GroupLayout(delitosPage);
+        delitosPage.setLayout(delitosPageLayout);
+        delitosPageLayout.setHorizontalGroup(
+            delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+        );
+        delitosPageLayout.setVerticalGroup(
+            delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(delitosPageLayout.createSequentialGroup()
+                .addComponent(jLabel15)
+                .addContainerGap(564, Short.MAX_VALUE))
+        );
+
+        delincuentesPage.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("Delincuentes");
+
+        javax.swing.GroupLayout delincuentesPageLayout = new javax.swing.GroupLayout(delincuentesPage);
+        delincuentesPage.setLayout(delincuentesPageLayout);
+        delincuentesPageLayout.setHorizontalGroup(
+            delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+        );
+        delincuentesPageLayout.setVerticalGroup(
+            delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(delincuentesPageLayout.createSequentialGroup()
+                .addComponent(jLabel14)
+                .addContainerGap(561, Short.MAX_VALUE))
+        );
+
+        SectoresPage.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("Sectores");
+
+        javax.swing.GroupLayout SectoresPageLayout = new javax.swing.GroupLayout(SectoresPage);
+        SectoresPage.setLayout(SectoresPageLayout);
+        SectoresPageLayout.setHorizontalGroup(
+            SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+        );
+        SectoresPageLayout.setVerticalGroup(
+            SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SectoresPageLayout.createSequentialGroup()
+                .addComponent(jLabel13)
+                .addContainerGap(560, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout paginasLayout = new javax.swing.GroupLayout(paginas);
+        paginas.setLayout(paginasLayout);
+        paginasLayout.setHorizontalGroup(
+            paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paginasLayout.createSequentialGroup()
                 .addContainerGap(712, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addContainerGap())
             .addComponent(usuariosPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(institucionesPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(institucionesPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(menuNormal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(SectoresPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(delincuentesPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(delitosPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(reportesPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        paginasLayout.setVerticalGroup(
+            paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paginasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(usuariosPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(90, 90, 90)
-                    .addComponent(institucionesPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(26, Short.MAX_VALUE)))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(86, 86, 86)
+                .addComponent(usuariosPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
+            .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(paginasLayout.createSequentialGroup()
+                    .addGap(87, 87, 87)
+                    .addComponent(institucionesPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(42, Short.MAX_VALUE)))
+            .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(paginasLayout.createSequentialGroup()
+                    .addGap(87, 87, 87)
                     .addComponent(menuNormal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(23, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(paginasLayout.createSequentialGroup()
+                    .addGap(86, 86, 86)
+                    .addComponent(SectoresPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(17, Short.MAX_VALUE)))
+            .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(paginasLayout.createSequentialGroup()
+                    .addGap(86, 86, 86)
+                    .addComponent(delincuentesPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(16, Short.MAX_VALUE)))
+            .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(paginasLayout.createSequentialGroup()
+                    .addGap(85, 85, 85)
+                    .addComponent(delitosPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(14, Short.MAX_VALUE)))
+            .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(paginasLayout.createSequentialGroup()
+                    .addGap(84, 84, 84)
+                    .addComponent(reportesPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(33, Short.MAX_VALUE)))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 900, 650));
+        getContentPane().add(paginas, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 900, 650));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        botonera.setBackground(new java.awt.Color(255, 255, 255));
 
         userView.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         userView.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         userView.setText("Sebastian Vargas");
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(206, 51, 0));
-        jButton1.setText("Generar Reportes");
-
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(206, 51, 0));
-        jButton2.setText("Instituciones");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        reportesButton.setBackground(new java.awt.Color(255, 255, 255));
+        reportesButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        reportesButton.setForeground(new java.awt.Color(206, 51, 0));
+        reportesButton.setText("Reportes");
+        reportesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                reportesButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(206, 51, 0));
-        jButton3.setText("Delincuentes");
+        institucionesButton.setBackground(new java.awt.Color(255, 255, 255));
+        institucionesButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        institucionesButton.setForeground(new java.awt.Color(206, 51, 0));
+        institucionesButton.setText("Instituciones");
+        institucionesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                institucionesButtonActionPerformed(evt);
+            }
+        });
+
+        delincuentesButton.setBackground(new java.awt.Color(255, 255, 255));
+        delincuentesButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        delincuentesButton.setForeground(new java.awt.Color(206, 51, 0));
+        delincuentesButton.setText("Delincuentes");
+        delincuentesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delincuentesButtonActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Bienvenido");
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(206, 51, 0));
-        jButton4.setText("Usuarios");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        usuariosButton.setBackground(new java.awt.Color(255, 255, 255));
+        usuariosButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        usuariosButton.setForeground(new java.awt.Color(206, 51, 0));
+        usuariosButton.setText("Usuarios");
+        usuariosButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                usuariosButtonActionPerformed(evt);
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(206, 51, 0));
-        jButton5.setText("Sectores");
-
-        jButton6.setBackground(new java.awt.Color(255, 255, 255));
-        jButton6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(206, 51, 0));
-        jButton6.setText("Delitos");
-
-        jButton7.setBackground(new java.awt.Color(255, 255, 255));
-        jButton7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(206, 51, 0));
-        jButton7.setText("Home");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        delitosButton.setBackground(new java.awt.Color(255, 255, 255));
+        delitosButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        delitosButton.setForeground(new java.awt.Color(206, 51, 0));
+        delitosButton.setText("Delitos");
+        delitosButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                delitosButtonActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+        homeButton.setBackground(new java.awt.Color(255, 255, 255));
+        homeButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        homeButton.setForeground(new java.awt.Color(206, 51, 0));
+        homeButton.setText("Home");
+        homeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeButtonActionPerformed(evt);
+            }
+        });
+
+        sectoresButton.setBackground(new java.awt.Color(255, 255, 255));
+        sectoresButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        sectoresButton.setForeground(new java.awt.Color(206, 51, 0));
+        sectoresButton.setText("Sectores");
+        sectoresButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sectoresButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout botoneraLayout = new javax.swing.GroupLayout(botonera);
+        botonera.setLayout(botoneraLayout);
+        botoneraLayout.setHorizontalGroup(
+            botoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(reportesButton, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
             .addComponent(userView, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(institucionesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(delincuentesButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(usuariosButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(delitosButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(homeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(sectoresButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        botoneraLayout.setVerticalGroup(
+            botoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(botoneraLayout.createSequentialGroup()
                 .addGap(7, 7, 7)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userView)
                 .addGap(37, 37, 37)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(homeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(usuariosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sectoresButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(institucionesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(delincuentesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(delitosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(reportesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(147, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 648));
+        getContentPane().add(botonera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 648));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void usuariosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuariosButtonActionPerformed
         // TODO add your handling code here:
-        menuNormal.setVisible(false);
-        usuariosPane.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+        this.menuNormal.setVisible(false);
+        this.usuariosPane.setVisible(true);
+        this.SectoresPage.setVisible(false);
+        this.institucionesPage.setVisible(false);
+        this.delincuentesPage.setVisible(false);
+        this.delitosPage.setVisible(false);
+        this.reportesPage.setVisible(false);
+        if (operador.getRango().equals("AdministradorGeneral")) {
+            c.loadInstituciones2(this.UsuarioInstitucionBoxUsuarios);
+        } else {
+            c.loadInstituciones1(this.UsuarioInstitucionBoxUsuarios, operador);
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        menuNormal.setVisible(false);
-        usuariosPane.setVisible(false);
-        institucionesPane.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        }
+        ButtonGroup rb = new ButtonGroup();
+        rb.add(this.RadioAdministradorGeneral);
+        rb.add(this.RadioJefeDeZona);
+        rb.add(this.RadioOperador);
+        this.UsuarioApellido.setEditable(false);
+        this.UsuarioInstitucionBoxUsuarios.setEnabled(false);
+        this.UsuarioEliminarUsuario.setEnabled(false);
+        this.UsuarioCrearUsuario.setEnabled(false);
+        this.UsuarioEditarUsuario.setEnabled(false);
+        this.UsuarioContrasena.setEditable(false);
+        this.RadioAdministradorGeneral.setEnabled(false);
+        this.RadioOperador.setEnabled(false);
+        this.RadioJefeDeZona.setEnabled(false);
+        this.UsuarioNombre.setEditable(false);
+        this.UsuarioRut.setEditable(true);
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        this.UsuarioApellido.setText("");
+        this.UsuarioContrasena.setText("");
+        this.UsuarioNombre.setText("");
+        this.UsuarioRut.setText("");
+    }//GEN-LAST:event_usuariosButtonActionPerformed
+
+
+    private void institucionesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_institucionesButtonActionPerformed
         // TODO add your handling code here:
-        menuNormal.setVisible(true);
-        usuariosPane.setVisible(false);
-        institucionesPane.setVisible(false);
-    }//GEN-LAST:event_jButton7ActionPerformed
+        this.menuNormal.setVisible(false);
+        this.usuariosPane.setVisible(false);
+        this.SectoresPage.setVisible(false);
+        this.institucionesPage.setVisible(true);
+        this.delincuentesPage.setVisible(false);
+        this.delitosPage.setVisible(false);
+        this.reportesPage.setVisible(false);
+    }//GEN-LAST:event_institucionesButtonActionPerformed
+
+    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
+        // TODO add your handling code here:
+        this.menuNormal.setVisible(true);
+        this.usuariosPane.setVisible(false);
+        this.SectoresPage.setVisible(false);
+        this.institucionesPage.setVisible(false);
+        this.delincuentesPage.setVisible(false);
+        this.delitosPage.setVisible(false);
+        this.reportesPage.setVisible(false);
+    }//GEN-LAST:event_homeButtonActionPerformed
 
     private void jLabel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseEntered
         // TODO add your handling code here:
@@ -451,9 +785,9 @@ public class Menu extends javax.swing.JFrame {
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
-                Desktop enlace=Desktop.getDesktop();
+        Desktop enlace = Desktop.getDesktop();
         try {
-                enlace.browse(new URI("https://github.com/hacefrio"));
+            enlace.browse(new URI("https://github.com/hacefrio/tesis"));
         } catch (IOException | URISyntaxException e) {
             e.getMessage();
         }
@@ -463,6 +797,180 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_jLabel6MouseExited
+
+    private void sectoresButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sectoresButtonActionPerformed
+        // TODO add your handling code here:
+        this.menuNormal.setVisible(false);
+        this.usuariosPane.setVisible(false);
+        this.SectoresPage.setVisible(true);
+        this.institucionesPage.setVisible(false);
+        this.delincuentesPage.setVisible(false);
+        this.delitosPage.setVisible(false);
+        this.reportesPage.setVisible(false);
+    }//GEN-LAST:event_sectoresButtonActionPerformed
+
+    private void delincuentesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delincuentesButtonActionPerformed
+        // TODO add your handling code here:
+        this.menuNormal.setVisible(false);
+        this.usuariosPane.setVisible(false);
+        this.SectoresPage.setVisible(false);
+        this.institucionesPage.setVisible(false);
+        this.delincuentesPage.setVisible(true);
+        this.delitosPage.setVisible(false);
+        this.reportesPage.setVisible(false);
+    }//GEN-LAST:event_delincuentesButtonActionPerformed
+
+    private void delitosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delitosButtonActionPerformed
+        // TODO add your handling code here:
+        this.menuNormal.setVisible(false);
+        this.usuariosPane.setVisible(false);
+        this.SectoresPage.setVisible(false);
+        this.institucionesPage.setVisible(false);
+        this.delincuentesPage.setVisible(false);
+        this.delitosPage.setVisible(true);
+        this.reportesPage.setVisible(false);
+    }//GEN-LAST:event_delitosButtonActionPerformed
+
+    private void reportesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportesButtonActionPerformed
+        // TODO add your handling code here:
+        this.menuNormal.setVisible(false);
+        this.usuariosPane.setVisible(false);
+        this.SectoresPage.setVisible(false);
+        this.institucionesPage.setVisible(false);
+        this.delincuentesPage.setVisible(false);
+        this.delitosPage.setVisible(false);
+        this.reportesPage.setVisible(true);
+    }//GEN-LAST:event_reportesButtonActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void UsuarioComprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioComprobarActionPerformed
+        // TODO add your handling code here:
+        String consulta = c.comprobarUsuariosRutPermisos(this.UsuarioRut.getText(), operador);
+        this.UsuarioInstitucionBoxUsuarios.removeAllItems();
+        if (operador.getRango().equals("AdministradorGeneral")) {
+            c.loadInstituciones2(this.UsuarioInstitucionBoxUsuarios);
+        } else {
+            c.loadInstituciones1(this.UsuarioInstitucionBoxUsuarios, operador);
+
+        }
+        if (consulta.equals("si")) {
+            this.UsuarioRut.setEditable(false);
+            JOptionPane.showMessageDialog(null, "El usuario ya existe");
+            this.UsuarioApellido.setEditable(true);
+            this.UsuarioInstitucionBoxUsuarios.setEnabled(true);
+            this.UsuarioApellido.setEditable(true);
+            this.UsuarioContrasena.setEditable(true);
+            this.RadioAdministradorGeneral.setEnabled(true);
+            this.RadioOperador.setEnabled(true);
+            this.RadioJefeDeZona.setEnabled(true);
+            this.UsuarioNombre.setEditable(true);
+            this.UsuarioEliminarUsuario.setEnabled(true);
+            this.UsuarioCrearUsuario.setEnabled(false);
+            this.UsuarioEditarUsuario.setEnabled(true);
+            Operador usuario = new Operador();
+            c.setOperador2(this.UsuarioRut.getText(), usuario);
+            this.UsuarioApellido.setText(usuario.getApellidos());
+            this.UsuarioContrasena.setText(usuario.getContra());
+            this.UsuarioNombre.setText(usuario.getNombre());
+            this.UsuarioInstitucionBoxUsuarios.setSelectedItem(usuario.getInstitucion());
+        } else if (consulta.equals("noExiste")) {
+            JOptionPane.showMessageDialog(null, "El usuario no existe, proceda a crear usuario");
+            this.UsuarioApellido.setEditable(true);
+            this.UsuarioInstitucionBoxUsuarios.setEnabled(true);
+            this.UsuarioApellido.setEditable(true);
+            this.UsuarioContrasena.setEditable(true);
+            this.RadioAdministradorGeneral.setEnabled(true);
+            this.RadioOperador.setEnabled(true);
+            this.RadioJefeDeZona.setEnabled(true);
+            this.UsuarioNombre.setEditable(true);
+            this.UsuarioEliminarUsuario.setEnabled(false);
+            this.UsuarioCrearUsuario.setEnabled(true);
+            this.UsuarioEditarUsuario.setEnabled(false);
+        } else if (consulta.equals("otraZona")) {
+            JOptionPane.showMessageDialog(null, "El usuario es de otra zona, no puedes editarlo");
+            this.UsuarioApellido.setEditable(false);
+            this.UsuarioInstitucionBoxUsuarios.setEnabled(false);
+            this.UsuarioApellido.setEditable(false);
+            this.UsuarioContrasena.setEditable(false);
+            this.RadioAdministradorGeneral.setEnabled(false);
+            this.RadioOperador.setEnabled(false);
+            this.RadioJefeDeZona.setEnabled(false);
+            this.UsuarioNombre.setEditable(false);
+            this.UsuarioEliminarUsuario.setEnabled(false);
+            this.UsuarioCrearUsuario.setEnabled(false);
+            this.UsuarioEditarUsuario.setEnabled(false);
+        } else if (consulta.equals("noPermisos")) {
+            JOptionPane.showMessageDialog(null, "No tienes los permisos suficientes para editar este usuario");
+            this.UsuarioApellido.setEditable(false);
+            this.UsuarioInstitucionBoxUsuarios.setEnabled(false);
+            this.UsuarioApellido.setEditable(false);
+            this.UsuarioContrasena.setEditable(false);
+            this.RadioAdministradorGeneral.setEnabled(false);
+            this.RadioOperador.setEnabled(false);
+            this.RadioJefeDeZona.setEnabled(false);
+            this.UsuarioNombre.setEditable(false);
+            this.UsuarioEliminarUsuario.setEnabled(false);
+            this.UsuarioCrearUsuario.setEnabled(false);
+            this.UsuarioEditarUsuario.setEnabled(false);
+        }
+        if (operador.getRango().equals("AdministradorGeneral")) {
+            this.RadioAdministradorGeneral.setEnabled(true);
+            this.RadioOperador.setEnabled(true);
+            this.RadioJefeDeZona.setEnabled(true);
+        } else if (operador.getRango().equals("JefeDeZona")) {
+            this.RadioAdministradorGeneral.setEnabled(false);
+            this.RadioOperador.setEnabled(true);
+            this.RadioJefeDeZona.setEnabled(false);
+        }
+
+    }//GEN-LAST:event_UsuarioComprobarActionPerformed
+
+    private void UsuarioCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioCrearUsuarioActionPerformed
+        // TODO add your handling code here:
+        String rango="Operador";
+        if (this.RadioOperador.isSelected()) {
+            rango = "Operador";
+        } else if (this.RadioJefeDeZona.isSelected()) {
+            rango = "JefeDeZona";
+        } else if(this.RadioAdministradorGeneral.isSelected()){
+            rango = "AdministradorGeneral";
+        }
+        c.crearOperador(this.UsuarioRut.getText(), this.UsuarioContrasena.getText(), this.UsuarioNombre.getText(), this.UsuarioApellido.getText(), rango, this.UsuarioInstitucionBoxUsuarios.getSelectedItem().toString());
+        this.UsuarioApellido.setText("");
+        this.UsuarioContrasena.setText("");
+        this.UsuarioNombre.setText("");
+        this.UsuarioRut.setText("");
+        this.UsuarioApellido.setEditable(false);
+        this.UsuarioInstitucionBoxUsuarios.setEnabled(false);
+        this.UsuarioApellido.setEditable(false);
+        this.UsuarioContrasena.setEditable(false);
+        this.RadioAdministradorGeneral.setEnabled(false);
+        this.RadioOperador.setEnabled(false);
+        this.RadioJefeDeZona.setEnabled(false);
+        this.UsuarioNombre.setEditable(false);
+        this.UsuarioEliminarUsuario.setEnabled(false);
+        this.UsuarioCrearUsuario.setEnabled(false);
+        this.UsuarioEditarUsuario.setEnabled(false);
+    }//GEN-LAST:event_UsuarioCrearUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -499,23 +1007,43 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel institucionesPane;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JRadioButton RadioAdministradorGeneral;
+    private javax.swing.JRadioButton RadioJefeDeZona;
+    private javax.swing.JRadioButton RadioOperador;
+    private javax.swing.JPanel SectoresPage;
+    private javax.swing.JTextField UsuarioApellido;
+    private javax.swing.JButton UsuarioComprobar;
+    private javax.swing.JTextField UsuarioContrasena;
+    private javax.swing.JButton UsuarioCrearUsuario;
+    private javax.swing.JButton UsuarioEditarUsuario;
+    private javax.swing.JButton UsuarioEliminarUsuario;
+    private javax.swing.JComboBox<String> UsuarioInstitucionBoxUsuarios;
+    private javax.swing.JTextField UsuarioNombre;
+    private javax.swing.JTextField UsuarioRut;
+    private javax.swing.JPanel botonera;
+    private javax.swing.JButton delincuentesButton;
+    private javax.swing.JPanel delincuentesPage;
+    private javax.swing.JButton delitosButton;
+    private javax.swing.JPanel delitosPage;
+    private javax.swing.JButton homeButton;
+    private javax.swing.JButton institucionesButton;
+    private javax.swing.JPanel institucionesPage;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -524,17 +1052,13 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JPanel menuNormal;
+    private javax.swing.JPanel paginas;
+    private javax.swing.JButton reportesButton;
+    private javax.swing.JPanel reportesPage;
+    private javax.swing.JButton sectoresButton;
     private javax.swing.JLabel userView;
+    private javax.swing.JButton usuariosButton;
     private javax.swing.JPanel usuariosPane;
     // End of variables declaration//GEN-END:variables
 }
