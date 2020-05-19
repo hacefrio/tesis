@@ -11,17 +11,39 @@ Features :
 
 # Proyecto java
 Features :
-
+	V0.01
 * Splash Screen (✓) 
 * diseño Login  (✓) 
 * programacion Login (✓) 
 * diseño Home (✓)
 * libreria personal creada placeholder(✓)
-* programacion home (❌)
-* diseño de los crud(❌)
-* diseño sistema de reportes (❌)
+* diseño sistema de reportes(✓)
+* modelamiento base de datos(✓)
+* programacion base de datos(✓)
 
-
+	v 0.05
+* programacion home (✓)
+* encriptacion md5 contraseñas(✓)
+* diseño de los crud(✓❌)
+	* Usuarios(✓) Falta mostrar tabla
+	* Instituciones(✓) Falta mostrar tabla
+	* Sectores(❌)
+	* comunas(❌)
+	* Delincuentes(❌)
+	* Delitos(❌)
+* Programacion sistema de generacion de reportes (✓❌)
+	* Mostrar delincuentes orden Alfabetico(✓)
+	* listado de delincuentes agrupado por delito cometido(❌)
+	* mostrar delincuentes por comuna de residencia(❌)
+	* mostrar delincuentes por ultimo lugar visto(❌)
+	* mostrar delincuentes por parentezco entre ellos(❌)
+	* listado de delitos ocurrido por comuna o sector dentro de un rango de fechas(❌)
+	* Mostrar ranking de comunas con mayor cantidad de delitos dentro de un rango de fechas(❌)
+	* Listado historico de delitos ocurrido por sectores(❌)
+	
+* Validadores rut(❌)
+* funciones anti sqlinyection(❌)
+	
 # Idea general del proyecto
 
 Crear una aplicacion en java con todos los requisitos que pide el proyecto, pero a eso le sumamos una aplicacion de android/ios programada en flutter donde se podrá crear informes en tiempo real, ver el mapa para ver los registros y muchas otras cosas que aún están volando en el aire.
@@ -33,3 +55,9 @@ Crear una aplicacion en java con todos los requisitos que pide el proyecto, pero
 
 # base de datos
 * Mysql
+
+#Librerias utilizadas
+* Placeholder : Libreria propia
+* MYSQL - JDBC
+* Commons-codec-1.14 : PAra encriptar las contraseñas MD5
+* JXL : Libreria para generar archivos excel 
