@@ -7,6 +7,7 @@ package view;
 
 import backend.Operador;
 import conexion.Connect;
+import org.apache.commons.codec.digest.DigestUtils;
 import placeholder.PlaceHolder;
 
 /**
@@ -134,8 +135,9 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Connect c=new Connect();
-        
-        if(c.logear(rut.getText(), clave.getText())){
+        String textoSinEncriptar=clave.getText(); 
+        String textoEncriptadoConMD5=DigestUtils.md5Hex(textoSinEncriptar);
+        if(c.logear(rut.getText(), textoEncriptadoConMD5)){
             c.setOperador(rut.getText(), operador);
             Menu m=new Menu(operador);
             m.setVisible(true);

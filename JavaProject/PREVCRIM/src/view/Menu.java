@@ -5,6 +5,7 @@
  */
 package view;
 
+import backend.GestorArchivos;
 import backend.Operador;
 import conexion.Connect;
 import java.awt.Cursor;
@@ -12,18 +13,23 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.control.ComboBox;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
+import jxl.write.WriteException;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
  * @author Sebastian
  */
 public class Menu extends javax.swing.JFrame {
-
+    
     private Connect c = new Connect();
     private Operador operador;
+    private GestorArchivos GA=new GestorArchivos();
 
     /**
      * Creates new form Menu
@@ -41,9 +47,10 @@ public class Menu extends javax.swing.JFrame {
         this.delincuentesPage.setVisible(false);
         this.delitosPage.setVisible(false);
         this.reportesPage.setVisible(false);
+        this.comunaPage.setVisible(false);
         permisos();
     }
-
+    
     private void permisos() {
         String rango = operador.getRango();
         if (rango.equals("AdministradorGeneral")) {
@@ -54,6 +61,7 @@ public class Menu extends javax.swing.JFrame {
             this.delincuentesButton.setVisible(true);
             this.delitosButton.setVisible(true);
             this.reportesButton.setVisible(true);
+            this.comunaButton.setEnabled(true);
         } else if (rango.equals("JefeDeZona")) {
             this.homeButton.setVisible(true);
             this.usuariosButton.setVisible(true);
@@ -62,6 +70,7 @@ public class Menu extends javax.swing.JFrame {
             this.delincuentesButton.setVisible(true);
             this.delitosButton.setVisible(true);
             this.reportesButton.setVisible(true);
+            this.comunaButton.setEnabled(true);
         } else {
             this.homeButton.setEnabled(false);
             this.usuariosButton.setEnabled(false);
@@ -70,6 +79,7 @@ public class Menu extends javax.swing.JFrame {
             this.delincuentesButton.setEnabled(true);
             this.delitosButton.setEnabled(true);
             this.reportesButton.setEnabled(true);
+            this.comunaButton.setEnabled(false);
         }
     }
 
@@ -91,7 +101,6 @@ public class Menu extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         UsuarioRut = new javax.swing.JTextField();
-        UsuarioContrasena = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         UsuarioNombre = new javax.swing.JTextField();
@@ -108,8 +117,18 @@ public class Menu extends javax.swing.JFrame {
         UsuarioComprobar = new javax.swing.JButton();
         UsuarioEditarUsuario = new javax.swing.JButton();
         UsuarioEliminarUsuario = new javax.swing.JButton();
+        UsuarioContrasena = new javax.swing.JPasswordField();
         institucionesPage = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        InstitucionesCrear = new javax.swing.JButton();
+        InstitucionesEditar = new javax.swing.JButton();
+        InstitucionesEliminar = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        InstitucionesCodigo = new javax.swing.JTextField();
+        jButton6 = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
+        InstitucionesNombre = new javax.swing.JTextField();
         reportesPage = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
@@ -119,12 +138,40 @@ public class Menu extends javax.swing.JFrame {
         jButton16 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
+        jButton24 = new javax.swing.JButton();
+        jButton25 = new javax.swing.JButton();
         delitosPage = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         delincuentesPage = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         SectoresPage = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
+        SectoresCodigo = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
+        SectoresNombre = new javax.swing.JTextField();
+        SectoresDescripcion = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        SectoresInstitucion = new javax.swing.JComboBox<>();
+        SectoresEditar = new javax.swing.JButton();
+        SectoresCrear = new javax.swing.JButton();
+        SectoresEliminar = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
+        comunaPage = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jButton19 = new javax.swing.JButton();
+        jLabel25 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jButton20 = new javax.swing.JButton();
+        jButton21 = new javax.swing.JButton();
+        jButton22 = new javax.swing.JButton();
+        jButton23 = new javax.swing.JButton();
         botonera = new javax.swing.JPanel();
         userView = new javax.swing.JLabel();
         reportesButton = new javax.swing.JButton();
@@ -135,6 +182,7 @@ public class Menu extends javax.swing.JFrame {
         delitosButton = new javax.swing.JButton();
         homeButton = new javax.swing.JButton();
         sectoresButton = new javax.swing.JButton();
+        comunaButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -192,8 +240,6 @@ public class Menu extends javax.swing.JFrame {
 
         UsuarioRut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        UsuarioContrasena.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Contraseña:");
 
@@ -243,9 +289,19 @@ public class Menu extends javax.swing.JFrame {
 
         UsuarioEditarUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         UsuarioEditarUsuario.setText("Editar usuario");
+        UsuarioEditarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UsuarioEditarUsuarioActionPerformed(evt);
+            }
+        });
 
         UsuarioEliminarUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         UsuarioEliminarUsuario.setText("Eliminar");
+        UsuarioEliminarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UsuarioEliminarUsuarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout usuariosPaneLayout = new javax.swing.GroupLayout(usuariosPane);
         usuariosPane.setLayout(usuariosPaneLayout);
@@ -268,7 +324,7 @@ public class Menu extends javax.swing.JFrame {
                     .addGroup(usuariosPaneLayout.createSequentialGroup()
                         .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(usuariosPaneLayout.createSequentialGroup()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(UsuarioNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, usuariosPaneLayout.createSequentialGroup()
@@ -276,9 +332,9 @@ public class Menu extends javax.swing.JFrame {
                                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(UsuarioContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(UsuarioRut, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(UsuarioRut, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                                    .addComponent(UsuarioContrasena)))
                             .addGroup(usuariosPaneLayout.createSequentialGroup()
                                 .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -359,21 +415,110 @@ public class Menu extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("Instituciones");
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setText("Ver instituciones");
+
+        InstitucionesCrear.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        InstitucionesCrear.setText("Crear");
+        InstitucionesCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InstitucionesCrearActionPerformed(evt);
+            }
+        });
+
+        InstitucionesEditar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        InstitucionesEditar.setText("Editar");
+        InstitucionesEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InstitucionesEditarActionPerformed(evt);
+            }
+        });
+
+        InstitucionesEliminar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        InstitucionesEliminar.setText("Eliminar");
+        InstitucionesEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InstitucionesEliminarActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel17.setText("Codigo :");
+
+        jButton6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton6.setText("Comprobar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel18.setText("Nombre :");
+
         javax.swing.GroupLayout institucionesPageLayout = new javax.swing.GroupLayout(institucionesPage);
         institucionesPage.setLayout(institucionesPageLayout);
         institucionesPageLayout.setHorizontalGroup(
             institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(institucionesPageLayout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(jLabel5)
-                .addContainerGap(696, Short.MAX_VALUE))
+                .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(institucionesPageLayout.createSequentialGroup()
+                        .addGap(326, 326, 326)
+                        .addComponent(jLabel5))
+                    .addGroup(institucionesPageLayout.createSequentialGroup()
+                        .addGap(264, 264, 264)
+                        .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(institucionesPageLayout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addComponent(InstitucionesEditar))
+                            .addGroup(institucionesPageLayout.createSequentialGroup()
+                                .addComponent(InstitucionesCrear)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(InstitucionesEliminar)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(institucionesPageLayout.createSequentialGroup()
+                .addGap(198, 198, 198)
+                .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(institucionesPageLayout.createSequentialGroup()
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(InstitucionesCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton6))
+                    .addGroup(institucionesPageLayout.createSequentialGroup()
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(InstitucionesNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(93, 93, 93))
         );
         institucionesPageLayout.setVerticalGroup(
             institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(institucionesPageLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addContainerGap()
                 .addComponent(jLabel5)
-                .addContainerGap(497, Short.MAX_VALUE))
+                .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(institucionesPageLayout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(InstitucionesCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel17)
+                            .addComponent(jButton6))
+                        .addGap(28, 28, 28)
+                        .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel18)
+                            .addComponent(InstitucionesNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(institucionesPageLayout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addComponent(jButton1)))
+                .addGap(26, 26, 26)
+                .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InstitucionesCrear)
+                    .addComponent(InstitucionesEliminar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(InstitucionesEditar)
+                .addContainerGap(216, Short.MAX_VALUE))
         );
 
         reportesPage.setBackground(new java.awt.Color(204, 204, 204));
@@ -387,6 +532,11 @@ public class Menu extends javax.swing.JFrame {
 
         jButton13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton13.setText("Mostrar delincuentes Ordenados alfabeticamente");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         jButton14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton14.setText("Mostrar delincuentes por parentesco entre ellos");
@@ -397,7 +547,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jButton15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton15.setText("Mostrar delincuentes por ultimo lugar visto");
+        jButton15.setText("Listado de delincuentes agrupados por delito cometido");
         jButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton15ActionPerformed(evt);
@@ -413,7 +563,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jButton17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton17.setText("Mostrar delitos por sector dentro de  un rango de fechas");
+        jButton17.setText(" Rankin de comunas o sectores con mayor cantidad de delitos en fechas determinadas");
         jButton17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton17ActionPerformed(evt);
@@ -421,10 +571,26 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jButton18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton18.setText("Mostrar delitos por sector");
+        jButton18.setText("Listado histórico de delitos ocurridos por sectores");
         jButton18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton18ActionPerformed(evt);
+            }
+        });
+
+        jButton24.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton24.setText("Mostrar delincuentes por ultimo lugar visto");
+        jButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton24ActionPerformed(evt);
+            }
+        });
+
+        jButton25.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton25.setText("Listado de delitos ocurridos por comuna o sector, en fechas específicas");
+        jButton25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton25ActionPerformed(evt);
             }
         });
 
@@ -433,15 +599,17 @@ public class Menu extends javax.swing.JFrame {
         reportesPageLayout.setHorizontalGroup(
             reportesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportesPageLayout.createSequentialGroup()
+            .addGroup(reportesPageLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(reportesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
-                    .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(reportesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton24, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
+                    .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
+                    .addComponent(jButton18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
+                    .addComponent(jButton25, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(reportesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(reportesPageLayout.createSequentialGroup()
@@ -453,24 +621,28 @@ public class Menu extends javax.swing.JFrame {
             reportesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(reportesPageLayout.createSequentialGroup()
                 .addComponent(jLabel16)
-                .addGap(94, 94, 94)
+                .addGap(96, 96, 96)
+                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
+                .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addGap(64, 64, 64))
             .addGroup(reportesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(reportesPageLayout.createSequentialGroup()
                     .addGap(74, 74, 74)
                     .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(457, Short.MAX_VALUE)))
+                    .addContainerGap(472, Short.MAX_VALUE)))
         );
 
         delitosPage.setBackground(new java.awt.Color(204, 204, 204));
@@ -517,17 +689,223 @@ public class Menu extends javax.swing.JFrame {
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Sectores");
 
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel19.setText("Codigo :");
+
+        jButton7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton7.setText("Comprobar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel20.setText("Nombre: ");
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel21.setText("Descripcion :");
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel22.setText("Institucion :");
+
+        SectoresInstitucion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        SectoresInstitucion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+
+        SectoresEditar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        SectoresEditar.setText("Editar");
+
+        SectoresCrear.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        SectoresCrear.setText("Crear");
+
+        SectoresEliminar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        SectoresEliminar.setText("Eliminar");
+
+        jButton12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton12.setText("Ver Instituciones");
+
         javax.swing.GroupLayout SectoresPageLayout = new javax.swing.GroupLayout(SectoresPage);
         SectoresPage.setLayout(SectoresPageLayout);
         SectoresPageLayout.setHorizontalGroup(
             SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+            .addGroup(SectoresPageLayout.createSequentialGroup()
+                .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SectoresPageLayout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(SectoresPageLayout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(SectoresCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton7))
+                            .addGroup(SectoresPageLayout.createSequentialGroup()
+                                .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel21)
+                                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(SectoresInstitucion, 0, 342, Short.MAX_VALUE)
+                                    .addComponent(SectoresNombre)
+                                    .addComponent(SectoresDescripcion)))))
+                    .addGroup(SectoresPageLayout.createSequentialGroup()
+                        .addGap(257, 257, 257)
+                        .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(SectoresPageLayout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addComponent(SectoresEditar))
+                            .addGroup(SectoresPageLayout.createSequentialGroup()
+                                .addComponent(SectoresCrear)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(SectoresEliminar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton12)))))
+                .addGap(20, 20, 20))
         );
         SectoresPageLayout.setVerticalGroup(
             SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SectoresPageLayout.createSequentialGroup()
                 .addComponent(jLabel13)
-                .addContainerGap(560, Short.MAX_VALUE))
+                .addGap(137, 137, 137)
+                .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SectoresCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19)
+                    .addComponent(jButton7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SectoresNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(SectoresDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel22)
+                    .addComponent(SectoresInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SectoresPageLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(SectoresCrear)
+                            .addComponent(SectoresEliminar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SectoresPageLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton12)
+                        .addGap(19, 19, 19)))
+                .addComponent(SectoresEditar)
+                .addContainerGap(156, Short.MAX_VALUE))
+        );
+
+        comunaPage.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel23.setText("Comuna");
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel24.setText("Codigo :");
+
+        jButton19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton19.setText("Comprobar");
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel25.setText("Nombre:");
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel26.setText("Sector :");
+
+        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jButton20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton20.setText("Crear");
+
+        jButton21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton21.setText("Eliminar");
+
+        jButton22.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton22.setText("Editar");
+
+        jButton23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton23.setText("Ver Instituciones");
+
+        javax.swing.GroupLayout comunaPageLayout = new javax.swing.GroupLayout(comunaPage);
+        comunaPage.setLayout(comunaPageLayout);
+        comunaPageLayout.setHorizontalGroup(
+            comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(comunaPageLayout.createSequentialGroup()
+                .addGroup(comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(comunaPageLayout.createSequentialGroup()
+                        .addGap(199, 199, 199)
+                        .addGroup(comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(comunaPageLayout.createSequentialGroup()
+                                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(comunaPageLayout.createSequentialGroup()
+                                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton19))
+                    .addGroup(comunaPageLayout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addGroup(comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton21)
+                            .addGroup(comunaPageLayout.createSequentialGroup()
+                                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(330, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, comunaPageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, comunaPageLayout.createSequentialGroup()
+                        .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, comunaPageLayout.createSequentialGroup()
+                        .addGap(236, 236, 236)
+                        .addComponent(jButton20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton23)
+                        .addGap(48, 48, 48))))
+            .addGroup(comunaPageLayout.createSequentialGroup()
+                .addGap(325, 325, 325)
+                .addComponent(jButton22)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        comunaPageLayout.setVerticalGroup(
+            comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(comunaPageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel23)
+                .addGap(105, 105, 105)
+                .addGroup(comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24)
+                    .addComponent(jButton19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel25))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel26))
+                .addGap(46, 46, 46)
+                .addGroup(comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton23)
+                    .addComponent(jButton20)
+                    .addComponent(jButton21))
+                .addGap(18, 18, 18)
+                .addComponent(jButton22)
+                .addContainerGap(222, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout paginasLayout = new javax.swing.GroupLayout(paginas);
@@ -551,6 +929,8 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(delitosPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(reportesPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(comunaPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         paginasLayout.setVerticalGroup(
             paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -590,6 +970,11 @@ public class Menu extends javax.swing.JFrame {
                     .addGap(84, 84, 84)
                     .addComponent(reportesPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(33, Short.MAX_VALUE)))
+            .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paginasLayout.createSequentialGroup()
+                    .addContainerGap(81, Short.MAX_VALUE)
+                    .addComponent(comunaPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(4, 4, 4)))
         );
 
         getContentPane().add(paginas, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 900, 650));
@@ -674,6 +1059,16 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        comunaButton.setBackground(new java.awt.Color(255, 255, 255));
+        comunaButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        comunaButton.setForeground(new java.awt.Color(206, 51, 0));
+        comunaButton.setText("Comunas");
+        comunaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comunaButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout botoneraLayout = new javax.swing.GroupLayout(botonera);
         botonera.setLayout(botoneraLayout);
         botoneraLayout.setHorizontalGroup(
@@ -687,6 +1082,7 @@ public class Menu extends javax.swing.JFrame {
             .addComponent(delitosButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(homeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(sectoresButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(comunaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         botoneraLayout.setVerticalGroup(
             botoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -699,17 +1095,19 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(homeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(usuariosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sectoresButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(institucionesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(sectoresButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(comunaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(delincuentesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(delitosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(reportesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addGap(75, 75, 75))
         );
 
         getContentPane().add(botonera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 648));
@@ -727,11 +1125,12 @@ public class Menu extends javax.swing.JFrame {
         this.delincuentesPage.setVisible(false);
         this.delitosPage.setVisible(false);
         this.reportesPage.setVisible(false);
+        this.comunaPage.setVisible(false);
         if (operador.getRango().equals("AdministradorGeneral")) {
             c.loadInstituciones2(this.UsuarioInstitucionBoxUsuarios);
         } else {
             c.loadInstituciones1(this.UsuarioInstitucionBoxUsuarios, operador);
-
+            
         }
         ButtonGroup rb = new ButtonGroup();
         rb.add(this.RadioAdministradorGeneral);
@@ -748,13 +1147,13 @@ public class Menu extends javax.swing.JFrame {
         this.RadioJefeDeZona.setEnabled(false);
         this.UsuarioNombre.setEditable(false);
         this.UsuarioRut.setEditable(true);
-
+        
         this.UsuarioApellido.setText("");
         this.UsuarioContrasena.setText("");
         this.UsuarioNombre.setText("");
         this.UsuarioRut.setText("");
     }//GEN-LAST:event_usuariosButtonActionPerformed
-
+    
 
     private void institucionesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_institucionesButtonActionPerformed
         // TODO add your handling code here:
@@ -765,6 +1164,7 @@ public class Menu extends javax.swing.JFrame {
         this.delincuentesPage.setVisible(false);
         this.delitosPage.setVisible(false);
         this.reportesPage.setVisible(false);
+        institucionesDefault();
     }//GEN-LAST:event_institucionesButtonActionPerformed
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
@@ -807,6 +1207,8 @@ public class Menu extends javax.swing.JFrame {
         this.delincuentesPage.setVisible(false);
         this.delitosPage.setVisible(false);
         this.reportesPage.setVisible(false);
+        this.comunaPage.setVisible(false);
+        sectoresDefault();
     }//GEN-LAST:event_sectoresButtonActionPerformed
 
     private void delincuentesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delincuentesButtonActionPerformed
@@ -829,6 +1231,7 @@ public class Menu extends javax.swing.JFrame {
         this.delincuentesPage.setVisible(false);
         this.delitosPage.setVisible(true);
         this.reportesPage.setVisible(false);
+        this.comunaPage.setVisible(false);
     }//GEN-LAST:event_delitosButtonActionPerformed
 
     private void reportesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportesButtonActionPerformed
@@ -840,6 +1243,7 @@ public class Menu extends javax.swing.JFrame {
         this.delincuentesPage.setVisible(false);
         this.delitosPage.setVisible(false);
         this.reportesPage.setVisible(true);
+        this.comunaPage.setVisible(false);
     }//GEN-LAST:event_reportesButtonActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
@@ -870,7 +1274,7 @@ public class Menu extends javax.swing.JFrame {
             c.loadInstituciones2(this.UsuarioInstitucionBoxUsuarios);
         } else {
             c.loadInstituciones1(this.UsuarioInstitucionBoxUsuarios, operador);
-
+            
         }
         if (consulta.equals("si")) {
             this.UsuarioRut.setEditable(false);
@@ -889,7 +1293,6 @@ public class Menu extends javax.swing.JFrame {
             Operador usuario = new Operador();
             c.setOperador2(this.UsuarioRut.getText(), usuario);
             this.UsuarioApellido.setText(usuario.getApellidos());
-            this.UsuarioContrasena.setText(usuario.getContra());
             this.UsuarioNombre.setText(usuario.getNombre());
             this.UsuarioInstitucionBoxUsuarios.setSelectedItem(usuario.getInstitucion());
         } else if (consulta.equals("noExiste")) {
@@ -946,15 +1349,17 @@ public class Menu extends javax.swing.JFrame {
 
     private void UsuarioCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioCrearUsuarioActionPerformed
         // TODO add your handling code here:
-        String rango="Operador";
+        String rango = "Operador";
         if (this.RadioOperador.isSelected()) {
             rango = "Operador";
         } else if (this.RadioJefeDeZona.isSelected()) {
             rango = "JefeDeZona";
-        } else if(this.RadioAdministradorGeneral.isSelected()){
+        } else if (this.RadioAdministradorGeneral.isSelected()) {
             rango = "AdministradorGeneral";
         }
-        c.crearOperador(this.UsuarioRut.getText(), this.UsuarioContrasena.getText(), this.UsuarioNombre.getText(), this.UsuarioApellido.getText(), rango, this.UsuarioInstitucionBoxUsuarios.getSelectedItem().toString());
+        String textoSinEncriptar = UsuarioContrasena.getText();
+        String textoEncriptadoConMD5 = DigestUtils.md5Hex(textoSinEncriptar);
+        c.crearOperador(this.UsuarioRut.getText(), textoEncriptadoConMD5, this.UsuarioNombre.getText(), this.UsuarioApellido.getText(), rango, this.UsuarioInstitucionBoxUsuarios.getSelectedItem().toString());
         this.UsuarioApellido.setText("");
         this.UsuarioContrasena.setText("");
         this.UsuarioNombre.setText("");
@@ -971,6 +1376,176 @@ public class Menu extends javax.swing.JFrame {
         this.UsuarioCrearUsuario.setEnabled(false);
         this.UsuarioEditarUsuario.setEnabled(false);
     }//GEN-LAST:event_UsuarioCrearUsuarioActionPerformed
+
+    private void UsuarioEliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioEliminarUsuarioActionPerformed
+        // TODO add your handling code here:
+        c.eliminarOperador(this.UsuarioRut.getText());
+        this.UsuarioApellido.setText("");
+        this.UsuarioContrasena.setText("");
+        this.UsuarioNombre.setText("");
+        this.UsuarioRut.setText("");
+        this.UsuarioApellido.setEditable(false);
+        this.UsuarioInstitucionBoxUsuarios.setEnabled(false);
+        this.UsuarioApellido.setEditable(false);
+        this.UsuarioContrasena.setEditable(false);
+        this.RadioAdministradorGeneral.setEnabled(false);
+        this.RadioOperador.setEnabled(false);
+        this.RadioJefeDeZona.setEnabled(false);
+        this.UsuarioNombre.setEditable(false);
+        this.UsuarioEliminarUsuario.setEnabled(false);
+        this.UsuarioCrearUsuario.setEnabled(false);
+        this.UsuarioEditarUsuario.setEnabled(false);
+    }//GEN-LAST:event_UsuarioEliminarUsuarioActionPerformed
+
+    private void UsuarioEditarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioEditarUsuarioActionPerformed
+        // TODO add your handling code here:
+        String rango = "Operador";
+        if (this.RadioOperador.isSelected()) {
+            rango = "Operador";
+        } else if (this.RadioJefeDeZona.isSelected()) {
+            rango = "JefeDeZona";
+        } else if (this.RadioAdministradorGeneral.isSelected()) {
+            rango = "AdministradorGeneral";
+        }
+        String textoSinEncriptar = UsuarioContrasena.getText();
+        String textoEncriptadoConMD5 = DigestUtils.md5Hex(textoSinEncriptar);
+        c.editarOperador(this.UsuarioRut.getText(), textoEncriptadoConMD5, this.UsuarioNombre.getText(), this.UsuarioApellido.getText(), rango, this.UsuarioInstitucionBoxUsuarios.getSelectedItem().toString());
+        this.UsuarioApellido.setText("");
+        this.UsuarioContrasena.setText("");
+        this.UsuarioNombre.setText("");
+        this.UsuarioRut.setText("");
+        this.UsuarioApellido.setEditable(false);
+        this.UsuarioInstitucionBoxUsuarios.setEnabled(false);
+        this.UsuarioApellido.setEditable(false);
+        this.UsuarioContrasena.setEditable(false);
+        this.RadioAdministradorGeneral.setEnabled(false);
+        this.RadioOperador.setEnabled(false);
+        this.RadioJefeDeZona.setEnabled(false);
+        this.UsuarioNombre.setEditable(false);
+        this.UsuarioEliminarUsuario.setEnabled(false);
+        this.UsuarioCrearUsuario.setEnabled(false);
+        this.UsuarioEditarUsuario.setEnabled(false);
+    }//GEN-LAST:event_UsuarioEditarUsuarioActionPerformed
+
+    private void comunaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comunaButtonActionPerformed
+        // TODO add your handling code here:
+        this.menuNormal.setVisible(false);
+        this.usuariosPane.setVisible(false);
+        this.SectoresPage.setVisible(false);
+        this.institucionesPage.setVisible(false);
+        this.delincuentesPage.setVisible(false);
+        this.delitosPage.setVisible(false);
+        this.reportesPage.setVisible(false);
+        this.comunaPage.setVisible(true);
+    }//GEN-LAST:event_comunaButtonActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        this.InstitucionesNombre.setEditable(true);
+        if (c.comprobarInstitucion(this.InstitucionesCodigo.getText())) {
+            JOptionPane.showMessageDialog(null, "La institucion ya exista, proceda a editar o eliminar");
+            this.InstitucionesCodigo.setEditable(false);
+            this.InstitucionesCrear.setEnabled(false);
+            this.InstitucionesEditar.setEnabled(true);
+            this.InstitucionesEliminar.setEnabled(true);
+            c.setInstitucionesDatos(this.InstitucionesCodigo.getText(), this.InstitucionesNombre);
+        } else {
+            JOptionPane.showMessageDialog(null, "La institucion no existe, proceda a crearlo");
+            this.InstitucionesCodigo.setEditable(false);
+            this.InstitucionesCrear.setEnabled(true);
+            this.InstitucionesEditar.setEnabled(false);
+            this.InstitucionesEliminar.setEnabled(false);
+        }
+
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void InstitucionesCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InstitucionesCrearActionPerformed
+        // TODO add your handling code here:
+        if (!this.InstitucionesCodigo.getText().isEmpty() || !this.InstitucionesNombre.getText().isEmpty()) {
+            c.crearInstitucion(this.InstitucionesCodigo.getText(), this.InstitucionesNombre.getText());
+            institucionesDefault();
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese todos los campos");
+        }
+
+    }//GEN-LAST:event_InstitucionesCrearActionPerformed
+
+    private void InstitucionesEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InstitucionesEliminarActionPerformed
+        // TODO add your handling code here:
+        c.eliminarInstitucion(this.InstitucionesCodigo.getText());
+        institucionesDefault();
+    }//GEN-LAST:event_InstitucionesEliminarActionPerformed
+
+    private void InstitucionesEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InstitucionesEditarActionPerformed
+        // TODO add your handling code here:
+        c.editarInstitucion(this.InstitucionesCodigo.getText(), this.InstitucionesNombre.getText());
+        institucionesDefault();
+    }//GEN-LAST:event_InstitucionesEditarActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        if (c.comprobarSector(this.SectoresCodigo.getText())) {
+            JOptionPane.showMessageDialog(null, "El sector ya existe, proceda a editar o eliminar");
+            sectoresDefault2();
+            c.setSectores(this.SectoresCodigo.getText(), this.SectoresNombre, this.SectoresDescripcion);
+        } else {
+            JOptionPane.showMessageDialog(null, "El sector no existe, proceda a crear");
+            sectoresDefault2();
+            this.SectoresCrear.setEnabled(true);
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        try {
+            // TODO add your handling code here:
+            GA.CrearReporterOdenadosAlfabeticamente();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        } catch (WriteException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton24ActionPerformed
+
+    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton25ActionPerformed
+    
+    public void sectoresDefault() {
+        this.SectoresCodigo.setEditable(true);
+        this.SectoresNombre.setEditable(false);
+        this.SectoresDescripcion.setEditable(false);
+        this.SectoresInstitucion.setEditable(false);
+        this.SectoresCrear.setEnabled(false);
+        this.SectoresEditar.setEnabled(false);
+        this.SectoresEliminar.setEnabled(false);
+        this.SectoresCodigo.setText("");
+        this.SectoresNombre.setText("");
+        this.SectoresDescripcion.setText("");
+    }
+
+    public void sectoresDefault2() {
+        this.SectoresCodigo.setEditable(false);
+        this.SectoresNombre.setEditable(true);
+        this.SectoresDescripcion.setEditable(true);
+        this.SectoresInstitucion.setEditable(true);
+        this.SectoresCrear.setEnabled(false);
+        this.SectoresEditar.setEnabled(true);
+        this.SectoresEliminar.setEnabled(true);
+    }
+
+    public void institucionesDefault() {
+        this.InstitucionesCodigo.setEditable(true);
+        this.InstitucionesNombre.setEditable(false);
+        this.InstitucionesCrear.setEnabled(false);
+        this.InstitucionesEditar.setEnabled(false);
+        this.InstitucionesEliminar.setEnabled(false);
+        this.InstitucionesNombre.setText("");
+        this.InstitucionesCodigo.setText("");
+    }
 
     /**
      * @param args the command line arguments
@@ -1007,13 +1582,25 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField InstitucionesCodigo;
+    private javax.swing.JButton InstitucionesCrear;
+    private javax.swing.JButton InstitucionesEditar;
+    private javax.swing.JButton InstitucionesEliminar;
+    private javax.swing.JTextField InstitucionesNombre;
     private javax.swing.JRadioButton RadioAdministradorGeneral;
     private javax.swing.JRadioButton RadioJefeDeZona;
     private javax.swing.JRadioButton RadioOperador;
+    private javax.swing.JTextField SectoresCodigo;
+    private javax.swing.JButton SectoresCrear;
+    private javax.swing.JTextField SectoresDescripcion;
+    private javax.swing.JButton SectoresEditar;
+    private javax.swing.JButton SectoresEliminar;
+    private javax.swing.JComboBox<String> SectoresInstitucion;
+    private javax.swing.JTextField SectoresNombre;
     private javax.swing.JPanel SectoresPage;
     private javax.swing.JTextField UsuarioApellido;
     private javax.swing.JButton UsuarioComprobar;
-    private javax.swing.JTextField UsuarioContrasena;
+    private javax.swing.JPasswordField UsuarioContrasena;
     private javax.swing.JButton UsuarioCrearUsuario;
     private javax.swing.JButton UsuarioEditarUsuario;
     private javax.swing.JButton UsuarioEliminarUsuario;
@@ -1021,6 +1608,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTextField UsuarioNombre;
     private javax.swing.JTextField UsuarioRut;
     private javax.swing.JPanel botonera;
+    private javax.swing.JButton comunaButton;
+    private javax.swing.JPanel comunaPage;
     private javax.swing.JButton delincuentesButton;
     private javax.swing.JPanel delincuentesPage;
     private javax.swing.JButton delitosButton;
@@ -1028,14 +1617,26 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton homeButton;
     private javax.swing.JButton institucionesButton;
     private javax.swing.JPanel institucionesPage;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton19;
+    private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton21;
+    private javax.swing.JButton jButton22;
+    private javax.swing.JButton jButton23;
+    private javax.swing.JButton jButton24;
+    private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton9;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1044,7 +1645,17 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1052,6 +1663,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
     private javax.swing.JPanel menuNormal;
     private javax.swing.JPanel paginas;
     private javax.swing.JButton reportesButton;
