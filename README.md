@@ -27,8 +27,8 @@ Features :
 * diseño de los crud(✓❌)
 	* Usuarios(✓) Falta mostrar tabla
 	* Instituciones(✓) Falta mostrar tabla
-	* Sectores(❌)
-	* comunas(❌)
+	* Sectores(✓) Falta mostrar tabla
+	* comunas(✓) Falta mostrar tabla
 	* Delincuentes(❌)
 	* Delitos(❌)
 * Programacion sistema de generacion de reportes (✓❌)
@@ -43,6 +43,7 @@ Features :
 	
 * Validadores rut(❌)
 * funciones anti sqlinyection(❌)
+* validadores campos en blancos(❌)
 	
 # Idea general del proyecto
 

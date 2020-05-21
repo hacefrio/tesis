@@ -83,7 +83,7 @@ public class Connect {
                     + "join institucion \n"
                     + "on institucion.codigo = operador.institucion \n"
                     + "join sector \n"
-                    + "on sector.institucion = institucion.codigo \n"
+                    + "on institucion.sector = sector.codigo \n"
                     + " where sector.codigo='" + operador.getZona() + "';");
             if (rs.next()) {
                 entrada.addItem(rs.getString(6));
@@ -126,7 +126,7 @@ public class Connect {
                     + "join institucion \n"
                     + "on institucion.codigo = operador.institucion \n"
                     + "join sector \n"
-                    + "on sector.institucion = institucion.codigo \n"
+                    + "on institucion.sector = sector.codigo \n"
                     + " where rut='" + rut + "';");
             if (rs.next()) {
                 operador.setNombre(rs.getString(3));
@@ -134,6 +134,8 @@ public class Connect {
                 operador.setInstitucion(rs.getString(6));
                 operador.setRango(rs.getString(5));
                 operador.setZona(rs.getString(9));
+                System.out.println(operador.getNombre() + "|" + operador.getApellidos()
+                        + "|" + operador.getInstitucion() + "|" + operador.getRango() + "|" + operador.getZona());
                 conn.close();
                 rs.close();
                 s.close();
@@ -151,19 +153,21 @@ public class Connect {
         try {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
+            Connection conn2 = SQL.getConnection();
             Statement s = conn.createStatement();
-            Statement s2 = conn.createStatement();
+            Statement s2 = conn2.createStatement();
             ResultSet rs2 = s2.executeQuery("SELECT * FROM `operador` "
-                    + "where operador.rut= '" + rut + "'");
+                    + "where operador.rut= '" + rut + "';");
 
             ResultSet rs = s.executeQuery("SELECT * FROM `operador`"
                     + "join institucion\n"
                     + "on institucion.codigo= operador.institucion\n"
                     + "JOIN sector \n"
-                    + "on sector.institucion=institucion.codigo \n"
+                    + "on institucion.sector=sector.codigo \n"
                     + "where operador.rut ='" + rut + "' and  sector.codigo=" + operador.getZona() + ";");
 
             if (rs.next()) {
+
                 if (operador.getRango().equals("JefeDeZona")) {
                     if (rs.getString(5).equals("Operador")) {
                         System.out.println("si puede editar a un operador de su zona");
@@ -174,8 +178,8 @@ public class Connect {
                         salida = "noPermisos";
                     }
                 }
+                rs2.next();
             } else {
-
                 if (rs2.next()) {
                     System.out.println("si existe, pero en otra zona");
                     salida = "otraZona";
@@ -198,14 +202,12 @@ public class Connect {
             rs.close();
             s2.close();
             s.close();
-
+            conn2.close();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            System.out.println("error ");
+            System.out.println("error " + e.getMessage());
             return salida;
         }
-        System.out.println(salida);
-        System.out.println("no entró en un if");
+        System.out.println("Salida del metodo comprobarUsuariosRutPermisos" + salida);
         return salida;
     }
 
@@ -305,11 +307,11 @@ public class Connect {
         return false;
     }
 
-    public void crearInstitucion(String codigo, String nombre) {
+    public void crearInstitucion(String codigo, String nombre, String sector) {
         try {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
-            String sql = "insert into institucion values(" + codigo + ",'" + nombre + "' );";
+            String sql = "insert into institucion values(" + codigo + ",'" + nombre + "', sector=" + sector + " );";
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.execute();
             conn.close();
@@ -320,14 +322,15 @@ public class Connect {
         }
     }
 
-    public void setInstitucionesDatos(String codigo, JTextField nombre) {
+    public void setInstitucionesDatos(String codigo, JTextField nombre, JComboBox lista) {
         try {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
             Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("select * from institucion where codigo='" + codigo + "';");
+            ResultSet rs = s.executeQuery("select * from institucion where codigo=" + codigo + ";");
             if (rs.next()) {
                 nombre.setText(rs.getString(2));
+                lista.addItem(rs.getString(3));
             }
             conn.close();
             rs.close();
@@ -353,11 +356,11 @@ public class Connect {
 
     }
 
-    public void editarInstitucion(String codigo, String nombre) {
+    public void editarInstitucion(String codigo, String nombre, String sector) {
         try {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
-            String sql = "UPDATE institucion SET nombre = '" + nombre + "'  WHERE `codigo` = " + codigo + ";";
+            String sql = "UPDATE institucion SET nombre = '" + nombre + "' , sector=" + sector + "  WHERE `codigo` = " + codigo + ";";
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.execute();
             conn.close();
@@ -411,6 +414,127 @@ public class Connect {
         }
     }
 
+    public boolean comprobarComuna(String codigo) {
+        String salida = "";
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from comuna where comuna.codigo=" + codigo + " ;");
+            if (rs.next()) {
+                salida = rs.getString(1);
+                System.out.println(rs.getString(1));
+            }
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+            if (salida != "") {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return false;
+    }
+
+    public boolean comprobarComuna(String comuna, String sector) {
+        String salida = "";
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from comuna \n"
+                    + "join sector \n"
+                    + "on sector.codigo= comuna.sector \n"
+                    + "where comuna.codigo=" + comuna + " and sector.codigo=" + sector + ";");
+            if (rs.next()) {
+                salida = rs.getString(1);
+            }
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+            if (salida != "") {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return false;
+    }
+
+    public void loadSectores(JComboBox entrada) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from sector ;");
+            while (rs.next()) {
+                entrada.addItem(rs.getString(1));
+            }
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void crearComuna(String codigo, String nombre, String sector) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            String sql = "insert into comuna values(" + codigo + ",'" + nombre + "', sector=" + sector + " );";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            conn.close();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Comuna creada exitosamente ");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void editarComuna(String codigo, String nombre, String sector) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            String sql = "UPDATE comuna SET nombre = '" + nombre + "' , sector=" + sector + "  WHERE `codigo` = " + codigo + ";";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            conn.close();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Comuna editada exitosamente ");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void setComunaDatos(String codigo, JTextField nombre, JComboBox lista) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from comuna where codigo=" + codigo + ";");
+            if (rs.next()) {
+                nombre.setText(rs.getString(2));
+                lista.addItem(rs.getString(3));
+            }
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public int contarDelincuentes() {
         String salida = "";
         try {
@@ -432,6 +556,21 @@ public class Connect {
         return 1;
     }
 
+    public void eliminarComuna(String codigo) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            String sql = "DELETE FROM comuna WHERE codigo = '" + codigo + "';";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            conn.close();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Comuna Eliminada exitosamente ");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
     public void DelintuentesToExcel(WritableSheet hoja1) throws WriteException {
         try {
             Connect SQL = new Connect();

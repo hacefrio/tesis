@@ -26,10 +26,10 @@ import org.apache.commons.codec.digest.DigestUtils;
  * @author Sebastian
  */
 public class Menu extends javax.swing.JFrame {
-    
+
     private Connect c = new Connect();
     private Operador operador;
-    private GestorArchivos GA=new GestorArchivos();
+    private GestorArchivos GA = new GestorArchivos();
 
     /**
      * Creates new form Menu
@@ -50,7 +50,7 @@ public class Menu extends javax.swing.JFrame {
         this.comunaPage.setVisible(false);
         permisos();
     }
-    
+
     private void permisos() {
         String rango = operador.getRango();
         if (rango.equals("AdministradorGeneral")) {
@@ -129,6 +129,8 @@ public class Menu extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
         InstitucionesNombre = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        InstitucionesSectores = new javax.swing.JComboBox<>();
         reportesPage = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
@@ -152,8 +154,6 @@ public class Menu extends javax.swing.JFrame {
         SectoresNombre = new javax.swing.JTextField();
         SectoresDescripcion = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        SectoresInstitucion = new javax.swing.JComboBox<>();
         SectoresEditar = new javax.swing.JButton();
         SectoresCrear = new javax.swing.JButton();
         SectoresEliminar = new javax.swing.JButton();
@@ -161,15 +161,15 @@ public class Menu extends javax.swing.JFrame {
         comunaPage = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        ComunaCodigo = new javax.swing.JTextField();
         jButton19 = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        ComunaNombre = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton20 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
-        jButton22 = new javax.swing.JButton();
+        ComunaSectores = new javax.swing.JComboBox<>();
+        ComunaCrear = new javax.swing.JButton();
+        ComunaEliminar = new javax.swing.JButton();
+        ComunaEditar = new javax.swing.JButton();
         jButton23 = new javax.swing.JButton();
         botonera = new javax.swing.JPanel();
         userView = new javax.swing.JLabel();
@@ -455,26 +455,20 @@ public class Menu extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel18.setText("Nombre :");
 
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel27.setText("Sector:");
+
+        InstitucionesSectores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        InstitucionesSectores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InstitucionesSectoresActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout institucionesPageLayout = new javax.swing.GroupLayout(institucionesPage);
         institucionesPage.setLayout(institucionesPageLayout);
         institucionesPageLayout.setHorizontalGroup(
             institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(institucionesPageLayout.createSequentialGroup()
-                .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(institucionesPageLayout.createSequentialGroup()
-                        .addGap(326, 326, 326)
-                        .addComponent(jLabel5))
-                    .addGroup(institucionesPageLayout.createSequentialGroup()
-                        .addGap(264, 264, 264)
-                        .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(institucionesPageLayout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addComponent(InstitucionesEditar))
-                            .addGroup(institucionesPageLayout.createSequentialGroup()
-                                .addComponent(InstitucionesCrear)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(InstitucionesEliminar)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(institucionesPageLayout.createSequentialGroup()
                 .addGap(198, 198, 198)
                 .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -485,12 +479,33 @@ public class Menu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton6))
                     .addGroup(institucionesPageLayout.createSequentialGroup()
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(InstitucionesNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                        .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, institucionesPageLayout.createSequentialGroup()
+                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, institucionesPageLayout.createSequentialGroup()
+                                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)))
+                        .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(institucionesPageLayout.createSequentialGroup()
+                                .addComponent(InstitucionesCrear)
+                                .addGap(18, 18, 18)
+                                .addComponent(InstitucionesEliminar))
+                            .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(InstitucionesSectores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(InstitucionesNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(93, 93, 93))
+            .addGroup(institucionesPageLayout.createSequentialGroup()
+                .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(institucionesPageLayout.createSequentialGroup()
+                        .addGap(326, 326, 326)
+                        .addComponent(jLabel5))
+                    .addGroup(institucionesPageLayout.createSequentialGroup()
+                        .addGap(353, 353, 353)
+                        .addComponent(InstitucionesEditar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         institucionesPageLayout.setVerticalGroup(
             institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -511,13 +526,17 @@ public class Menu extends javax.swing.JFrame {
                     .addGroup(institucionesPageLayout.createSequentialGroup()
                         .addGap(172, 172, 172)
                         .addComponent(jButton1)))
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
+                .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InstitucionesSectores, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel27))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(InstitucionesCrear)
                     .addComponent(InstitucionesEliminar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(InstitucionesEditar)
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
 
         reportesPage.setBackground(new java.awt.Color(204, 204, 204));
@@ -694,12 +713,6 @@ public class Menu extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel21.setText("Descripcion :");
 
-        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel22.setText("Institucion :");
-
-        SectoresInstitucion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        SectoresInstitucion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
-
         SectoresEditar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         SectoresEditar.setText("Editar");
 
@@ -730,18 +743,15 @@ public class Menu extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton7))
                             .addGroup(SectoresPageLayout.createSequentialGroup()
-                                .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel21)
-                                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel21)
+                                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(12, 12, 12)
                                 .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(SectoresInstitucion, 0, 342, Short.MAX_VALUE)
-                                    .addComponent(SectoresNombre)
+                                    .addComponent(SectoresNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
                                     .addComponent(SectoresDescripcion)))))
                     .addGroup(SectoresPageLayout.createSequentialGroup()
-                        .addGap(257, 257, 257)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(SectoresPageLayout.createSequentialGroup()
                                 .addGap(56, 56, 56)
@@ -749,9 +759,9 @@ public class Menu extends javax.swing.JFrame {
                             .addGroup(SectoresPageLayout.createSequentialGroup()
                                 .addComponent(SectoresCrear)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(SectoresEliminar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton12)))))
+                                .addComponent(SectoresEliminar)))
+                        .addGap(231, 231, 231)
+                        .addComponent(jButton12)))
                 .addGap(20, 20, 20))
         );
         SectoresPageLayout.setVerticalGroup(
@@ -771,23 +781,18 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
                     .addComponent(SectoresDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel22)
-                    .addComponent(SectoresInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(SectoresPageLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
+                        .addGap(65, 65, 65)
+                        .addComponent(jButton12))
+                    .addGroup(SectoresPageLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
                         .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(SectoresCrear)
                             .addComponent(SectoresEliminar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SectoresPageLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton12)
-                        .addGap(19, 19, 19)))
-                .addComponent(SectoresEditar)
-                .addContainerGap(156, Short.MAX_VALUE))
+                        .addComponent(SectoresEditar)))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
 
         comunaPage.setBackground(new java.awt.Color(204, 204, 204));
@@ -801,6 +806,11 @@ public class Menu extends javax.swing.JFrame {
 
         jButton19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton19.setText("Comprobar");
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel25.setText("Nombre:");
@@ -808,17 +818,32 @@ public class Menu extends javax.swing.JFrame {
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel26.setText("Sector :");
 
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComunaSectores.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        ComunaSectores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
 
-        jButton20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton20.setText("Crear");
+        ComunaCrear.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        ComunaCrear.setText("Crear");
+        ComunaCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComunaCrearActionPerformed(evt);
+            }
+        });
 
-        jButton21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton21.setText("Eliminar");
+        ComunaEliminar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        ComunaEliminar.setText("Eliminar");
+        ComunaEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComunaEliminarActionPerformed(evt);
+            }
+        });
 
-        jButton22.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton22.setText("Editar");
+        ComunaEditar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        ComunaEditar.setText("Editar");
+        ComunaEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComunaEditarActionPerformed(evt);
+            }
+        });
 
         jButton23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton23.setText("Ver Instituciones");
@@ -831,26 +856,23 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(comunaPageLayout.createSequentialGroup()
                         .addGap(199, 199, 199)
-                        .addGroup(comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(comunaPageLayout.createSequentialGroup()
-                                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ComunaSectores, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(comunaPageLayout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addGroup(comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, comunaPageLayout.createSequentialGroup()
+                                .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ComunaCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8)
+                                .addComponent(jButton19))
                             .addGroup(comunaPageLayout.createSequentialGroup()
                                 .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton19))
-                    .addGroup(comunaPageLayout.createSequentialGroup()
-                        .addGap(209, 209, 209)
-                        .addGroup(comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton21)
-                            .addGroup(comunaPageLayout.createSequentialGroup()
-                                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(330, Short.MAX_VALUE))
+                                .addGap(27, 27, 27)
+                                .addComponent(ComunaNombre)))))
+                .addGap(329, 329, 329))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, comunaPageLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -858,14 +880,16 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, comunaPageLayout.createSequentialGroup()
-                        .addGap(236, 236, 236)
-                        .addComponent(jButton20)
+                        .addGap(261, 261, 261)
+                        .addComponent(ComunaCrear)
+                        .addGap(44, 44, 44)
+                        .addComponent(ComunaEliminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton23)
                         .addGap(48, 48, 48))))
             .addGroup(comunaPageLayout.createSequentialGroup()
-                .addGap(325, 325, 325)
-                .addComponent(jButton22)
+                .addGap(326, 326, 326)
+                .addComponent(ComunaEditar)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         comunaPageLayout.setVerticalGroup(
@@ -875,25 +899,25 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jLabel23)
                 .addGap(105, 105, 105)
                 .addGroup(comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComunaCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel24)
                     .addComponent(jButton19))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComunaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel25))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComunaSectores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel26))
                 .addGap(46, 46, 46)
                 .addGroup(comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton23)
-                    .addComponent(jButton20)
-                    .addComponent(jButton21))
-                .addGap(18, 18, 18)
-                .addComponent(jButton22)
-                .addContainerGap(222, Short.MAX_VALUE))
+                    .addComponent(ComunaCrear)
+                    .addComponent(ComunaEliminar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ComunaEditar)
+                .addContainerGap(227, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout paginasLayout = new javax.swing.GroupLayout(paginas);
@@ -1118,7 +1142,7 @@ public class Menu extends javax.swing.JFrame {
             c.loadInstituciones2(this.UsuarioInstitucionBoxUsuarios);
         } else {
             c.loadInstituciones1(this.UsuarioInstitucionBoxUsuarios, operador);
-            
+
         }
         ButtonGroup rb = new ButtonGroup();
         rb.add(this.RadioAdministradorGeneral);
@@ -1135,13 +1159,13 @@ public class Menu extends javax.swing.JFrame {
         this.RadioJefeDeZona.setEnabled(false);
         this.UsuarioNombre.setEditable(false);
         this.UsuarioRut.setEditable(true);
-        
+
         this.UsuarioApellido.setText("");
         this.UsuarioContrasena.setText("");
         this.UsuarioNombre.setText("");
         this.UsuarioRut.setText("");
     }//GEN-LAST:event_usuariosButtonActionPerformed
-    
+
 
     private void institucionesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_institucionesButtonActionPerformed
         // TODO add your handling code here:
@@ -1253,12 +1277,13 @@ public class Menu extends javax.swing.JFrame {
     private void UsuarioComprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioComprobarActionPerformed
         // TODO add your handling code here:
         String consulta = c.comprobarUsuariosRutPermisos(this.UsuarioRut.getText(), operador);
+        System.out.println(consulta);
         this.UsuarioInstitucionBoxUsuarios.removeAllItems();
         if (operador.getRango().equals("AdministradorGeneral")) {
             c.loadInstituciones2(this.UsuarioInstitucionBoxUsuarios);
         } else {
             c.loadInstituciones1(this.UsuarioInstitucionBoxUsuarios, operador);
-            
+
         }
         if (consulta.equals("si")) {
             this.UsuarioRut.setEditable(false);
@@ -1421,32 +1446,57 @@ public class Menu extends javax.swing.JFrame {
         this.delitosPage.setVisible(false);
         this.reportesPage.setVisible(false);
         this.comunaPage.setVisible(true);
+        this.comunaDefault();
     }//GEN-LAST:event_comunaButtonActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         this.InstitucionesNombre.setEditable(true);
-        if (c.comprobarInstitucion(this.InstitucionesCodigo.getText())) {
-            JOptionPane.showMessageDialog(null, "La institucion ya exista, proceda a editar o eliminar");
-            this.InstitucionesCodigo.setEditable(false);
-            this.InstitucionesCrear.setEnabled(false);
-            this.InstitucionesEditar.setEnabled(true);
-            this.InstitucionesEliminar.setEnabled(true);
-            c.setInstitucionesDatos(this.InstitucionesCodigo.getText(), this.InstitucionesNombre);
-        } else {
-            JOptionPane.showMessageDialog(null, "La institucion no existe, proceda a crearlo");
-            this.InstitucionesCodigo.setEditable(false);
-            this.InstitucionesCrear.setEnabled(true);
-            this.InstitucionesEditar.setEnabled(false);
-            this.InstitucionesEliminar.setEnabled(false);
-        }
+        if (operador.getRango().equals("AdministradorGeneral")) {
+            if (c.comprobarInstitucion(this.InstitucionesCodigo.getText())) {
+                JOptionPane.showMessageDialog(null, "La institucion ya exista, proceda a editar o eliminar");
+                this.InstitucionesCodigo.setEditable(false);
+                this.InstitucionesCrear.setEnabled(false);
+                this.InstitucionesEditar.setEnabled(true);
+                this.InstitucionesEliminar.setEnabled(true);
+                this.InstitucionesSectores.setEnabled(true);
+                c.setInstitucionesDatos(this.InstitucionesCodigo.getText(), this.InstitucionesNombre, this.InstitucionesSectores);
+            } else {
+                JOptionPane.showMessageDialog(null, "La institucion no existe, proceda a crearlo");
+                this.InstitucionesCodigo.setEditable(false);
+                this.InstitucionesCrear.setEnabled(true);
+                this.InstitucionesEditar.setEnabled(false);
+                this.InstitucionesEliminar.setEnabled(false);
+                this.InstitucionesSectores.setEnabled(true);
+                c.loadSectores(this.InstitucionesSectores);
 
+            }
+        } else {
+            if (c.comprobarInstitucion(this.InstitucionesCodigo.getText())) {
+                JOptionPane.showMessageDialog(null, "La institucion ya exista, proceda a editar o eliminar");
+                this.InstitucionesCodigo.setEditable(false);
+                this.InstitucionesSectores.setEnabled(true);
+                this.InstitucionesCrear.setEnabled(false);
+                this.InstitucionesEditar.setEnabled(true);
+                this.InstitucionesEliminar.setEnabled(true);
+                InstitucionesSectores.addItem(operador.getZona());
+                c.setInstitucionesDatos(this.InstitucionesCodigo.getText(), this.InstitucionesNombre, this.InstitucionesSectores);
+            } else {
+                JOptionPane.showMessageDialog(null, "La institucion no existe, proceda a crearlo");
+                this.InstitucionesCodigo.setEditable(false);
+                this.InstitucionesCrear.setEnabled(true);
+                this.InstitucionesEditar.setEnabled(false);
+                this.InstitucionesEliminar.setEnabled(false);
+                InstitucionesSectores.addItem(operador.getZona());
+
+            }
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void InstitucionesCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InstitucionesCrearActionPerformed
         // TODO add your handling code here:
         if (!this.InstitucionesCodigo.getText().isEmpty() || !this.InstitucionesNombre.getText().isEmpty()) {
-            c.crearInstitucion(this.InstitucionesCodigo.getText(), this.InstitucionesNombre.getText());
+            c.crearInstitucion(this.InstitucionesCodigo.getText(), this.InstitucionesNombre.getText(), this.InstitucionesSectores.getSelectedItem().toString());
             institucionesDefault();
         } else {
             JOptionPane.showMessageDialog(null, "Por favor, ingrese todos los campos");
@@ -1462,21 +1512,39 @@ public class Menu extends javax.swing.JFrame {
 
     private void InstitucionesEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InstitucionesEditarActionPerformed
         // TODO add your handling code here:
-        c.editarInstitucion(this.InstitucionesCodigo.getText(), this.InstitucionesNombre.getText());
+        c.editarInstitucion(this.InstitucionesCodigo.getText(), this.InstitucionesNombre.getText(), this.InstitucionesSectores.getSelectedItem().toString());
         institucionesDefault();
     }//GEN-LAST:event_InstitucionesEditarActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        if (c.comprobarSector(this.SectoresCodigo.getText())) {
-            JOptionPane.showMessageDialog(null, "El sector ya existe, proceda a editar o eliminar");
-            sectoresDefault2();
-            c.setSectores(this.SectoresCodigo.getText(), this.SectoresNombre, this.SectoresDescripcion);
+        if (operador.getRango().equals("AdministradorGeneral")) {
+            if (c.comprobarSector(this.SectoresCodigo.getText())) {
+                JOptionPane.showMessageDialog(null, "El sector ya existe, proceda a editar o eliminar");
+                sectoresDefault2();
+                c.setSectores(this.SectoresCodigo.getText(), this.SectoresNombre, this.SectoresDescripcion);
+            } else {
+                JOptionPane.showMessageDialog(null, "El sector no existe, proceda a crear");
+                sectoresDefault2();
+                this.SectoresCrear.setEnabled(true);
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "El sector no existe, proceda a crear");
-            sectoresDefault2();
-            this.SectoresCrear.setEnabled(true);
+            if (this.SectoresCodigo.getText().equals(operador.getZona())) {
+                if (c.comprobarSector(this.SectoresCodigo.getText())) {
+                    JOptionPane.showMessageDialog(null, "El sector ya existe, proceda a editar o eliminar");
+                    sectoresDefault2();
+                    c.setSectores(this.SectoresCodigo.getText(), this.SectoresNombre, this.SectoresDescripcion);
+                } else {
+                    JOptionPane.showMessageDialog(null, "El sector no existe, proceda a crear");
+                    sectoresDefault2();
+                    this.SectoresCrear.setEnabled(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Error, usted no tiene permisos para crear o editar este sector");
+            }
+
         }
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
@@ -1497,12 +1565,86 @@ public class Menu extends javax.swing.JFrame {
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton25ActionPerformed
-    
+
+    private void InstitucionesSectoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InstitucionesSectoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InstitucionesSectoresActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        // TODO add your handling code here:
+        this.ComunaSectores.removeAllItems();
+        if (operador.getRango().equals("AdministradorGeneral")) {
+            c.loadSectores(this.ComunaSectores);
+            if (c.comprobarComuna(this.ComunaCodigo.getText())) {
+                JOptionPane.showMessageDialog(null, "La comuna ya exite, proceda a editar o eliminar");
+                c.setComunaDatos(this.ComunaCodigo.getText(), this.ComunaNombre, this.ComunaSectores);
+                this.ComunaCodigo.setEditable(false);
+                this.ComunaNombre.setEditable(true);
+                this.ComunaSectores.setEnabled(true);
+                this.ComunaCrear.setEnabled(false);
+                this.ComunaEditar.setEnabled(true);
+                this.ComunaEliminar.setEnabled(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "La comuna no exite, proceda a crear");
+                this.ComunaCodigo.setEditable(false);
+                this.ComunaNombre.setEditable(true);
+                this.ComunaSectores.setEnabled(true);
+                this.ComunaCrear.setEnabled(true);
+                this.ComunaEditar.setEnabled(false);
+                this.ComunaEliminar.setEnabled(false);
+            }
+        } else {
+            this.ComunaSectores.setSelectedItem(operador.getZona());
+            if (c.comprobarComuna(this.ComunaCodigo.getText(), operador.getZona())) {
+                JOptionPane.showMessageDialog(null, "La comuna ya exite, proceda a editar o eliminar");
+                c.setComunaDatos(this.ComunaCodigo.getText(), this.ComunaNombre, this.ComunaSectores);
+                this.ComunaCodigo.setEditable(false);
+                this.ComunaNombre.setEditable(true);
+                this.ComunaSectores.setEnabled(true);
+                this.ComunaCrear.setEnabled(false);
+                this.ComunaEditar.setEnabled(true);
+                this.ComunaEliminar.setEnabled(true);
+            } else {
+                if (c.comprobarComuna(this.ComunaCodigo.getText())) {
+                    JOptionPane.showMessageDialog(this, "La comuna no exite proceda a crearla");
+                    this.ComunaCodigo.setEditable(false);
+                    this.ComunaNombre.setEditable(true);
+                    this.ComunaSectores.setEnabled(true);
+                    this.ComunaCrear.setEnabled(true);
+                    this.ComunaEditar.setEnabled(false);
+                    this.ComunaEliminar.setEnabled(false);
+                  
+                } else {
+                    JOptionPane.showMessageDialog(this, "La comuna ya existe en otro sector");
+                    comunaDefault();
+
+                }
+
+            }
+        }
+
+
+    }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void ComunaCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComunaCrearActionPerformed
+        // TODO add your handling code here:
+        c.crearComuna(this.ComunaCodigo.getText(), this.ComunaNombre.getText(), this.ComunaSectores.getSelectedItem().toString());
+    }//GEN-LAST:event_ComunaCrearActionPerformed
+
+    private void ComunaEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComunaEliminarActionPerformed
+        // TODO add your handling code here:
+        c.eliminarComuna(this.ComunaCodigo.getText());
+    }//GEN-LAST:event_ComunaEliminarActionPerformed
+
+    private void ComunaEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComunaEditarActionPerformed
+        // TODO add your handling code here:
+        c.editarComuna(this.ComunaCodigo.getText(), this.ComunaNombre.getText(), this.ComunaSectores.getSelectedItem().toString());
+    }//GEN-LAST:event_ComunaEditarActionPerformed
+
     public void sectoresDefault() {
         this.SectoresCodigo.setEditable(true);
         this.SectoresNombre.setEditable(false);
         this.SectoresDescripcion.setEditable(false);
-        this.SectoresInstitucion.setEditable(false);
         this.SectoresCrear.setEnabled(false);
         this.SectoresEditar.setEnabled(false);
         this.SectoresEliminar.setEnabled(false);
@@ -1515,7 +1657,6 @@ public class Menu extends javax.swing.JFrame {
         this.SectoresCodigo.setEditable(false);
         this.SectoresNombre.setEditable(true);
         this.SectoresDescripcion.setEditable(true);
-        this.SectoresInstitucion.setEditable(true);
         this.SectoresCrear.setEnabled(false);
         this.SectoresEditar.setEnabled(true);
         this.SectoresEliminar.setEnabled(true);
@@ -1529,6 +1670,16 @@ public class Menu extends javax.swing.JFrame {
         this.InstitucionesEliminar.setEnabled(false);
         this.InstitucionesNombre.setText("");
         this.InstitucionesCodigo.setText("");
+        this.InstitucionesSectores.removeAllItems();
+    }
+
+    public void comunaDefault() {
+        this.ComunaCodigo.setEditable(true);
+        this.ComunaNombre.setEditable(false);
+        this.ComunaSectores.setEnabled(false);
+        this.ComunaCodigo.setText("");
+        this.ComunaNombre.setText("");
+        this.ComunaSectores.removeAllItems();
     }
 
     /**
@@ -1566,11 +1717,18 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField ComunaCodigo;
+    private javax.swing.JButton ComunaCrear;
+    private javax.swing.JButton ComunaEditar;
+    private javax.swing.JButton ComunaEliminar;
+    private javax.swing.JTextField ComunaNombre;
+    private javax.swing.JComboBox<String> ComunaSectores;
     private javax.swing.JTextField InstitucionesCodigo;
     private javax.swing.JButton InstitucionesCrear;
     private javax.swing.JButton InstitucionesEditar;
     private javax.swing.JButton InstitucionesEliminar;
     private javax.swing.JTextField InstitucionesNombre;
+    private javax.swing.JComboBox<String> InstitucionesSectores;
     private javax.swing.JRadioButton RadioAdministradorGeneral;
     private javax.swing.JRadioButton RadioJefeDeZona;
     private javax.swing.JRadioButton RadioOperador;
@@ -1579,7 +1737,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTextField SectoresDescripcion;
     private javax.swing.JButton SectoresEditar;
     private javax.swing.JButton SectoresEliminar;
-    private javax.swing.JComboBox<String> SectoresInstitucion;
     private javax.swing.JTextField SectoresNombre;
     private javax.swing.JPanel SectoresPage;
     private javax.swing.JTextField UsuarioApellido;
@@ -1609,9 +1766,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
@@ -1619,7 +1773,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1634,11 +1787,11 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1646,8 +1799,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JPanel menuNormal;
     private javax.swing.JPanel paginas;
     private javax.swing.JButton reportesButton;
