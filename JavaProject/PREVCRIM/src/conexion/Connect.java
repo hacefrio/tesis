@@ -311,7 +311,7 @@ public class Connect {
         try {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
-            String sql = "insert into institucion values(" + codigo + ",'" + nombre + "', sector=" + sector + " );";
+            String sql = "insert into institucion values(" + codigo + ",'" + nombre + "', " + sector + " );";
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.execute();
             conn.close();
@@ -469,6 +469,7 @@ public class Connect {
     }
 
     public void loadSectores(JComboBox entrada) {
+        entrada.removeAllItems();
         try {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
@@ -491,7 +492,7 @@ public class Connect {
         try {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
-            String sql = "insert into comuna values(" + codigo + ",'" + nombre + "', sector=" + sector + " );";
+            String sql = "insert into comuna values(" + codigo + ",'" + nombre + "', " + sector + " );";
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.execute();
             conn.close();
@@ -535,6 +536,22 @@ public class Connect {
         }
     }
 
+
+    public void eliminarComuna(String codigo) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            String sql = "DELETE FROM comuna WHERE codigo = " + codigo + ";";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            conn.close();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Comuna Eliminada exitosamente ");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     public int contarDelincuentes() {
         String salida = "";
         try {
@@ -555,22 +572,7 @@ public class Connect {
         }
         return 1;
     }
-
-    public void eliminarComuna(String codigo) {
-        try {
-            Connect SQL = new Connect();
-            Connection conn = SQL.getConnection();
-            String sql = "DELETE FROM comuna WHERE codigo = '" + codigo + "';";
-            PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.execute();
-            conn.close();
-            pstm.close();
-            JOptionPane.showMessageDialog(null, "Comuna Eliminada exitosamente ");
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
-    }
+    
     public void DelintuentesToExcel(WritableSheet hoja1) throws WriteException {
         try {
             Connect SQL = new Connect();

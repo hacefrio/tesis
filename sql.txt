@@ -75,6 +75,7 @@ FOREIGN KEY (comuna) REFERENCES comuna(codigo);
 
 
 CREATE TABLE IF NOT EXISTS parentesco(
+    codigo int not null primary key,
     delincuente1 varchar(13) not null,
     parentesco text(200) not null,
     delincuente2 varchar(13) not null
