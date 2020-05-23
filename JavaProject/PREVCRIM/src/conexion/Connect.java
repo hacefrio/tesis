@@ -307,6 +307,52 @@ public class Connect {
         return false;
     }
 
+    public void crearSector(String codigo, String nombre, String descripcion) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            String sql = "insert into sector values(" + codigo + ",'" + nombre + "', '" + descripcion + "' );";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            conn.close();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Sector creado exitosamente ");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void eliminarSector(String codigo) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            String sql = "DELETE FROM sector WHERE codigo = " + codigo + ";";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            conn.close();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Sector eliminado exitosamente ");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
+
+    public void editarSector(String codigo, String nombre, String descripcion) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            String sql = "UPDATE sector SET nombre = '" + nombre + "' , descripcion='" + descripcion + "'  WHERE `codigo` = " + codigo + ";";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            conn.close();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Comuna editada exitosamente ");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     public void crearInstitucion(String codigo, String nombre, String sector) {
         try {
             Connect SQL = new Connect();
@@ -536,7 +582,6 @@ public class Connect {
         }
     }
 
-
     public void eliminarComuna(String codigo) {
         try {
             Connect SQL = new Connect();
@@ -572,8 +617,63 @@ public class Connect {
         }
         return 1;
     }
+
+    public boolean comprobarDelincuente(String rut) {
+        String salida = "";
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from delincuente \n"
+                    + "where delincuente.rut='" + rut + "';");
+            if (rs.next()) {
+                salida = rs.getString(1);
+            }
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+            if (salida != "") {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return false;
+    }
+    public void crearDelincuente(String rut, String apellidos, String nombres, String apodo, String domicilio, String ultimoLugarVisto, String telefonoCasa, String telefonoCelular, String email, String fechaDeNacimiento, String estado, String comuna) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            String sql = "insert into delincuente values( '" + rut + "','" + apellidos + "','" + nombres + "','" + apodo + "','" +domicilio + "'," + ultimoLugarVisto + ",'"+telefonoCasa+"','"+telefonoCelular+"','"+email+"','"+fechaDeNacimiento+"','"+estado+"',"+comuna+");";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            conn.close();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Delincuente creado exitosamente ");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }   
+    }
     
-    public void DelintuentesToExcel(WritableSheet hoja1) throws WriteException {
+    public void eliminarDelincuente(String rut) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            String sql = "DELETE FROM delincuente WHERE rut = '" + rut + "';";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            conn.close();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Comuna Eliminada exitosamente ");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void DelintuentesToExcelOrdenAlfabetico(WritableSheet hoja1) throws WriteException {
         try {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();

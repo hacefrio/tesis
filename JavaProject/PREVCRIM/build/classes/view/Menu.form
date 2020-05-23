@@ -104,7 +104,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                       <Component id="delincuentesPage" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="34" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" rootIndex="5" groupAlignment="0" attributes="0">
@@ -886,10 +886,10 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="266" max="-2" attributes="0"/>
-                                      <Component id="jButton28" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                      <Component id="jButton30" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="295" max="-2" attributes="0"/>
+                                      <Component id="delitosCrear" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="delitosEditar" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
@@ -897,27 +897,27 @@
                                           <Group type="102" attributes="0">
                                               <Component id="jLabel46" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="InstitucionesCodigo18" min="-2" pref="202" max="-2" attributes="0"/>
+                                              <Component id="delitoComuna" min="-2" pref="202" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <Component id="jLabel45" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="InstitucionesCodigo17" min="-2" pref="202" max="-2" attributes="0"/>
+                                              <Component id="delitosDelincuente" min="-2" pref="202" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <Component id="jLabel44" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="InstitucionesCodigo16" min="-2" pref="202" max="-2" attributes="0"/>
+                                              <Component id="delitosDireccion" min="-2" pref="202" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <Component id="jLabel43" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="InstitucionesCodigo15" min="-2" pref="202" max="-2" attributes="0"/>
+                                              <Component id="delitosDescripcion" min="-2" pref="202" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <Component id="jLabel42" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="InstitucionesCodigo14" min="-2" pref="202" max="-2" attributes="0"/>
+                                              <Component id="delitosCodigo" min="-2" pref="202" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -926,14 +926,15 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jButton27" min="-2" max="-2" attributes="0"/>
                                   <Component id="jButton31" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton32" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="326" max="-2" attributes="0"/>
-                              <Component id="jButton29" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="330" max="-2" attributes="0"/>
+                              <Component id="delitosEliminar" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="265" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -943,39 +944,40 @@
                       <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="InstitucionesCodigo14" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="delitosCodigo" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="jLabel42" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton27" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="InstitucionesCodigo15" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="delitosDescripcion" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="jLabel43" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="InstitucionesCodigo16" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="delitosDireccion" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="jLabel44" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="InstitucionesCodigo17" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="delitosDelincuente" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="jLabel45" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton32" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="InstitucionesCodigo18" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="delitoComuna" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="jLabel46" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton31" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton28" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton30" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="delitosCrear" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="delitosEditar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton29" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="209" max="32767" attributes="0"/>
+                      <Component id="delitosEliminar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="223" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -990,7 +992,7 @@
                 <Property name="text" type="java.lang.String" value="delitos"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="InstitucionesCodigo14">
+            <Component class="javax.swing.JTextField" name="delitosCodigo">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel42">
               <Properties>
@@ -1019,9 +1021,9 @@
                 <Property name="text" type="java.lang.String" value="Descripcion:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="InstitucionesCodigo15">
+            <Component class="javax.swing.JTextField" name="delitosDescripcion">
             </Component>
-            <Component class="javax.swing.JTextField" name="InstitucionesCodigo16">
+            <Component class="javax.swing.JTextField" name="delitosDireccion">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel44">
               <Properties>
@@ -1031,7 +1033,7 @@
                 <Property name="text" type="java.lang.String" value="Direccion:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="InstitucionesCodigo17">
+            <Component class="javax.swing.JTextField" name="delitosDelincuente">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel45">
               <Properties>
@@ -1041,7 +1043,7 @@
                 <Property name="text" type="java.lang.String" value="Rut Delincuente:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="InstitucionesCodigo18">
+            <Component class="javax.swing.JTextField" name="delitoComuna">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel46">
               <Properties>
@@ -1051,7 +1053,7 @@
                 <Property name="text" type="java.lang.String" value="Comuna :"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton28">
+            <Component class="javax.swing.JButton" name="delitosCrear">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="1"/>
@@ -1059,10 +1061,10 @@
                 <Property name="text" type="java.lang.String" value="Crear"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton28ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="delitosCrearActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton29">
+            <Component class="javax.swing.JButton" name="delitosEliminar">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="1"/>
@@ -1070,10 +1072,10 @@
                 <Property name="text" type="java.lang.String" value="Eliminar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton29ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="delitosEliminarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton30">
+            <Component class="javax.swing.JButton" name="delitosEditar">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="1"/>
@@ -1081,7 +1083,7 @@
                 <Property name="text" type="java.lang.String" value="Editar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton30ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="delitosEditarActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton31">
@@ -1093,6 +1095,17 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton31ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton32">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Comprobar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton32ActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -1116,25 +1129,25 @@
                                       <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
                                       <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="InstitucionesCodigo2" max="32767" attributes="0"/>
+                                      <Component id="DelincuentesApellidos" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
                                       <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="InstitucionesCodigo3" max="32767" attributes="0"/>
+                                      <Component id="DelincuentesNombre" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
                                       <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="InstitucionesCodigo5" max="32767" attributes="0"/>
+                                      <Component id="DelincuentesApodos" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                                       <Component id="jLabel31" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="InstitucionesCodigo4" max="32767" attributes="0"/>
+                                      <Component id="DelincuentesDomicilio" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
@@ -1143,24 +1156,24 @@
                                               <Group type="102" attributes="0">
                                                   <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="InstitucionesCodigo1" min="-2" pref="202" max="-2" attributes="0"/>
+                                                  <Component id="DelincuentesRut" min="-2" pref="202" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jButton8" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="DelincuentesComprobarRut" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" attributes="0">
                                                   <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="InstitucionesCodigo7" min="-2" pref="342" max="-2" attributes="0"/>
+                                                  <Component id="DelincuentesTelefonoCelular" min="-2" pref="342" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" attributes="0">
                                                   <Component id="jLabel32" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="InstitucionesCodigo6" min="-2" pref="342" max="-2" attributes="0"/>
+                                                  <Component id="DelincuentesEmail" min="-2" pref="342" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" attributes="0">
                                                   <Component id="jLabel37" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jDateChooser1" min="-2" pref="342" max="-2" attributes="0"/>
+                                                  <Component id="DelincuentesFechaNac" min="-2" pref="342" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -1168,12 +1181,12 @@
                                           <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                                           <Component id="jLabel34" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="InstitucionesCodigo8" min="-2" pref="342" max="-2" attributes="0"/>
+                                          <Component id="DelincuentesTelefonoHogar" min="-2" pref="342" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="jLabel35" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="InstitucionesCodigo9" min="-2" pref="342" max="-2" attributes="0"/>
+                                          <Component id="DelincuentesUltimoLugarVisto" min="-2" pref="342" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -1187,25 +1200,25 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="DelincuentesRadioButton1" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="jRadioButton2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="DelincuentesRadioButton2" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                                      <Component id="jRadioButton3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="DelincuentesRadioButton3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="InstitucionesCodigo12" max="32767" attributes="0"/>
+                                  <Component id="DelincuentesComuna" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="205" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButton35" max="32767" attributes="0"/>
+                                  <Component id="DelincuentesMostrarDelincuentes" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
-                                      <Component id="jButton10" min="-2" max="-2" attributes="0"/>
+                                      <Component id="DelincuentesCrear" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="jButton11" min="-2" max="-2" attributes="0"/>
+                                      <Component id="DelincuentesEditar" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                      <Component id="jButton17" min="-2" max="-2" attributes="0"/>
+                                      <Component id="DelincuentesEliminar" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -1227,32 +1240,32 @@
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="InstitucionesCodigo11" max="32767" attributes="0"/>
+                                                  <Component id="ParentescoParentesco" max="32767" attributes="0"/>
                                                   <Group type="102" attributes="0">
-                                                      <Component id="jButton33" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="ParentescoComprobar3" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                                   </Group>
-                                                  <Component id="InstitucionesCodigo13" max="32767" attributes="0"/>
+                                                  <Component id="ParentescoRut2" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
-                                              <EmptySpace min="0" pref="49" max="32767" attributes="0"/>
+                                              <EmptySpace min="0" pref="46" max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="1" attributes="0">
                                                   <Group type="102" attributes="0">
                                                       <Component id="jLabel39" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                           <Group type="102" attributes="0">
-                                                              <Component id="jButton32" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="ParentescoComprobar2" min="-2" max="-2" attributes="0"/>
                                                               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                                                           </Group>
-                                                          <Component id="InstitucionesCodigo10" max="32767" attributes="0"/>
+                                                          <Component id="ParentescoRut1" max="32767" attributes="0"/>
                                                       </Group>
                                                   </Group>
                                                   <Group type="102" attributes="0">
-                                                      <Component id="jButton21" min="-2" pref="99" max="-2" attributes="0"/>
+                                                      <Component id="ParentescoCrear" min="-2" pref="99" max="-2" attributes="0"/>
                                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                      <Component id="jButton20" min="-2" pref="99" max="-2" attributes="0"/>
+                                                      <Component id="ParentescoEditar" min="-2" pref="99" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -1268,13 +1281,13 @@
                                       <Component id="jLabel48" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jButton26" min="-2" max="-2" attributes="0"/>
-                                          <Component id="InstitucionesCodigo19" min="-2" pref="188" max="-2" attributes="0"/>
+                                          <Component id="ParentescoComprobar1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="ParentescoCodigo" min="-2" pref="188" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jButton22" min="-2" pref="107" max="-2" attributes="0"/>
+                                      <Component id="ParentescoElimininar" min="-2" pref="107" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jButton34" alignment="1" min="-2" pref="270" max="-2" attributes="0"/>
@@ -1296,108 +1309,108 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="InstitucionesCodigo1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="DelincuentesRut" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="DelincuentesComprobarRut" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="InstitucionesCodigo2" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="DelincuentesApellidos" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel14" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="InstitucionesCodigo3" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="DelincuentesNombre" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="InstitucionesCodigo19" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="ParentescoCodigo" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="jLabel48" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="InstitucionesCodigo5" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="DelincuentesApodos" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="jLabel30" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton26" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ParentescoComprobar1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="InstitucionesCodigo4" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="DelincuentesDomicilio" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                   <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="InstitucionesCodigo9" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="DelincuentesUltimoLugarVisto" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                   <Component id="jLabel35" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="InstitucionesCodigo8" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="DelincuentesTelefonoHogar" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                   <Component id="jLabel34" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="InstitucionesCodigo7" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                                  <Component id="jLabel33" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="DelincuentesTelefonoCelular" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="InstitucionesCodigo6" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="DelincuentesEmail" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                   <Component id="jLabel32" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel37" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="DelincuentesFechaNac" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel36" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="DelincuentesRadioButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="DelincuentesRadioButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="DelincuentesRadioButton3" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="InstitucionesCodigo12" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="DelincuentesComuna" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                   <Component id="jLabel38" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jButton10" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton11" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton17" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="DelincuentesCrear" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="DelincuentesEditar" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="DelincuentesEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton35" min="-2" max="-2" attributes="0"/>
+                              <Component id="DelincuentesMostrarDelincuentes" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="InstitucionesCodigo10" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="ParentescoRut1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                   <Component id="jLabel39" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton32" min="-2" max="-2" attributes="0"/>
+                              <Component id="ParentescoComprobar2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="InstitucionesCodigo13" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="ParentescoRut2" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                   <Component id="jLabel41" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton33" min="-2" max="-2" attributes="0"/>
+                              <Component id="ParentescoComprobar3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="InstitucionesCodigo11" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="ParentescoParentesco" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                   <Component id="jLabel40" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jButton21" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton20" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ParentescoCrear" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ParentescoEditar" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton22" min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="ParentescoElimininar" min="-2" pref="31" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jButton34" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -1432,9 +1445,9 @@
                 <Property name="text" type="java.lang.String" value="RUT: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="InstitucionesCodigo1">
+            <Component class="javax.swing.JTextField" name="DelincuentesRut">
             </Component>
-            <Component class="javax.swing.JButton" name="jButton8">
+            <Component class="javax.swing.JButton" name="DelincuentesComprobarRut">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="1"/>
@@ -1442,7 +1455,7 @@
                 <Property name="text" type="java.lang.String" value="Comprobar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DelincuentesComprobarRutActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel28">
@@ -1453,7 +1466,7 @@
                 <Property name="text" type="java.lang.String" value="Apellidos:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="InstitucionesCodigo2">
+            <Component class="javax.swing.JTextField" name="DelincuentesApellidos">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel29">
               <Properties>
@@ -1463,11 +1476,11 @@
                 <Property name="text" type="java.lang.String" value="Nombres:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="InstitucionesCodigo3">
+            <Component class="javax.swing.JTextField" name="DelincuentesNombre">
             </Component>
-            <Component class="javax.swing.JTextField" name="InstitucionesCodigo4">
+            <Component class="javax.swing.JTextField" name="DelincuentesDomicilio">
             </Component>
-            <Component class="javax.swing.JTextField" name="InstitucionesCodigo5">
+            <Component class="javax.swing.JTextField" name="DelincuentesApodos">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel30">
               <Properties>
@@ -1485,7 +1498,7 @@
                 <Property name="text" type="java.lang.String" value="Domicilio:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="InstitucionesCodigo6">
+            <Component class="javax.swing.JTextField" name="DelincuentesEmail">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel32">
               <Properties>
@@ -1503,9 +1516,9 @@
                 <Property name="text" type="java.lang.String" value="Telefono Celular:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="InstitucionesCodigo7">
+            <Component class="javax.swing.JTextField" name="DelincuentesTelefonoCelular">
             </Component>
-            <Component class="javax.swing.JTextField" name="InstitucionesCodigo8">
+            <Component class="javax.swing.JTextField" name="DelincuentesTelefonoHogar">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel34">
               <Properties>
@@ -1523,7 +1536,7 @@
                 <Property name="text" type="java.lang.String" value="Ultima comuna visto:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="InstitucionesCodigo9">
+            <Component class="javax.swing.JTextField" name="DelincuentesUltimoLugarVisto">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel36">
               <Properties>
@@ -1541,22 +1554,22 @@
                 <Property name="text" type="java.lang.String" value="Fecha nacimiento:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+            <Component class="javax.swing.JRadioButton" name="DelincuentesRadioButton1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Libre"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton2">
+            <Component class="javax.swing.JRadioButton" name="DelincuentesRadioButton2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Preso"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton3">
+            <Component class="javax.swing.JRadioButton" name="DelincuentesRadioButton3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="orden de arresto"/>
+                <Property name="text" type="java.lang.String" value="Orden De Arresto"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="InstitucionesCodigo12">
+            <Component class="javax.swing.JTextField" name="DelincuentesComuna">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel38">
               <Properties>
@@ -1566,9 +1579,9 @@
                 <Property name="text" type="java.lang.String" value="Comuna:"/>
               </Properties>
             </Component>
-            <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
+            <Component class="com.toedter.calendar.JDateChooser" name="DelincuentesFechaNac">
             </Component>
-            <Component class="javax.swing.JButton" name="jButton10">
+            <Component class="javax.swing.JButton" name="DelincuentesCrear">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="1"/>
@@ -1576,10 +1589,10 @@
                 <Property name="text" type="java.lang.String" value="Crear"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton10ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DelincuentesCrearActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton11">
+            <Component class="javax.swing.JButton" name="DelincuentesEditar">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="1"/>
@@ -1587,10 +1600,10 @@
                 <Property name="text" type="java.lang.String" value="Editar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton11ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DelincuentesEditarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton17">
+            <Component class="javax.swing.JButton" name="DelincuentesEliminar">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="1"/>
@@ -1598,10 +1611,10 @@
                 <Property name="text" type="java.lang.String" value="Eliminar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton17ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DelincuentesEliminarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton20">
+            <Component class="javax.swing.JButton" name="ParentescoEditar">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="1"/>
@@ -1609,10 +1622,10 @@
                 <Property name="text" type="java.lang.String" value="Editar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton20ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ParentescoEditarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton21">
+            <Component class="javax.swing.JButton" name="ParentescoCrear">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="1"/>
@@ -1620,10 +1633,10 @@
                 <Property name="text" type="java.lang.String" value="Crear"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton21ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ParentescoCrearActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton22">
+            <Component class="javax.swing.JButton" name="ParentescoElimininar">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="1"/>
@@ -1631,10 +1644,10 @@
                 <Property name="text" type="java.lang.String" value="Eliminar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton22ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ParentescoElimininarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="InstitucionesCodigo10">
+            <Component class="javax.swing.JTextField" name="ParentescoRut1">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel39">
               <Properties>
@@ -1644,7 +1657,7 @@
                 <Property name="text" type="java.lang.String" value="RUT1: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="InstitucionesCodigo11">
+            <Component class="javax.swing.JTextField" name="ParentescoParentesco">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel40">
               <Properties>
@@ -1654,7 +1667,7 @@
                 <Property name="text" type="java.lang.String" value="Parentesco:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="InstitucionesCodigo13">
+            <Component class="javax.swing.JTextField" name="ParentescoRut2">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel41">
               <Properties>
@@ -1664,7 +1677,7 @@
                 <Property name="text" type="java.lang.String" value="RUT2: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton26">
+            <Component class="javax.swing.JButton" name="ParentescoComprobar1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="1"/>
@@ -1672,7 +1685,7 @@
                 <Property name="text" type="java.lang.String" value="Comprobar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton26ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ParentescoComprobar1ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel47">
@@ -1684,7 +1697,7 @@
                 <Property name="text" type="java.lang.String" value="Delincuentes"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="InstitucionesCodigo19">
+            <Component class="javax.swing.JTextField" name="ParentescoCodigo">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel48">
               <Properties>
@@ -1694,7 +1707,7 @@
                 <Property name="text" type="java.lang.String" value="Codigo:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton32">
+            <Component class="javax.swing.JButton" name="ParentescoComprobar2">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="1"/>
@@ -1702,10 +1715,10 @@
                 <Property name="text" type="java.lang.String" value="Comprobar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton32ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ParentescoComprobar2ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton33">
+            <Component class="javax.swing.JButton" name="ParentescoComprobar3">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="1"/>
@@ -1713,7 +1726,7 @@
                 <Property name="text" type="java.lang.String" value="Comprobar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton33ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ParentescoComprobar3ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton34">
@@ -1727,7 +1740,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton34ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton35">
+            <Component class="javax.swing.JButton" name="DelincuentesMostrarDelincuentes">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="1"/>
@@ -1735,7 +1748,7 @@
                 <Property name="text" type="java.lang.String" value="Mostrar delincuentes"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton35ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DelincuentesMostrarDelincuentesActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -1896,6 +1909,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Editar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SectoresEditarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="SectoresCrear">
               <Properties>
@@ -1904,6 +1920,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Crear"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SectoresCrearActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="SectoresEliminar">
               <Properties>
@@ -1912,6 +1931,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Eliminar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SectoresEliminarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton12">
               <Properties>
@@ -1941,7 +1963,6 @@
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="ComunaCrear" min="-2" max="-2" attributes="0"/>

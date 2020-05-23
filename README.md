@@ -30,6 +30,7 @@ Features :
 	* Sectores(✓) Falta mostrar tabla
 	* comunas(✓) Falta mostrar tabla
 	* Delincuentes(❌)
+	* Delincuentes parentesco (❌)
 	* Delitos(❌)
 * Programacion sistema de generacion de reportes (✓❌)
 	* Mostrar delincuentes orden Alfabetico(✓)

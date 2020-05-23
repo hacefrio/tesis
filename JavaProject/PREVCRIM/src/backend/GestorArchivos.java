@@ -82,8 +82,7 @@ public class GestorArchivos {
         hoja1.addCell(new jxl.write.Label(9, 10, "FECHA NACIMIENTO"));
         hoja1.addCell(new jxl.write.Label(10, 10, "ESTADO"));
         hoja1.addCell(new jxl.write.Label(11, 10, "COMUNA"));
-        c.DelintuentesToExcel(hoja1);
-        
+        c.DelintuentesToExcelOrdenAlfabetico(hoja1);
         woorBook.setProtected(true);
         woorBook.write();
         woorBook.close();

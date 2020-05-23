@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS delincuente(
     nombres text(400) not null,
     apodo text(40) not null,
     domicilio text(40) not null,
-    ultimoLugarVisto text(400) not null,
+    ultimoLugarVisto int  not null,
     telefonoCasa text(40) not null,
     telefonoCelular text(40) not null,
     email text(100) not null,
@@ -55,12 +55,14 @@ CREATE TABLE IF NOT EXISTS delincuente(
     
 );
 ALTER TABLE delincuente
-ADD CONSTRAINT FK_sector2
+ADD CONSTRAINT FK_comuna1
 FOREIGN KEY (comuna) REFERENCES comuna(codigo);
-
+ALTER TABLE delincuente
+ADD CONSTRAINT FK_comuna2
+FOREIGN KEY (ultimoLugarVisto ) REFERENCES comuna(codigo);
 
 CREATE TABLE IF NOT EXISTS delito(
-    codigo int primary key not null AUTO_INCREMENT,
+    codigo varchar(11) primary key not null,
     descripcion text(400) not null,
     direccion text(400) not null,
     delincuente varchar(13) not null,
