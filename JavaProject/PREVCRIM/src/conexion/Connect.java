@@ -6,12 +6,14 @@
 package conexion;
 
 import backend.Operador;
+import com.toedter.calendar.JDateChooser;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -656,6 +658,46 @@ public class Connect {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }   
+    }
+    public void setDelincuentesDatos(String rut, JTextField apellidos, JTextField nombres, JTextField apodo, JTextField domicilio, JTextField ultimoLugarVisto, JTextField telefonoCasa, JTextField telefonoCelular, JTextField email, JDateChooser fechaDeNacimiento, JTextField comuna) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from delincuente where rut='" + rut + "';");
+            if (rs.next()) {
+                apellidos.setText(rs.getString(2));
+                nombres.setText(rs.getString(3));
+                apodo.setText(rs.getString(4));
+                domicilio.setText(rs.getString(5));
+                ultimoLugarVisto.setText(rs.getString(6));
+                telefonoCasa.setText(rs.getString(7));
+                telefonoCelular.setText(rs.getString(8));
+                email.setText(rs.getString(9));
+                Date d=new Date(rs.getString(10));
+                fechaDeNacimiento.setDate(d);
+                comuna.setText(rs.getString(12));
+            }
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public void editarDelincuente(String rut, String apellidos, String nombres, String apodo, String domicilio, String ultimoLugarVisto, String telefonoCasa, String telefonoCelular, String email, String fechaDeNacimiento, String estado, String comuna) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            String sql = "UPDATE operador SET apellidos = '" + apellidos + "' , nombres= '" + nombres + "' , apodo = '" + apodo + "' , domicilio = '" + domicilio + "' , ultimoLugarVisto = " + ultimoLugarVisto +" , telefonoCasa = '" + telefonoCasa +"', telefonoCelular = '" + telefonoCelular +"', email = '" + email +"', fechaNacimiento = '" + fechaDeNacimiento +  "', estado = '" + estado +"', comuna = " + comuna +" WHERE `rut` = '" + rut + "';";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            conn.close();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Delincuente editado exitosamente ");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public void eliminarDelincuente(String rut) {

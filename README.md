@@ -25,11 +25,11 @@ Features :
 * programacion home (✓)
 * encriptacion md5 contraseñas(✓)
 * diseño de los crud(✓❌)
-	* Usuarios(✓) Falta mostrar tabla
-	* Instituciones(✓) Falta mostrar tabla
-	* Sectores(✓) Falta mostrar tabla
-	* comunas(✓) Falta mostrar tabla
-	* Delincuentes(❌)
+	* Usuarios(✓) Falta mostrar tabla y validadores
+	* Instituciones(✓) Falta mostrar tabla y validadores
+	* Sectores(✓) Falta mostrar tabla y validadores
+	* comunas(✓) Falta mostrar tabla y validadores
+	* Delincuentes(✓) Falta mostrar tabla y validadores
 	* Delincuentes parentesco (❌)
 	* Delitos(❌)
 * Programacion sistema de generacion de reportes (✓❌)

@@ -205,8 +205,6 @@ public class Menu extends javax.swing.JFrame {
         jLabel47 = new javax.swing.JLabel();
         ParentescoCodigo = new javax.swing.JTextField();
         jLabel48 = new javax.swing.JLabel();
-        ParentescoComprobar2 = new javax.swing.JButton();
-        ParentescoComprobar3 = new javax.swing.JButton();
         jButton34 = new javax.swing.JButton();
         DelincuentesMostrarDelincuentes = new javax.swing.JButton();
         SectoresPage = new javax.swing.JPanel();
@@ -996,22 +994,6 @@ public class Menu extends javax.swing.JFrame {
         jLabel48.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel48.setText("Codigo:");
 
-        ParentescoComprobar2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        ParentescoComprobar2.setText("Comprobar");
-        ParentescoComprobar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ParentescoComprobar2ActionPerformed(evt);
-            }
-        });
-
-        ParentescoComprobar3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        ParentescoComprobar3.setText("Comprobar");
-        ParentescoComprobar3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ParentescoComprobar3ActionPerformed(evt);
-            }
-        });
-
         jButton34.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton34.setText("Mostrar parentescos");
         jButton34.addActionListener(new java.awt.event.ActionListener() {
@@ -1128,25 +1110,17 @@ public class Menu extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(ParentescoParentesco)
-                                            .addGroup(delincuentesPageLayout.createSequentialGroup()
-                                                .addComponent(ParentescoComprobar3)
-                                                .addGap(0, 0, Short.MAX_VALUE))
                                             .addComponent(ParentescoRut2)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delincuentesPageLayout.createSequentialGroup()
                                         .addGap(0, 46, Short.MAX_VALUE)
-                                        .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(delincuentesPageLayout.createSequentialGroup()
-                                                .addComponent(jLabel39)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addGroup(delincuentesPageLayout.createSequentialGroup()
-                                                        .addComponent(ParentescoComprobar2)
-                                                        .addGap(57, 57, 57))
-                                                    .addComponent(ParentescoRut1)))
-                                            .addGroup(delincuentesPageLayout.createSequentialGroup()
-                                                .addComponent(ParentescoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(ParentescoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(jLabel39)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ParentescoRut1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delincuentesPageLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ParentescoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ParentescoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delincuentesPageLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1158,10 +1132,10 @@ public class Menu extends javax.swing.JFrame {
                                     .addComponent(ParentescoComprobar1)
                                     .addComponent(ParentescoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap())
+                            .addComponent(jButton34, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delincuentesPageLayout.createSequentialGroup()
                                 .addComponent(ParentescoElimininar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(65, 65, 65))
-                            .addComponent(jButton34, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(73, 73, 73))))))
             .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(delincuentesPageLayout.createSequentialGroup()
                     .addContainerGap()
@@ -1240,24 +1214,20 @@ public class Menu extends javax.swing.JFrame {
                             .addComponent(ParentescoRut1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel39))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ParentescoComprobar2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ParentescoRut2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel41))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ParentescoComprobar3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ParentescoParentesco, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel40))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(30, 30, 30)
                         .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ParentescoCrear)
-                            .addComponent(ParentescoEditar))
+                            .addComponent(ParentescoEditar)
+                            .addComponent(ParentescoCrear))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ParentescoElimininar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton34)))
                 .addContainerGap(19, Short.MAX_VALUE))
             .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2212,7 +2182,7 @@ public class Menu extends javax.swing.JFrame {
                     this.ComunaCrear.setEnabled(true);
                     this.ComunaEditar.setEnabled(false);
                     this.ComunaEliminar.setEnabled(false);
-                  
+
                 } else {
                     JOptionPane.showMessageDialog(this, "La comuna ya existe en otro sector");
                     comunaDefault();
@@ -2249,10 +2219,11 @@ public class Menu extends javax.swing.JFrame {
         if (c.comprobarDelincuente(this.DelincuentesRut.getText())) {
             JOptionPane.showMessageDialog(null, "El delincuente existe, proceda a editar o eliminar registros");
             delincuentesActivar();
+            c.setDelincuentesDatos(this.DelincuentesRut.getText(), this.DelincuentesApellidos, this.DelincuentesNombre, this.DelincuentesApodos, this.DelincuentesDomicilio, this.DelincuentesUltimoLugarVisto, this.DelincuentesTelefonoHogar, this.DelincuentesTelefonoCelular, this.DelincuentesEmail, this.DelincuentesFechaNac,  this.DelincuentesComuna);
             this.DelincuentesCrear.setEnabled(false);
             this.DelincuentesEditar.setEnabled(true);
             this.DelincuentesEliminar.setEnabled(true);
-        }else {
+        } else {
             delincuentesActivar();
             this.DelincuentesCrear.setEnabled(true);
             this.DelincuentesEditar.setEnabled(false);
@@ -2263,14 +2234,36 @@ public class Menu extends javax.swing.JFrame {
 
     private void DelincuentesCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelincuentesCrearActionPerformed
         // TODO add your handling code here:
+        String estado="";
+        if (this.DelincuentesRadioButton1.isSelected()) {
+            estado="L";
+        }else if(this.DelincuentesRadioButton2.isSelected()) {
+            estado="P";
+        }else if(this.DelincuentesRadioButton3.isSelected()) {
+            estado="OA";
+        }
+        c.crearDelincuente(this.DelincuentesRut.getText(), this.DelincuentesApellidos.getText(), this.DelincuentesNombre.getText(), this.DelincuentesApodos.getText(), this.DelincuentesDomicilio.getText(), this.DelincuentesUltimoLugarVisto.getText(), this.DelincuentesTelefonoHogar.getText(), this.DelincuentesTelefonoCelular.getText(), this.DelincuentesEmail.getText(), this.DelincuentesFechaNac.getDate().toString(), estado, this.DelincuentesComuna.getText());
+        this.delincuentesDefault();
     }//GEN-LAST:event_DelincuentesCrearActionPerformed
 
     private void DelincuentesEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelincuentesEditarActionPerformed
         // TODO add your handling code here:
+                String estado="";
+        if (this.DelincuentesRadioButton1.isSelected()) {
+            estado="L";
+        }else if(this.DelincuentesRadioButton2.isSelected()) {
+            estado="P";
+        }else if(this.DelincuentesRadioButton3.isSelected()) {
+            estado="OA";
+        }
+        c.editarDelincuente(this.DelincuentesRut.getText(), this.DelincuentesApellidos.getText(), this.DelincuentesNombre.getText(), this.DelincuentesApodos.getText(), this.DelincuentesDomicilio.getText(), this.DelincuentesUltimoLugarVisto.getText(), this.DelincuentesTelefonoHogar.getText(), this.DelincuentesTelefonoCelular.getText(), this.DelincuentesEmail.getText(), this.DelincuentesFechaNac.getDate().toString(), estado, this.DelincuentesComuna.getText());
+        this.delincuentesDefault();
     }//GEN-LAST:event_DelincuentesEditarActionPerformed
 
     private void DelincuentesEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelincuentesEliminarActionPerformed
         // TODO add your handling code here:
+        c.eliminarDelincuente(this.DelincuentesRut.getText());
+        this.delincuentesDefault();
     }//GEN-LAST:event_DelincuentesEliminarActionPerformed
 
     private void ParentescoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParentescoEditarActionPerformed
@@ -2309,14 +2302,6 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton31ActionPerformed
 
-    private void ParentescoComprobar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParentescoComprobar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ParentescoComprobar2ActionPerformed
-
-    private void ParentescoComprobar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParentescoComprobar3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ParentescoComprobar3ActionPerformed
-
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton34ActionPerformed
@@ -2343,8 +2328,8 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         c.editarSector(this.SectoresCodigo.getText(), this.SectoresNombre.getText(), this.SectoresDescripcion.getText());
     }//GEN-LAST:event_SectoresEditarActionPerformed
-    
-   public void delincuentesActivar(){
+
+    public void delincuentesActivar() {
         this.DelincuentesRut.setEditable(true);
         this.DelincuentesApellidos.setEditable(true);
         this.DelincuentesNombre.setEditable(true);
@@ -2360,11 +2345,13 @@ public class Menu extends javax.swing.JFrame {
         this.DelincuentesRadioButton2.setEnabled(true);
         this.DelincuentesRadioButton3.setEnabled(true);
     }
-    public void textDefault(JTextField entrada){
+
+    public void textDefault(JTextField entrada) {
         entrada.setEditable(false);
         entrada.setText("");
     }
-    public void delincuentesDefault(){
+
+    public void delincuentesDefault() {
         this.DelincuentesRut.setEditable(true);
         this.DelincuentesRut.setText("");
         textDefault(DelincuentesApellidos);
@@ -2384,19 +2371,18 @@ public class Menu extends javax.swing.JFrame {
         this.DelincuentesEditar.setEnabled(false);
         this.DelincuentesEliminar.setEnabled(false);
     }
-    
-    public void parentescoDefault(){
+
+    public void parentescoDefault() {
         this.ParentescoCodigo.setEditable(true);
         this.ParentescoComprobar1.setEnabled(true);
         this.ParentescoRut1.setEditable(false);
-        this.ParentescoComprobar2.setEnabled(false);
         this.ParentescoRut2.setEditable(false);
-        this.ParentescoComprobar3.setEnabled(false);
         this.ParentescoParentesco.setEditable(false);
         this.ParentescoCrear.setEnabled(false);
         this.ParentescoEditar.setEnabled(false);
         this.ParentescoElimininar.setEnabled(false);
     }
+
     public void sectoresDefault() {
         this.SectoresCodigo.setEditable(true);
         this.SectoresCodigo.setText("");
@@ -2502,8 +2488,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> InstitucionesSectores;
     private javax.swing.JTextField ParentescoCodigo;
     private javax.swing.JButton ParentescoComprobar1;
-    private javax.swing.JButton ParentescoComprobar2;
-    private javax.swing.JButton ParentescoComprobar3;
     private javax.swing.JButton ParentescoCrear;
     private javax.swing.JButton ParentescoEditar;
     private javax.swing.JButton ParentescoElimininar;
