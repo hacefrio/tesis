@@ -21,9 +21,9 @@ Features :
 * modelamiento base de datos(✓)
 * programacion base de datos(✓)
 
-	v 0.05
+	#v 0.05
 * programacion home (✓)
-* encriptacion md5 contraseñas(✓)
+* encriptacion md5 contraseñas(✓) (Falta desencriptar md5 para editar contraseña)
 * diseño de los crud(✓❌)
 	* Usuarios(✓) Falta mostrar tabla y validadores
 	* Instituciones(✓) Falta mostrar tabla y validadores

@@ -50,6 +50,9 @@ public class Menu extends javax.swing.JFrame {
         this.reportesPage.setVisible(false);
         this.comunaPage.setVisible(false);
         permisos();
+        this.menu1.setText("Nombre: " + operador.getNombre() + " " + operador.getApellidos());
+        this.menu4.setText("Institucion: " + operador.getInstitucion());
+        this.menu5.setText("Zona: " + operador.getZona());
     }
 
     private void permisos() {
@@ -63,6 +66,7 @@ public class Menu extends javax.swing.JFrame {
             this.delitosButton.setVisible(true);
             this.reportesButton.setVisible(true);
             this.comunaButton.setEnabled(true);
+            this.menu3.setText("Rango: AdministradorGeneral");
         } else if (rango.equals("JefeDeZona")) {
             this.homeButton.setVisible(true);
             this.usuariosButton.setVisible(true);
@@ -72,6 +76,8 @@ public class Menu extends javax.swing.JFrame {
             this.delitosButton.setVisible(true);
             this.reportesButton.setVisible(true);
             this.comunaButton.setEnabled(true);
+            this.menu3.setText("Rango: JefeDeZona");
+
         } else {
             this.homeButton.setEnabled(false);
             this.usuariosButton.setEnabled(false);
@@ -81,6 +87,8 @@ public class Menu extends javax.swing.JFrame {
             this.delitosButton.setEnabled(true);
             this.reportesButton.setEnabled(true);
             this.comunaButton.setEnabled(false);
+            this.menu3.setText("Rango: Operador");
+
         }
     }
 
@@ -98,6 +106,10 @@ public class Menu extends javax.swing.JFrame {
         menuNormal = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        menu3 = new javax.swing.JLabel();
+        menu1 = new javax.swing.JLabel();
+        menu5 = new javax.swing.JLabel();
+        menu4 = new javax.swing.JLabel();
         usuariosPane = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -158,8 +170,6 @@ public class Menu extends javax.swing.JFrame {
         delitosCrear = new javax.swing.JButton();
         delitosEliminar = new javax.swing.JButton();
         delitosEditar = new javax.swing.JButton();
-        jButton31 = new javax.swing.JButton();
-        jButton32 = new javax.swing.JButton();
         delincuentesPage = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
@@ -275,18 +285,55 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        menu3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        menu3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menu3.setText("Rango:");
+
+        menu1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        menu1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menu1.setText("Usuario:");
+
+        menu5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        menu5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menu5.setText("Zona:");
+
+        menu4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        menu4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menu4.setText("institucion:");
+
         javax.swing.GroupLayout menuNormalLayout = new javax.swing.GroupLayout(menuNormal);
         menuNormal.setLayout(menuNormalLayout);
         menuNormalLayout.setHorizontalGroup(
             menuNormalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+            .addGroup(menuNormalLayout.createSequentialGroup()
+                .addGroup(menuNormalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuNormalLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(menu3, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE))
+                    .addGroup(menuNormalLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(menu1, javax.swing.GroupLayout.DEFAULT_SIZE, 865, Short.MAX_VALUE))
+                    .addGroup(menuNormalLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(menu5, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE))
+                    .addComponent(menu4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE))
+                .addContainerGap())
         );
         menuNormalLayout.setVerticalGroup(
             menuNormalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuNormalLayout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 541, Short.MAX_VALUE)
+                .addGap(152, 152, 152)
+                .addComponent(menu1)
+                .addGap(26, 26, 26)
+                .addComponent(menu3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(menu4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(menu5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
                 .addComponent(jLabel6))
         );
 
@@ -767,22 +814,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jButton31.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton31.setText("Comprobar");
-        jButton31.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton31ActionPerformed(evt);
-            }
-        });
-
-        jButton32.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton32.setText("Comprobar");
-        jButton32.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton32ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout delitosPageLayout = new javax.swing.GroupLayout(delitosPage);
         delitosPage.setLayout(delitosPageLayout);
         delitosPageLayout.setHorizontalGroup(
@@ -821,10 +852,7 @@ public class Menu extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(delitosCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton27)
-                            .addComponent(jButton31)
-                            .addComponent(jButton32)))
+                        .addComponent(jButton27))
                     .addGroup(delitosPageLayout.createSequentialGroup()
                         .addGap(330, 330, 330)
                         .addComponent(delitosEliminar)))
@@ -840,9 +868,9 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(jLabel42)
                     .addComponent(jButton27))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(delitosDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel43))
+                .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel43)
+                    .addComponent(delitosDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(delitosDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -850,20 +878,18 @@ public class Menu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(delitosDelincuente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel45)
-                    .addComponent(jButton32))
+                    .addComponent(jLabel45))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(delitoComuna, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel46)
-                    .addComponent(jButton31))
+                    .addComponent(jLabel46))
                 .addGap(18, 18, 18)
                 .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(delitosCrear)
                     .addComponent(delitosEditar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(delitosEliminar)
-                .addContainerGap(223, Short.MAX_VALUE))
+                .addContainerGap(227, Short.MAX_VALUE))
         );
 
         delincuentesPage.setBackground(new java.awt.Color(204, 204, 204));
@@ -2021,44 +2047,49 @@ public class Menu extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         this.InstitucionesNombre.setEditable(true);
-        if (operador.getRango().equals("AdministradorGeneral")) {
-            if (c.comprobarInstitucion(this.InstitucionesCodigo.getText())) {
-                JOptionPane.showMessageDialog(null, "La institucion ya exista, proceda a editar o eliminar");
-                this.InstitucionesCodigo.setEditable(false);
-                this.InstitucionesCrear.setEnabled(false);
-                this.InstitucionesEditar.setEnabled(true);
-                this.InstitucionesEliminar.setEnabled(true);
-                this.InstitucionesSectores.setEnabled(true);
-                c.setInstitucionesDatos(this.InstitucionesCodigo.getText(), this.InstitucionesNombre, this.InstitucionesSectores);
-            } else {
-                JOptionPane.showMessageDialog(null, "La institucion no existe, proceda a crearlo");
-                this.InstitucionesCodigo.setEditable(false);
-                this.InstitucionesCrear.setEnabled(true);
-                this.InstitucionesEditar.setEnabled(false);
-                this.InstitucionesEliminar.setEnabled(false);
-                this.InstitucionesSectores.setEnabled(true);
-                c.loadSectores(this.InstitucionesSectores);
 
+        if (!this.InstitucionesCodigo.getText().isEmpty()) {
+            if (operador.getRango().equals("AdministradorGeneral")) {
+                if (c.comprobarInstitucion(this.InstitucionesCodigo.getText())) {
+                    JOptionPane.showMessageDialog(null, "La institucion ya exista, proceda a editar o eliminar");
+                    this.InstitucionesCodigo.setEditable(false);
+                    this.InstitucionesCrear.setEnabled(false);
+                    this.InstitucionesEditar.setEnabled(true);
+                    this.InstitucionesEliminar.setEnabled(true);
+                    this.InstitucionesSectores.setEnabled(true);
+                    c.setInstitucionesDatos(this.InstitucionesCodigo.getText(), this.InstitucionesNombre, this.InstitucionesSectores);
+                } else {
+                    JOptionPane.showMessageDialog(null, "La institucion no existe, proceda a crearlo");
+                    this.InstitucionesCodigo.setEditable(false);
+                    this.InstitucionesCrear.setEnabled(true);
+                    this.InstitucionesEditar.setEnabled(false);
+                    this.InstitucionesEliminar.setEnabled(false);
+                    this.InstitucionesSectores.setEnabled(true);
+                    c.loadSectores(this.InstitucionesSectores);
+
+                }
+            } else {
+                if (c.comprobarInstitucion(this.InstitucionesCodigo.getText())) {
+                    JOptionPane.showMessageDialog(null, "La institucion ya exista, proceda a editar o eliminar");
+                    this.InstitucionesCodigo.setEditable(false);
+                    this.InstitucionesSectores.setEnabled(true);
+                    this.InstitucionesCrear.setEnabled(false);
+                    this.InstitucionesEditar.setEnabled(true);
+                    this.InstitucionesEliminar.setEnabled(true);
+                    InstitucionesSectores.addItem(operador.getZona());
+                    c.setInstitucionesDatos(this.InstitucionesCodigo.getText(), this.InstitucionesNombre, this.InstitucionesSectores);
+                } else {
+                    JOptionPane.showMessageDialog(null, "La institucion no existe, proceda a crearlo");
+                    this.InstitucionesCodigo.setEditable(false);
+                    this.InstitucionesCrear.setEnabled(true);
+                    this.InstitucionesEditar.setEnabled(false);
+                    this.InstitucionesEliminar.setEnabled(false);
+                    InstitucionesSectores.addItem(operador.getZona());
+
+                }
             }
         } else {
-            if (c.comprobarInstitucion(this.InstitucionesCodigo.getText())) {
-                JOptionPane.showMessageDialog(null, "La institucion ya exista, proceda a editar o eliminar");
-                this.InstitucionesCodigo.setEditable(false);
-                this.InstitucionesSectores.setEnabled(true);
-                this.InstitucionesCrear.setEnabled(false);
-                this.InstitucionesEditar.setEnabled(true);
-                this.InstitucionesEliminar.setEnabled(true);
-                InstitucionesSectores.addItem(operador.getZona());
-                c.setInstitucionesDatos(this.InstitucionesCodigo.getText(), this.InstitucionesNombre, this.InstitucionesSectores);
-            } else {
-                JOptionPane.showMessageDialog(null, "La institucion no existe, proceda a crearlo");
-                this.InstitucionesCodigo.setEditable(false);
-                this.InstitucionesCrear.setEnabled(true);
-                this.InstitucionesEditar.setEnabled(false);
-                this.InstitucionesEliminar.setEnabled(false);
-                InstitucionesSectores.addItem(operador.getZona());
-
-            }
+            JOptionPane.showMessageDialog(null, "Ingrese codigo");
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -2075,8 +2106,12 @@ public class Menu extends javax.swing.JFrame {
 
     private void InstitucionesEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InstitucionesEliminarActionPerformed
         // TODO add your handling code here:
-        c.eliminarInstitucion(this.InstitucionesCodigo.getText());
-        institucionesDefault();
+        if (this.InstitucionesCodigo.getText().isEmpty() || this.InstitucionesNombre.getText().isEmpty()) {
+            c.eliminarInstitucion(this.InstitucionesCodigo.getText());
+            institucionesDefault();
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese todos los campos");
+        }
     }//GEN-LAST:event_InstitucionesEliminarActionPerformed
 
     private void InstitucionesEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InstitucionesEditarActionPerformed
@@ -2219,7 +2254,7 @@ public class Menu extends javax.swing.JFrame {
         if (c.comprobarDelincuente(this.DelincuentesRut.getText())) {
             JOptionPane.showMessageDialog(null, "El delincuente existe, proceda a editar o eliminar registros");
             delincuentesActivar();
-            c.setDelincuentesDatos(this.DelincuentesRut.getText(), this.DelincuentesApellidos, this.DelincuentesNombre, this.DelincuentesApodos, this.DelincuentesDomicilio, this.DelincuentesUltimoLugarVisto, this.DelincuentesTelefonoHogar, this.DelincuentesTelefonoCelular, this.DelincuentesEmail, this.DelincuentesFechaNac,  this.DelincuentesComuna);
+            c.setDelincuentesDatos(this.DelincuentesRut.getText(), this.DelincuentesApellidos, this.DelincuentesNombre, this.DelincuentesApodos, this.DelincuentesDomicilio, this.DelincuentesUltimoLugarVisto, this.DelincuentesTelefonoHogar, this.DelincuentesTelefonoCelular, this.DelincuentesEmail, this.DelincuentesFechaNac, this.DelincuentesComuna);
             this.DelincuentesCrear.setEnabled(false);
             this.DelincuentesEditar.setEnabled(true);
             this.DelincuentesEliminar.setEnabled(true);
@@ -2234,13 +2269,13 @@ public class Menu extends javax.swing.JFrame {
 
     private void DelincuentesCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelincuentesCrearActionPerformed
         // TODO add your handling code here:
-        String estado="";
+        String estado = "";
         if (this.DelincuentesRadioButton1.isSelected()) {
-            estado="L";
-        }else if(this.DelincuentesRadioButton2.isSelected()) {
-            estado="P";
-        }else if(this.DelincuentesRadioButton3.isSelected()) {
-            estado="OA";
+            estado = "L";
+        } else if (this.DelincuentesRadioButton2.isSelected()) {
+            estado = "P";
+        } else if (this.DelincuentesRadioButton3.isSelected()) {
+            estado = "OA";
         }
         c.crearDelincuente(this.DelincuentesRut.getText(), this.DelincuentesApellidos.getText(), this.DelincuentesNombre.getText(), this.DelincuentesApodos.getText(), this.DelincuentesDomicilio.getText(), this.DelincuentesUltimoLugarVisto.getText(), this.DelincuentesTelefonoHogar.getText(), this.DelincuentesTelefonoCelular.getText(), this.DelincuentesEmail.getText(), this.DelincuentesFechaNac.getDate().toString(), estado, this.DelincuentesComuna.getText());
         this.delincuentesDefault();
@@ -2248,13 +2283,13 @@ public class Menu extends javax.swing.JFrame {
 
     private void DelincuentesEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelincuentesEditarActionPerformed
         // TODO add your handling code here:
-                String estado="";
+        String estado = "";
         if (this.DelincuentesRadioButton1.isSelected()) {
-            estado="L";
-        }else if(this.DelincuentesRadioButton2.isSelected()) {
-            estado="P";
-        }else if(this.DelincuentesRadioButton3.isSelected()) {
-            estado="OA";
+            estado = "L";
+        } else if (this.DelincuentesRadioButton2.isSelected()) {
+            estado = "P";
+        } else if (this.DelincuentesRadioButton3.isSelected()) {
+            estado = "OA";
         }
         c.editarDelincuente(this.DelincuentesRut.getText(), this.DelincuentesApellidos.getText(), this.DelincuentesNombre.getText(), this.DelincuentesApodos.getText(), this.DelincuentesDomicilio.getText(), this.DelincuentesUltimoLugarVisto.getText(), this.DelincuentesTelefonoHogar.getText(), this.DelincuentesTelefonoCelular.getText(), this.DelincuentesEmail.getText(), this.DelincuentesFechaNac.getDate().toString(), estado, this.DelincuentesComuna.getText());
         this.delincuentesDefault();
@@ -2282,10 +2317,6 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ParentescoComprobar1ActionPerformed
 
-    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton27ActionPerformed
-
     private void delitosCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delitosCrearActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_delitosCrearActionPerformed
@@ -2298,10 +2329,6 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_delitosEditarActionPerformed
 
-    private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton31ActionPerformed
-
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton34ActionPerformed
@@ -2309,10 +2336,6 @@ public class Menu extends javax.swing.JFrame {
     private void DelincuentesMostrarDelincuentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelincuentesMostrarDelincuentesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DelincuentesMostrarDelincuentesActionPerformed
-
-    private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton32ActionPerformed
 
     private void SectoresCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SectoresCrearActionPerformed
         // TODO add your handling code here:
@@ -2328,6 +2351,10 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         c.editarSector(this.SectoresCodigo.getText(), this.SectoresNombre.getText(), this.SectoresDescripcion.getText());
     }//GEN-LAST:event_SectoresEditarActionPerformed
+
+    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton27ActionPerformed
 
     public void delincuentesActivar() {
         this.DelincuentesRut.setEditable(true);
@@ -2543,8 +2570,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton27;
-    private javax.swing.JButton jButton31;
-    private javax.swing.JButton jButton32;
     private javax.swing.JButton jButton34;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -2598,6 +2623,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel menu1;
+    private javax.swing.JLabel menu3;
+    private javax.swing.JLabel menu4;
+    private javax.swing.JLabel menu5;
     private javax.swing.JPanel menuNormal;
     private javax.swing.JPanel paginas;
     private javax.swing.JButton reportesButton;

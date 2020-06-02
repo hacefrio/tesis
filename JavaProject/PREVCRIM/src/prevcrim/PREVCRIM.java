@@ -29,4 +29,11 @@ public class PREVCRIM {
         
     }
     
+    
+    public boolean verificarRut(String rut){
+        boolean estado=false;
+        
+        return estado;
+    }
+    
 }
