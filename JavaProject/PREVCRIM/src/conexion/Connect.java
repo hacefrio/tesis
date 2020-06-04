@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -645,11 +647,12 @@ public class Connect {
         }
         return false;
     }
+
     public void crearDelincuente(String rut, String apellidos, String nombres, String apodo, String domicilio, String ultimoLugarVisto, String telefonoCasa, String telefonoCelular, String email, String fechaDeNacimiento, String estado, String comuna) {
         try {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
-            String sql = "insert into delincuente values( '" + rut + "','" + apellidos + "','" + nombres + "','" + apodo + "','" +domicilio + "'," + ultimoLugarVisto + ",'"+telefonoCasa+"','"+telefonoCelular+"','"+email+"','"+fechaDeNacimiento+"','"+estado+"',"+comuna+");";
+            String sql = "insert into delincuente values( '" + rut + "','" + apellidos + "','" + nombres + "','" + apodo + "','" + domicilio + "'," + ultimoLugarVisto + ",'" + telefonoCasa + "','" + telefonoCelular + "','" + email + "','" + fechaDeNacimiento + "','" + estado + "'," + comuna + ");";
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.execute();
             conn.close();
@@ -657,9 +660,11 @@ public class Connect {
             JOptionPane.showMessageDialog(null, "Delincuente creado exitosamente ");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }   
+        }
     }
-    public void setDelincuentesDatos(String rut, JTextField apellidos, JTextField nombres, JTextField apodo, JTextField domicilio, JTextField ultimoLugarVisto, JTextField telefonoCasa, JTextField telefonoCelular, JTextField email, JDateChooser fechaDeNacimiento, JTextField comuna) {
+
+    public String setDelincuentesDatos(String rut, JTextField apellidos, JTextField nombres, JTextField apodo, JTextField domicilio, JTextField ultimoLugarVisto, JTextField telefonoCasa, JTextField telefonoCelular, JTextField email, JDateChooser fechaDeNacimiento, JTextField comuna) throws ParseException {
+        String estado = "";
         try {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
@@ -674,9 +679,11 @@ public class Connect {
                 telefonoCasa.setText(rs.getString(7));
                 telefonoCelular.setText(rs.getString(8));
                 email.setText(rs.getString(9));
-                Date d=new Date(rs.getString(10));
-                fechaDeNacimiento.setDate(d);
+                String fecha = rs.getString(10);
+                java.util.Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
+                fechaDeNacimiento.setDate(date2);
                 comuna.setText(rs.getString(12));
+                estado = rs.getString(11);
             }
             conn.close();
             rs.close();
@@ -684,12 +691,14 @@ public class Connect {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return estado;
     }
+
     public void editarDelincuente(String rut, String apellidos, String nombres, String apodo, String domicilio, String ultimoLugarVisto, String telefonoCasa, String telefonoCelular, String email, String fechaDeNacimiento, String estado, String comuna) {
         try {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
-            String sql = "UPDATE operador SET apellidos = '" + apellidos + "' , nombres= '" + nombres + "' , apodo = '" + apodo + "' , domicilio = '" + domicilio + "' , ultimoLugarVisto = " + ultimoLugarVisto +" , telefonoCasa = '" + telefonoCasa +"', telefonoCelular = '" + telefonoCelular +"', email = '" + email +"', fechaNacimiento = '" + fechaDeNacimiento +  "', estado = '" + estado +"', comuna = " + comuna +" WHERE `rut` = '" + rut + "';";
+            String sql = "UPDATE delincuente SET apellidos = '" + apellidos + "' , nombres='" + nombres + "' , apodo = '" + apodo + "' , domicilio = '" + domicilio + "' , ultimoLugarVisto = " + ultimoLugarVisto + " , telefonoCasa = '" + telefonoCasa + "', telefonoCelular = '" + telefonoCelular + "', email = '" + email + "', fechaNacimiento = '" + fechaDeNacimiento + "', estado = '" + estado + "', comuna = " + comuna + " WHERE `rut` = '" + rut + "';";
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.execute();
             conn.close();
@@ -699,7 +708,7 @@ public class Connect {
             JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     public void eliminarDelincuente(String rut) {
         try {
             Connect SQL = new Connect();
@@ -709,12 +718,103 @@ public class Connect {
             pstm.execute();
             conn.close();
             pstm.close();
-            JOptionPane.showMessageDialog(null, "Comuna Eliminada exitosamente ");
+            JOptionPane.showMessageDialog(null, "delincuente eliminado exitosamente ");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
+    public void crearDelito(String codigo, String descripcion, String direccion,String delincuente, String comuna) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            String sql = "insert into delito values( '" + codigo + "','" + descripcion + "','" + direccion + "','"+delincuente+"'," + comuna + ");";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            conn.close();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Delito creado exitosamente ");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void editarDelito(String codigo, String descripcion, String direccion,String delincuente, String comuna) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            String sql = "UPDATE delito SET descripcion='" + descripcion + "' , direccion = '" + comuna + "', delincuente = '"+delincuente +"'  WHERE `codigo` = '" + codigo + "';";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            conn.close();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Delito editado exitosamente ");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void eliminarDelito(String codigo) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            String sql = "DELETE FROM delito WHERE rut = '" + codigo + "';";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            conn.close();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Delito eliminado exitosamente ");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void setDelitosDatos(String codigo, JTextField descripcion, JTextField direccion, JTextField delincuente, JTextField comuna) {
+
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from delito where codigo='" + codigo + "';");
+            if (rs.next()) {
+                descripcion.setText(rs.getString(2));
+                direccion.setText(rs.getString(3));
+                delincuente.setText(rs.getString(4));
+                comuna.setText(rs.getString(5));
+            }
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public boolean comprobarDelito(String codigo) {
+        String salida = "";
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from delito where codigo='" + codigo + "' ;");
+            if (rs.next()) {
+                salida = rs.getString(1);
+            }
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+            if (salida != "") {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        } 
+        return false;
+    }
+
     public void DelintuentesToExcelOrdenAlfabetico(WritableSheet hoja1) throws WriteException {
         try {
             Connect SQL = new Connect();

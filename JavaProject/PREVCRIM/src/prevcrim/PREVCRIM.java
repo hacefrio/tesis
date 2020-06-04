@@ -28,12 +28,4 @@ public class PREVCRIM {
         login.setVisible(true);
         
     }
-    
-    
-    public boolean verificarRut(String rut){
-        boolean estado=false;
-        
-        return estado;
-    }
-    
 }

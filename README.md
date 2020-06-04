@@ -21,7 +21,7 @@ Features :
 * modelamiento base de datos(✓)
 * programacion base de datos(✓)
 
-	#v 0.05
+# v 0.05
 * programacion home (✓)
 * encriptacion md5 contraseñas(✓) (Falta desencriptar md5 para editar contraseña)
 * diseño de los crud(✓❌)
@@ -31,7 +31,7 @@ Features :
 	* comunas(✓) Falta mostrar tabla y validadores
 	* Delincuentes(✓) Falta mostrar tabla y validadores
 	* Delincuentes parentesco (❌)
-	* Delitos(❌)
+	* Delitos(✓) Falta mostrar tabla y validadores
 * Programacion sistema de generacion de reportes (✓❌)
 	* Mostrar delincuentes orden Alfabetico(✓)
 	* listado de delincuentes agrupado por delito cometido(❌)

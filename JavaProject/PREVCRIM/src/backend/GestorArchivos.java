@@ -7,10 +7,8 @@ package backend;
 
 import conexion.Connect;
 import java.io.File;
-import java.io.FileFilter;
 import java.io.IOException;
 import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import jxl.Workbook;
 import jxl.WorkbookSettings;
 import jxl.format.Border;

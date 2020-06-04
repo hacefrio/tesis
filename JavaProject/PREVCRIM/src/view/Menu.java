@@ -13,6 +13,7 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.ComboBox;
@@ -165,13 +166,13 @@ public class Menu extends javax.swing.JFrame {
         jLabel44 = new javax.swing.JLabel();
         delitosDelincuente = new javax.swing.JTextField();
         jLabel45 = new javax.swing.JLabel();
-        delitoComuna = new javax.swing.JTextField();
+        delitosComuna = new javax.swing.JTextField();
         jLabel46 = new javax.swing.JLabel();
         delitosCrear = new javax.swing.JButton();
         delitosEliminar = new javax.swing.JButton();
         delitosEditar = new javax.swing.JButton();
+        delitosEliminar1 = new javax.swing.JButton();
         delincuentesPage = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         DelincuentesRut = new javax.swing.JTextField();
         DelincuentesComprobarRut = new javax.swing.JButton();
@@ -202,21 +203,9 @@ public class Menu extends javax.swing.JFrame {
         DelincuentesCrear = new javax.swing.JButton();
         DelincuentesEditar = new javax.swing.JButton();
         DelincuentesEliminar = new javax.swing.JButton();
-        ParentescoEditar = new javax.swing.JButton();
-        ParentescoCrear = new javax.swing.JButton();
-        ParentescoElimininar = new javax.swing.JButton();
-        ParentescoRut1 = new javax.swing.JTextField();
-        jLabel39 = new javax.swing.JLabel();
-        ParentescoParentesco = new javax.swing.JTextField();
-        jLabel40 = new javax.swing.JLabel();
-        ParentescoRut2 = new javax.swing.JTextField();
-        jLabel41 = new javax.swing.JLabel();
-        ParentescoComprobar1 = new javax.swing.JButton();
         jLabel47 = new javax.swing.JLabel();
-        ParentescoCodigo = new javax.swing.JTextField();
-        jLabel48 = new javax.swing.JLabel();
-        jButton34 = new javax.swing.JButton();
         DelincuentesMostrarDelincuentes = new javax.swing.JButton();
+        parentescos = new javax.swing.JButton();
         SectoresPage = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         SectoresCodigo = new javax.swing.JTextField();
@@ -306,34 +295,35 @@ public class Menu extends javax.swing.JFrame {
         menuNormalLayout.setHorizontalGroup(
             menuNormalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
             .addGroup(menuNormalLayout.createSequentialGroup()
                 .addGroup(menuNormalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuNormalLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(menu3, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE))
                     .addGroup(menuNormalLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addComponent(menu1, javax.swing.GroupLayout.DEFAULT_SIZE, 865, Short.MAX_VALUE))
+                        .addComponent(menu1, javax.swing.GroupLayout.DEFAULT_SIZE, 868, Short.MAX_VALUE))
                     .addGroup(menuNormalLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(menu5, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE))
-                    .addComponent(menu4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE))
+                        .addGroup(menuNormalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(menu4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(menu3, javax.swing.GroupLayout.DEFAULT_SIZE, 879, Short.MAX_VALUE)
+                            .addGroup(menuNormalLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(menu5, javax.swing.GroupLayout.DEFAULT_SIZE, 866, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         menuNormalLayout.setVerticalGroup(
             menuNormalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuNormalLayout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(152, 152, 152)
+                .addGap(165, 165, 165)
                 .addComponent(menu1)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(menu3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(menu4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(menu5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
                 .addComponent(jLabel6))
         );
 
@@ -415,9 +405,9 @@ public class Menu extends javax.swing.JFrame {
         usuariosPane.setLayout(usuariosPaneLayout);
         usuariosPaneLayout.setHorizontalGroup(
             usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
             .addGroup(usuariosPaneLayout.createSequentialGroup()
-                .addGap(66, 66, 66)
+                .addGap(193, 193, 193)
                 .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(usuariosPaneLayout.createSequentialGroup()
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -427,50 +417,43 @@ public class Menu extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, usuariosPaneLayout.createSequentialGroup()
                                 .addComponent(RadioOperador)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(RadioJefeDeZona)))
-                        .addContainerGap())
+                                .addComponent(RadioJefeDeZona))))
+                    .addGroup(usuariosPaneLayout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(UsuarioCrearUsuario)
+                        .addGap(30, 30, 30)
+                        .addComponent(UsuarioEditarUsuario))
+                    .addGroup(usuariosPaneLayout.createSequentialGroup()
+                        .addGap(198, 198, 198)
+                        .addComponent(UsuarioEliminarUsuario))
+                    .addGroup(usuariosPaneLayout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(usuariosPaneLayout.createSequentialGroup()
                         .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(usuariosPaneLayout.createSequentialGroup()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(UsuarioNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, usuariosPaneLayout.createSequentialGroup()
                                 .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(UsuarioRut, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                                    .addComponent(UsuarioContrasena)))
+                                    .addComponent(UsuarioRut)
+                                    .addComponent(UsuarioContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(usuariosPaneLayout.createSequentialGroup()
                                 .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(UsuarioInstitucionBoxUsuarios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(UsuarioApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))))
-                        .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(usuariosPaneLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(UsuarioComprobar)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, usuariosPaneLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
-                                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(77, 77, 77))))))
-            .addGroup(usuariosPaneLayout.createSequentialGroup()
-                .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(usuariosPaneLayout.createSequentialGroup()
-                        .addGap(172, 172, 172)
-                        .addComponent(UsuarioCrearUsuario)
-                        .addGap(30, 30, 30)
-                        .addComponent(UsuarioEditarUsuario))
-                    .addGroup(usuariosPaneLayout.createSequentialGroup()
-                        .addGap(264, 264, 264)
-                        .addComponent(UsuarioEliminarUsuario)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(UsuarioApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(UsuarioComprobar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         usuariosPaneLayout.setVerticalGroup(
             usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -485,19 +468,14 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(UsuarioContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(usuariosPaneLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(UsuarioNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(UsuarioApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(usuariosPaneLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jButton9)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(UsuarioNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(UsuarioApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(usuariosPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -515,12 +493,15 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(UsuarioEditarUsuario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(UsuarioEliminarUsuario)
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton9)
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         institucionesPage.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Instituciones");
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -578,63 +559,55 @@ public class Menu extends javax.swing.JFrame {
         institucionesPage.setLayout(institucionesPageLayout);
         institucionesPageLayout.setHorizontalGroup(
             institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(institucionesPageLayout.createSequentialGroup()
-                .addGap(198, 198, 198)
-                .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(institucionesPageLayout.createSequentialGroup()
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(InstitucionesCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6))
-                    .addGroup(institucionesPageLayout.createSequentialGroup()
-                        .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, institucionesPageLayout.createSequentialGroup()
-                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, institucionesPageLayout.createSequentialGroup()
-                                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)))
-                        .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(institucionesPageLayout.createSequentialGroup()
-                                .addComponent(InstitucionesCrear)
-                                .addGap(18, 18, 18)
-                                .addComponent(InstitucionesEliminar))
-                            .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(InstitucionesSectores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(InstitucionesNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(93, 93, 93))
-            .addGroup(institucionesPageLayout.createSequentialGroup()
+                .addGap(249, 249, 249)
                 .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(institucionesPageLayout.createSequentialGroup()
+                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(InstitucionesCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton6))
+                        .addGroup(institucionesPageLayout.createSequentialGroup()
+                            .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, institucionesPageLayout.createSequentialGroup()
+                                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, institucionesPageLayout.createSequentialGroup()
+                                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(12, 12, 12)))
+                            .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(institucionesPageLayout.createSequentialGroup()
+                                    .addComponent(InstitucionesCrear)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(InstitucionesEliminar))
+                                .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(InstitucionesSectores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(InstitucionesNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(institucionesPageLayout.createSequentialGroup()
-                        .addGap(326, 326, 326)
-                        .addComponent(jLabel5))
+                        .addGap(155, 155, 155)
+                        .addComponent(InstitucionesEditar))
                     .addGroup(institucionesPageLayout.createSequentialGroup()
-                        .addGap(353, 353, 353)
-                        .addComponent(InstitucionesEditar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(118, 118, 118)
+                        .addComponent(jButton1)))
+                .addContainerGap(280, Short.MAX_VALUE))
         );
         institucionesPageLayout.setVerticalGroup(
             institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(institucionesPageLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(institucionesPageLayout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(InstitucionesCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel17)
-                            .addComponent(jButton6))
-                        .addGap(28, 28, 28)
-                        .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel18)
-                            .addComponent(InstitucionesNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(institucionesPageLayout.createSequentialGroup()
-                        .addGap(172, 172, 172)
-                        .addComponent(jButton1)))
+                .addGap(125, 125, 125)
+                .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InstitucionesCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17)
+                    .addComponent(jButton6))
+                .addGap(28, 28, 28)
+                .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(InstitucionesNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(InstitucionesSectores, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -645,12 +618,14 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(InstitucionesEliminar))
                 .addGap(18, 18, 18)
                 .addComponent(InstitucionesEditar)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addComponent(jButton1)
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         reportesPage.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("reportes");
 
@@ -758,12 +733,12 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(reportesPageLayout.createSequentialGroup()
                     .addGap(74, 74, 74)
                     .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(472, Short.MAX_VALUE)))
+                    .addContainerGap(487, Short.MAX_VALUE)))
         );
 
         delitosPage.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("delitos");
 
@@ -814,49 +789,59 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        delitosEliminar1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        delitosEliminar1.setText("Ver delitos");
+        delitosEliminar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delitosEliminar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout delitosPageLayout = new javax.swing.GroupLayout(delitosPage);
         delitosPage.setLayout(delitosPageLayout);
         delitosPageLayout.setHorizontalGroup(
             delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
             .addGroup(delitosPageLayout.createSequentialGroup()
+                .addGap(180, 180, 180)
+                .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delitosPageLayout.createSequentialGroup()
+                        .addComponent(jLabel43)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(delitosDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delitosPageLayout.createSequentialGroup()
+                        .addComponent(jLabel44)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(delitosDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delitosPageLayout.createSequentialGroup()
+                        .addComponent(jLabel46)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(delitosComuna, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(delitosPageLayout.createSequentialGroup()
+                        .addComponent(jLabel45)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(delitosDelincuente, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delitosPageLayout.createSequentialGroup()
+                        .addComponent(jLabel42)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(delitosCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton27)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delitosPageLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(delitosPageLayout.createSequentialGroup()
-                        .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, delitosPageLayout.createSequentialGroup()
-                                .addGap(295, 295, 295)
-                                .addComponent(delitosCrear)
-                                .addGap(18, 18, 18)
-                                .addComponent(delitosEditar))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, delitosPageLayout.createSequentialGroup()
-                                .addGap(134, 134, 134)
-                                .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(delitosPageLayout.createSequentialGroup()
-                                        .addComponent(jLabel46)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(delitoComuna, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(delitosPageLayout.createSequentialGroup()
-                                        .addComponent(jLabel45)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(delitosDelincuente, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(delitosPageLayout.createSequentialGroup()
-                                        .addComponent(jLabel44)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(delitosDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(delitosPageLayout.createSequentialGroup()
-                                        .addComponent(jLabel43)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(delitosDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(delitosPageLayout.createSequentialGroup()
-                                        .addComponent(jLabel42)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(delitosCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton27))
+                        .addComponent(delitosCrear)
+                        .addGap(18, 18, 18)
+                        .addComponent(delitosEditar))
                     .addGroup(delitosPageLayout.createSequentialGroup()
-                        .addGap(330, 330, 330)
-                        .addComponent(delitosEliminar)))
-                .addContainerGap(265, Short.MAX_VALUE))
+                        .addGap(35, 35, 35)
+                        .addComponent(delitosEliminar))
+                    .addGroup(delitosPageLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(delitosEliminar1)))
+                .addGap(352, 352, 352))
         );
         delitosPageLayout.setVerticalGroup(
             delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -881,7 +866,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(jLabel45))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(delitoComuna, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(delitosComuna, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel46))
                 .addGap(18, 18, 18)
                 .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -889,14 +874,12 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(delitosEditar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(delitosEliminar)
-                .addContainerGap(227, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(delitosEliminar1)
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         delincuentesPage.setBackground(new java.awt.Color(204, 204, 204));
-
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Parentesco");
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel22.setText("RUT: ");
@@ -972,61 +955,9 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        ParentescoEditar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        ParentescoEditar.setText("Editar");
-        ParentescoEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ParentescoEditarActionPerformed(evt);
-            }
-        });
-
-        ParentescoCrear.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        ParentescoCrear.setText("Crear");
-        ParentescoCrear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ParentescoCrearActionPerformed(evt);
-            }
-        });
-
-        ParentescoElimininar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        ParentescoElimininar.setText("Eliminar");
-        ParentescoElimininar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ParentescoElimininarActionPerformed(evt);
-            }
-        });
-
-        jLabel39.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel39.setText("RUT1: ");
-
-        jLabel40.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel40.setText("Parentesco:");
-
-        jLabel41.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel41.setText("RUT2: ");
-
-        ParentescoComprobar1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        ParentescoComprobar1.setText("Comprobar");
-        ParentescoComprobar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ParentescoComprobar1ActionPerformed(evt);
-            }
-        });
-
-        jLabel47.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel47.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel47.setText("Delincuentes");
-
-        jLabel48.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel48.setText("Codigo:");
-
-        jButton34.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton34.setText("Mostrar parentescos");
-        jButton34.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton34ActionPerformed(evt);
-            }
-        });
 
         DelincuentesMostrarDelincuentes.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         DelincuentesMostrarDelincuentes.setText("Mostrar delincuentes");
@@ -1036,68 +967,74 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        parentescos.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        parentescos.setText("Parentescos");
+        parentescos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                parentescosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout delincuentesPageLayout = new javax.swing.GroupLayout(delincuentesPage);
         delincuentesPage.setLayout(delincuentesPageLayout);
         delincuentesPageLayout.setHorizontalGroup(
             delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delincuentesPageLayout.createSequentialGroup()
+            .addGroup(delincuentesPageLayout.createSequentialGroup()
+                .addGap(107, 107, 107)
                 .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, delincuentesPageLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(delincuentesPageLayout.createSequentialGroup()
-                                .addGap(103, 103, 103)
-                                .addComponent(jLabel28)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(DelincuentesApellidos))
-                            .addGroup(delincuentesPageLayout.createSequentialGroup()
-                                .addGap(102, 102, 102)
-                                .addComponent(jLabel29)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(DelincuentesNombre))
-                            .addGroup(delincuentesPageLayout.createSequentialGroup()
-                                .addGap(118, 118, 118)
-                                .addComponent(jLabel30)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(DelincuentesApodos))
-                            .addGroup(delincuentesPageLayout.createSequentialGroup()
-                                .addGap(100, 100, 100)
-                                .addComponent(jLabel31)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(DelincuentesDomicilio))
-                            .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(delincuentesPageLayout.createSequentialGroup()
-                                    .addGap(23, 23, 23)
-                                    .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(delincuentesPageLayout.createSequentialGroup()
-                                            .addComponent(jLabel22)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(DelincuentesRut, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(DelincuentesComprobarRut))
-                                        .addGroup(delincuentesPageLayout.createSequentialGroup()
-                                            .addComponent(jLabel33)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(DelincuentesTelefonoCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(delincuentesPageLayout.createSequentialGroup()
-                                            .addComponent(jLabel32)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(DelincuentesEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(delincuentesPageLayout.createSequentialGroup()
-                                            .addComponent(jLabel37)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(DelincuentesFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(delincuentesPageLayout.createSequentialGroup()
-                                    .addGap(44, 44, 44)
-                                    .addComponent(jLabel34)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(DelincuentesTelefonoHogar, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delincuentesPageLayout.createSequentialGroup()
-                                    .addComponent(jLabel35)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(DelincuentesUltimoLugarVisto, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(103, 103, 103)
+                        .addComponent(jLabel28)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DelincuentesApellidos))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, delincuentesPageLayout.createSequentialGroup()
-                        .addGap(121, 121, 121)
+                        .addGap(102, 102, 102)
+                        .addComponent(jLabel29)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DelincuentesNombre))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, delincuentesPageLayout.createSequentialGroup()
+                        .addGap(118, 118, 118)
+                        .addComponent(jLabel30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DelincuentesApodos))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, delincuentesPageLayout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel31)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DelincuentesDomicilio))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(delincuentesPageLayout.createSequentialGroup()
+                            .addGap(23, 23, 23)
+                            .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(delincuentesPageLayout.createSequentialGroup()
+                                    .addComponent(jLabel22)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(DelincuentesRut, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(DelincuentesComprobarRut))
+                                .addGroup(delincuentesPageLayout.createSequentialGroup()
+                                    .addComponent(jLabel33)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(DelincuentesTelefonoCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(delincuentesPageLayout.createSequentialGroup()
+                                    .addComponent(jLabel32)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(DelincuentesEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(delincuentesPageLayout.createSequentialGroup()
+                                    .addComponent(jLabel37)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(DelincuentesFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(delincuentesPageLayout.createSequentialGroup()
+                            .addGap(44, 44, 44)
+                            .addComponent(jLabel34)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(DelincuentesTelefonoHogar, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delincuentesPageLayout.createSequentialGroup()
+                            .addComponent(jLabel35)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(DelincuentesUltimoLugarVisto, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, delincuentesPageLayout.createSequentialGroup()
+                        .addGap(109, 109, 109)
                         .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel36)
                             .addComponent(jLabel38))
@@ -1111,7 +1048,7 @@ public class Menu extends javax.swing.JFrame {
                                 .addComponent(DelincuentesRadioButton3))
                             .addComponent(DelincuentesComuna)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, delincuentesPageLayout.createSequentialGroup()
-                        .addGap(205, 205, 205)
+                        .addGap(193, 193, 193)
                         .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(DelincuentesMostrarDelincuentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(delincuentesPageLayout.createSequentialGroup()
@@ -1120,58 +1057,19 @@ public class Menu extends javax.swing.JFrame {
                                 .addComponent(DelincuentesEditar)
                                 .addGap(28, 28, 28)
                                 .addComponent(DelincuentesEliminar)))))
-                .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(delincuentesPageLayout.createSequentialGroup()
-                        .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(delincuentesPageLayout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(delincuentesPageLayout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delincuentesPageLayout.createSequentialGroup()
-                                        .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel41)
-                                            .addComponent(jLabel40))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(ParentescoParentesco)
-                                            .addComponent(ParentescoRut2)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delincuentesPageLayout.createSequentialGroup()
-                                        .addGap(0, 46, Short.MAX_VALUE)
-                                        .addComponent(jLabel39)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(ParentescoRut1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delincuentesPageLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ParentescoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(ParentescoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delincuentesPageLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delincuentesPageLayout.createSequentialGroup()
-                                .addComponent(jLabel48)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ParentescoComprobar1)
-                                    .addComponent(ParentescoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap())
-                            .addComponent(jButton34, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delincuentesPageLayout.createSequentialGroup()
-                                .addComponent(ParentescoElimininar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(73, 73, 73))))))
-            .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(delincuentesPageLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel47, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addComponent(parentescos)
+                .addGap(32, 32, 32))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delincuentesPageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel47, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         delincuentesPageLayout.setVerticalGroup(
             delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(delincuentesPageLayout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DelincuentesRut, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22)
@@ -1179,93 +1077,63 @@ public class Menu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DelincuentesApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel28)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel28))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DelincuentesNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel29)
-                    .addComponent(ParentescoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel48))
+                    .addComponent(jLabel29))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DelincuentesApodos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel30)
-                    .addComponent(ParentescoComprobar1))
+                    .addComponent(jLabel30))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DelincuentesDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel31))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DelincuentesUltimoLugarVisto, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel35))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DelincuentesTelefonoHogar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel34))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(DelincuentesTelefonoCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel33))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DelincuentesEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel32))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(delincuentesPageLayout.createSequentialGroup()
-                        .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(DelincuentesDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel31))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(DelincuentesUltimoLugarVisto, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel35))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(DelincuentesTelefonoHogar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel34))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(DelincuentesTelefonoCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel33))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(DelincuentesEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel32))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel37)
-                            .addComponent(DelincuentesFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel36)
-                            .addComponent(DelincuentesRadioButton1)
-                            .addComponent(DelincuentesRadioButton2)
-                            .addComponent(DelincuentesRadioButton3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(DelincuentesComuna, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel38))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(DelincuentesCrear)
-                            .addComponent(DelincuentesEditar)
-                            .addComponent(DelincuentesEliminar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(DelincuentesMostrarDelincuentes))
-                    .addGroup(delincuentesPageLayout.createSequentialGroup()
-                        .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ParentescoRut1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel39))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ParentescoRut2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel41))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ParentescoParentesco, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel40))
-                        .addGap(30, 30, 30)
-                        .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ParentescoEditar)
-                            .addComponent(ParentescoCrear))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ParentescoElimininar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton34)))
-                .addContainerGap(19, Short.MAX_VALUE))
-            .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(delincuentesPageLayout.createSequentialGroup()
-                    .addGap(10, 10, 10)
-                    .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(544, Short.MAX_VALUE)))
+                    .addComponent(jLabel37)
+                    .addComponent(DelincuentesFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel36)
+                    .addComponent(DelincuentesRadioButton1)
+                    .addComponent(DelincuentesRadioButton2)
+                    .addComponent(DelincuentesRadioButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DelincuentesComuna, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel38))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(delincuentesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DelincuentesCrear)
+                    .addComponent(DelincuentesEditar)
+                    .addComponent(DelincuentesEliminar)
+                    .addComponent(parentescos))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DelincuentesMostrarDelincuentes)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         SectoresPage.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Sectores");
 
@@ -1311,7 +1179,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jButton12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton12.setText("Ver Instituciones");
+        jButton12.setText("Ver Sectores");
 
         javax.swing.GroupLayout SectoresPageLayout = new javax.swing.GroupLayout(SectoresPage);
         SectoresPage.setLayout(SectoresPageLayout);
@@ -1321,8 +1189,8 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(SectoresPageLayout.createSequentialGroup()
                 .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(SectoresPageLayout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGap(186, 186, 186)
+                        .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(SectoresPageLayout.createSequentialGroup()
                                 .addGap(32, 32, 32)
                                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1336,10 +1204,10 @@ public class Menu extends javax.swing.JFrame {
                                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(12, 12, 12)
                                 .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(SectoresNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                                    .addComponent(SectoresDescripcion)))))
+                                    .addComponent(SectoresNombre)
+                                    .addComponent(SectoresDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(SectoresPageLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(335, 335, 335)
                         .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(SectoresPageLayout.createSequentialGroup()
                                 .addGap(56, 56, 56)
@@ -1347,10 +1215,12 @@ public class Menu extends javax.swing.JFrame {
                             .addGroup(SectoresPageLayout.createSequentialGroup()
                                 .addComponent(SectoresCrear)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(SectoresEliminar)))
-                        .addGap(231, 231, 231)
-                        .addComponent(jButton12)))
-                .addGap(20, 20, 20))
+                                .addComponent(SectoresEliminar))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SectoresPageLayout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(jButton12)
+                                .addGap(17, 17, 17)))))
+                .addContainerGap(242, Short.MAX_VALUE))
         );
         SectoresPageLayout.setVerticalGroup(
             SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1369,23 +1239,20 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
                     .addComponent(SectoresDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(SectoresPageLayout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(jButton12))
-                    .addGroup(SectoresPageLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(SectoresCrear)
-                            .addComponent(SectoresEliminar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SectoresEditar)))
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SectoresCrear)
+                    .addComponent(SectoresEliminar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(SectoresEditar)
+                .addGap(18, 18, 18)
+                .addComponent(jButton12)
+                .addContainerGap(151, Short.MAX_VALUE))
         );
 
         comunaPage.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel23.setText("Comuna");
 
@@ -1434,7 +1301,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jButton23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton23.setText("Ver Instituciones");
+        jButton23.setText("Ver comunas");
 
         javax.swing.GroupLayout comunaPageLayout = new javax.swing.GroupLayout(comunaPage);
         comunaPage.setLayout(comunaPageLayout);
@@ -1453,9 +1320,14 @@ public class Menu extends javax.swing.JFrame {
                                 .addGap(44, 44, 44)
                                 .addComponent(ComunaEliminar))
                             .addGroup(comunaPageLayout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(ComunaEditar)
-                                .addGap(96, 96, 96)))
+                                .addGroup(comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(comunaPageLayout.createSequentialGroup()
+                                        .addGap(53, 53, 53)
+                                        .addComponent(ComunaEditar))
+                                    .addGroup(comunaPageLayout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addComponent(jButton23)))
+                                .addGap(63, 63, 63)))
                         .addGap(333, 333, 333))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, comunaPageLayout.createSequentialGroup()
                 .addGroup(comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1477,9 +1349,7 @@ public class Menu extends javax.swing.JFrame {
                                 .addComponent(ComunaCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
                                 .addComponent(jButton19)))))
-                .addGap(57, 57, 57)
-                .addComponent(jButton23)
-                .addGap(40, 40, 40))
+                .addGap(284, 284, 284))
         );
         comunaPageLayout.setVerticalGroup(
             comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1494,8 +1364,7 @@ public class Menu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ComunaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel25)
-                    .addComponent(jButton23))
+                    .addComponent(jLabel25))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(comunaPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ComunaSectores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1506,7 +1375,9 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(ComunaEliminar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ComunaEditar)
-                .addContainerGap(234, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton23)
+                .addContainerGap(138, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout paginasLayout = new javax.swing.GroupLayout(paginas);
@@ -1540,42 +1411,41 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(usuariosPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addContainerGap(26, Short.MAX_VALUE))
             .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(paginasLayout.createSequentialGroup()
                     .addGap(87, 87, 87)
                     .addComponent(institucionesPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(57, Short.MAX_VALUE)))
+                    .addContainerGap(52, Short.MAX_VALUE)))
             .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(paginasLayout.createSequentialGroup()
                     .addGap(87, 87, 87)
                     .addComponent(menuNormal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(23, Short.MAX_VALUE)))
             .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(paginasLayout.createSequentialGroup()
                     .addGap(86, 86, 86)
                     .addComponent(SectoresPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(32, Short.MAX_VALUE)))
+                    .addContainerGap(27, Short.MAX_VALUE)))
             .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(paginasLayout.createSequentialGroup()
                     .addGap(86, 86, 86)
                     .addComponent(delincuentesPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(20, Short.MAX_VALUE)))
             .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(paginasLayout.createSequentialGroup()
                     .addGap(85, 85, 85)
                     .addComponent(delitosPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(29, Short.MAX_VALUE)))
+                    .addContainerGap(24, Short.MAX_VALUE)))
             .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(paginasLayout.createSequentialGroup()
                     .addGap(84, 84, 84)
                     .addComponent(reportesPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(33, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paginasLayout.createSequentialGroup()
-                    .addContainerGap(87, Short.MAX_VALUE)
-                    .addComponent(comunaPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(4, 4, 4)))
+                    .addGap(0, 131, Short.MAX_VALUE)
+                    .addComponent(comunaPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         getContentPane().add(paginas, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 900, 650));
@@ -1761,6 +1631,7 @@ public class Menu extends javax.swing.JFrame {
         this.menuNormal.setVisible(false);
         this.usuariosPane.setVisible(false);
         this.SectoresPage.setVisible(false);
+        this.comunaPage.setVisible(false);
         this.institucionesPage.setVisible(true);
         this.delincuentesPage.setVisible(false);
         this.delitosPage.setVisible(false);
@@ -1773,6 +1644,7 @@ public class Menu extends javax.swing.JFrame {
         this.menuNormal.setVisible(true);
         this.usuariosPane.setVisible(false);
         this.SectoresPage.setVisible(false);
+        this.comunaPage.setVisible(false);
         this.institucionesPage.setVisible(false);
         this.delincuentesPage.setVisible(false);
         this.delitosPage.setVisible(false);
@@ -1821,12 +1693,12 @@ public class Menu extends javax.swing.JFrame {
         this.delincuentesPage.setVisible(true);
         this.delitosPage.setVisible(false);
         this.reportesPage.setVisible(false);
+        this.comunaPage.setVisible(false);
         ButtonGroup rb = new ButtonGroup();
         rb.add(this.DelincuentesRadioButton1);
         rb.add(this.DelincuentesRadioButton2);
         rb.add(this.DelincuentesRadioButton3);
         delincuentesDefault();
-        parentescoDefault();
     }//GEN-LAST:event_delincuentesButtonActionPerformed
 
     private void delitosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delitosButtonActionPerformed
@@ -1839,6 +1711,7 @@ public class Menu extends javax.swing.JFrame {
         this.delitosPage.setVisible(true);
         this.reportesPage.setVisible(false);
         this.comunaPage.setVisible(false);
+        this.delitosDefault();
     }//GEN-LAST:event_delitosButtonActionPerformed
 
     private void reportesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportesButtonActionPerformed
@@ -2251,19 +2124,34 @@ public class Menu extends javax.swing.JFrame {
 
     private void DelincuentesComprobarRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelincuentesComprobarRutActionPerformed
         // TODO add your handling code here:
-        if (c.comprobarDelincuente(this.DelincuentesRut.getText())) {
-            JOptionPane.showMessageDialog(null, "El delincuente existe, proceda a editar o eliminar registros");
-            delincuentesActivar();
-            c.setDelincuentesDatos(this.DelincuentesRut.getText(), this.DelincuentesApellidos, this.DelincuentesNombre, this.DelincuentesApodos, this.DelincuentesDomicilio, this.DelincuentesUltimoLugarVisto, this.DelincuentesTelefonoHogar, this.DelincuentesTelefonoCelular, this.DelincuentesEmail, this.DelincuentesFechaNac, this.DelincuentesComuna);
-            this.DelincuentesCrear.setEnabled(false);
-            this.DelincuentesEditar.setEnabled(true);
-            this.DelincuentesEliminar.setEnabled(true);
-        } else {
-            delincuentesActivar();
-            this.DelincuentesCrear.setEnabled(true);
-            this.DelincuentesEditar.setEnabled(false);
-            this.DelincuentesEliminar.setEnabled(false);
-            JOptionPane.showMessageDialog(null, "Delincuente no existe, proceda a ingresar los datos");
+        String estado = "";
+        try {
+            if (c.comprobarDelincuente(this.DelincuentesRut.getText())) {
+                JOptionPane.showMessageDialog(null, "El delincuente existe, proceda a editar o eliminar registros");
+                delincuentesActivar();
+
+                estado = c.setDelincuentesDatos(this.DelincuentesRut.getText(), this.DelincuentesApellidos, this.DelincuentesNombre, this.DelincuentesApodos, this.DelincuentesDomicilio, this.DelincuentesUltimoLugarVisto, this.DelincuentesTelefonoHogar, this.DelincuentesTelefonoCelular, this.DelincuentesEmail, this.DelincuentesFechaNac, this.DelincuentesComuna);
+                if (estado.equals("L")) {
+                    this.DelincuentesRadioButton1.setSelected(true);
+                } else if (estado.equals("P")) {
+                    this.DelincuentesRadioButton2.setSelected(true);
+                } else if (estado.equals("A")) {
+                    this.DelincuentesRadioButton3.setSelected(true);
+                }
+
+                System.out.println("estado: " + estado);
+                this.DelincuentesCrear.setEnabled(false);
+                this.DelincuentesEditar.setEnabled(true);
+                this.DelincuentesEliminar.setEnabled(true);
+            } else {
+                delincuentesActivar();
+                this.DelincuentesCrear.setEnabled(true);
+                this.DelincuentesEditar.setEnabled(false);
+                this.DelincuentesEliminar.setEnabled(false);
+                JOptionPane.showMessageDialog(null, "Delincuente no existe, proceda a ingresar los datos");
+            }
+        } catch (ParseException ex) {
+            System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_DelincuentesComprobarRutActionPerformed
 
@@ -2275,9 +2163,11 @@ public class Menu extends javax.swing.JFrame {
         } else if (this.DelincuentesRadioButton2.isSelected()) {
             estado = "P";
         } else if (this.DelincuentesRadioButton3.isSelected()) {
-            estado = "OA";
+            estado = "A";
         }
-        c.crearDelincuente(this.DelincuentesRut.getText(), this.DelincuentesApellidos.getText(), this.DelincuentesNombre.getText(), this.DelincuentesApodos.getText(), this.DelincuentesDomicilio.getText(), this.DelincuentesUltimoLugarVisto.getText(), this.DelincuentesTelefonoHogar.getText(), this.DelincuentesTelefonoCelular.getText(), this.DelincuentesEmail.getText(), this.DelincuentesFechaNac.getDate().toString(), estado, this.DelincuentesComuna.getText());
+        String[] test = DelincuentesFechaNac.getDate().toGMTString().split(" ");
+        String dia = test[2] + "-" + getMonth(test[1]) + "-" + test[0];
+        c.crearDelincuente(this.DelincuentesRut.getText(), this.DelincuentesApellidos.getText(), this.DelincuentesNombre.getText(), this.DelincuentesApodos.getText(), this.DelincuentesDomicilio.getText(), this.DelincuentesUltimoLugarVisto.getText(), this.DelincuentesTelefonoHogar.getText(), this.DelincuentesTelefonoCelular.getText(), this.DelincuentesEmail.getText(), dia, estado, this.DelincuentesComuna.getText());
         this.delincuentesDefault();
     }//GEN-LAST:event_DelincuentesCrearActionPerformed
 
@@ -2289,9 +2179,12 @@ public class Menu extends javax.swing.JFrame {
         } else if (this.DelincuentesRadioButton2.isSelected()) {
             estado = "P";
         } else if (this.DelincuentesRadioButton3.isSelected()) {
-            estado = "OA";
+            estado = "A";
         }
-        c.editarDelincuente(this.DelincuentesRut.getText(), this.DelincuentesApellidos.getText(), this.DelincuentesNombre.getText(), this.DelincuentesApodos.getText(), this.DelincuentesDomicilio.getText(), this.DelincuentesUltimoLugarVisto.getText(), this.DelincuentesTelefonoHogar.getText(), this.DelincuentesTelefonoCelular.getText(), this.DelincuentesEmail.getText(), this.DelincuentesFechaNac.getDate().toString(), estado, this.DelincuentesComuna.getText());
+        String[] test = DelincuentesFechaNac.getDate().toGMTString().split(" ");
+        String dia = test[2] + "-" + getMonth(test[1]) + "-" + test[0];
+
+        c.editarDelincuente(this.DelincuentesRut.getText(), this.DelincuentesApellidos.getText(), this.DelincuentesNombre.getText(), this.DelincuentesApodos.getText(), this.DelincuentesDomicilio.getText(), this.DelincuentesUltimoLugarVisto.getText(), this.DelincuentesTelefonoHogar.getText(), this.DelincuentesTelefonoCelular.getText(), this.DelincuentesEmail.getText(), dia, estado, this.DelincuentesComuna.getText());
         this.delincuentesDefault();
     }//GEN-LAST:event_DelincuentesEditarActionPerformed
 
@@ -2301,37 +2194,23 @@ public class Menu extends javax.swing.JFrame {
         this.delincuentesDefault();
     }//GEN-LAST:event_DelincuentesEliminarActionPerformed
 
-    private void ParentescoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParentescoEditarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ParentescoEditarActionPerformed
-
-    private void ParentescoCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParentescoCrearActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ParentescoCrearActionPerformed
-
-    private void ParentescoElimininarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParentescoElimininarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ParentescoElimininarActionPerformed
-
-    private void ParentescoComprobar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParentescoComprobar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ParentescoComprobar1ActionPerformed
 
     private void delitosCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delitosCrearActionPerformed
         // TODO add your handling code here:
+        c.crearDelito(this.delitosCodigo.getText(), this.delitosDescripcion.getText(), this.delitosDireccion.getText(),this.delitosDelincuente.getText(), this.delitosComuna.getText());
+        this.delincuentesDefault();
     }//GEN-LAST:event_delitosCrearActionPerformed
 
     private void delitosEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delitosEliminarActionPerformed
         // TODO add your handling code here:
+        c.eliminarDelito(this.delitosCodigo.getText());
+        this.delincuentesDefault();
     }//GEN-LAST:event_delitosEliminarActionPerformed
 
     private void delitosEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delitosEditarActionPerformed
         // TODO add your handling code here:
+        c.editarDelito(this.delitosCodigo.getText(), this.delitosDescripcion.getText(), this.delitosDireccion.getText(),this.delitosDelincuente.getText(), this.delitosComuna.getText());
     }//GEN-LAST:event_delitosEditarActionPerformed
-
-    private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton34ActionPerformed
 
     private void DelincuentesMostrarDelincuentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelincuentesMostrarDelincuentesActionPerformed
         // TODO add your handling code here:
@@ -2354,10 +2233,59 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
         // TODO add your handling code here:
+        if (c.comprobarDelito(this.delitosCodigo.getText())) {
+            JOptionPane.showMessageDialog(null, "Delito existente, proceda a editar");
+            c.setDelitosDatos(this.delitosCodigo.getText(), this.delitosDescripcion, this.delitosDireccion, this.delitosDelincuente, delitosCodigo);
+            this.delitosActivar();
+            this.delitosEditar.setEnabled(true);
+            this.delitosEliminar.setEnabled(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Delito no existente, proceda a editar");
+            this.delitosActivar();
+            this.delitosCrear.setEnabled(true);
+
+        }
     }//GEN-LAST:event_jButton27ActionPerformed
 
+    private void delitosEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delitosEliminar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_delitosEliminar1ActionPerformed
+
+    private void parentescosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parentescosActionPerformed
+       
+        // TODO add your handling code here:
+        ParentescoCRUD p=new ParentescoCRUD();
+        p.setVisible(true);
+    }//GEN-LAST:event_parentescosActionPerformed
+    
+    public void textDefault(JTextField entrada) {
+        entrada.setEditable(false);
+        entrada.setText("");
+    }
+    
+    public void delitosDefault() {
+        this.delitosCodigo.setText("");
+        this.delitosCodigo.setEditable(true);
+        this.textDefault(this.delitosDescripcion);
+        this.textDefault(this.delitosDireccion);
+        this.textDefault(this.delitosDelincuente);
+        this.textDefault(this.delitosComuna);
+        this.delitosCrear.setEnabled(false);
+        this.delitosEditar.setEnabled(false);
+        this.delitosEliminar.setEnabled(false);
+    }
+    
+    public void delitosActivar(){
+        this.delitosCodigo.setEditable(false);
+        this.delitosDescripcion.setEditable(true);
+        this.delitosDireccion.setEditable(true);
+        this.delitosDelincuente.setEditable(true);
+        this.delitosComuna.setEditable(true);
+        
+    }
+
     public void delincuentesActivar() {
-        this.DelincuentesRut.setEditable(true);
+        this.DelincuentesRut.setEditable(false);
         this.DelincuentesApellidos.setEditable(true);
         this.DelincuentesNombre.setEditable(true);
         this.DelincuentesApodos.setEditable(true);
@@ -2373,10 +2301,6 @@ public class Menu extends javax.swing.JFrame {
         this.DelincuentesRadioButton3.setEnabled(true);
     }
 
-    public void textDefault(JTextField entrada) {
-        entrada.setEditable(false);
-        entrada.setText("");
-    }
 
     public void delincuentesDefault() {
         this.DelincuentesRut.setEditable(true);
@@ -2397,17 +2321,6 @@ public class Menu extends javax.swing.JFrame {
         this.DelincuentesCrear.setEnabled(false);
         this.DelincuentesEditar.setEnabled(false);
         this.DelincuentesEliminar.setEnabled(false);
-    }
-
-    public void parentescoDefault() {
-        this.ParentescoCodigo.setEditable(true);
-        this.ParentescoComprobar1.setEnabled(true);
-        this.ParentescoRut1.setEditable(false);
-        this.ParentescoRut2.setEditable(false);
-        this.ParentescoParentesco.setEditable(false);
-        this.ParentescoCrear.setEnabled(false);
-        this.ParentescoEditar.setEnabled(false);
-        this.ParentescoElimininar.setEnabled(false);
     }
 
     public void sectoresDefault() {
@@ -2445,6 +2358,9 @@ public class Menu extends javax.swing.JFrame {
         this.ComunaSectores.setEnabled(false);
         this.ComunaCodigo.setText("");
         this.ComunaSectores.removeAllItems();
+        this.ComunaCrear.setEnabled(false);
+        this.ComunaEditar.setEnabled(false);
+        this.ComunaEliminar.setEnabled(false);
     }
 
     /**
@@ -2513,14 +2429,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton InstitucionesEliminar;
     private javax.swing.JTextField InstitucionesNombre;
     private javax.swing.JComboBox<String> InstitucionesSectores;
-    private javax.swing.JTextField ParentescoCodigo;
-    private javax.swing.JButton ParentescoComprobar1;
-    private javax.swing.JButton ParentescoCrear;
-    private javax.swing.JButton ParentescoEditar;
-    private javax.swing.JButton ParentescoElimininar;
-    private javax.swing.JTextField ParentescoParentesco;
-    private javax.swing.JTextField ParentescoRut1;
-    private javax.swing.JTextField ParentescoRut2;
     private javax.swing.JRadioButton RadioAdministradorGeneral;
     private javax.swing.JRadioButton RadioJefeDeZona;
     private javax.swing.JRadioButton RadioOperador;
@@ -2545,15 +2453,16 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel comunaPage;
     private javax.swing.JButton delincuentesButton;
     private javax.swing.JPanel delincuentesPage;
-    private javax.swing.JTextField delitoComuna;
     private javax.swing.JButton delitosButton;
     private javax.swing.JTextField delitosCodigo;
+    private javax.swing.JTextField delitosComuna;
     private javax.swing.JButton delitosCrear;
     private javax.swing.JTextField delitosDelincuente;
     private javax.swing.JTextField delitosDescripcion;
     private javax.swing.JTextField delitosDireccion;
     private javax.swing.JButton delitosEditar;
     private javax.swing.JButton delitosEliminar;
+    private javax.swing.JButton delitosEliminar1;
     private javax.swing.JPanel delitosPage;
     private javax.swing.JButton homeButton;
     private javax.swing.JButton institucionesButton;
@@ -2570,7 +2479,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton27;
-    private javax.swing.JButton jButton34;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -2580,7 +2488,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -2607,17 +2514,13 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2629,6 +2532,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel menu5;
     private javax.swing.JPanel menuNormal;
     private javax.swing.JPanel paginas;
+    private javax.swing.JButton parentescos;
     private javax.swing.JButton reportesButton;
     private javax.swing.JPanel reportesPage;
     private javax.swing.JButton sectoresButton;
@@ -2636,4 +2540,34 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton usuariosButton;
     private javax.swing.JPanel usuariosPane;
     // End of variables declaration//GEN-END:variables
+
+    public String getMonth(String mes) {
+        String salida = "1";
+        if (mes.equals("Jan")) {
+            salida = "1";
+        } else if (mes.equals("Feb")) {
+            salida = "2";
+        } else if (mes.equals("Mar")) {
+            salida = "3";
+        } else if (mes.equals("Apr")) {
+            salida = "4";
+        } else if (mes.equals("May")) {
+            salida = "5";
+        } else if (mes.equals("Jun")) {
+            salida = "6";
+        } else if (mes.equals("Jul")) {
+            salida = "7";
+        } else if (mes.equals("Aug")) {
+            salida = "8";
+        } else if (mes.equals("Sep")) {
+            salida = "9";
+        } else if (mes.equals("Oct")) {
+            salida = "10";
+        } else if (mes.equals("Nov")) {
+            salida = "11";
+        } else if (mes.equals("Dec")) {
+            salida = "12";
+        }
+        return salida;
+    }
 }
