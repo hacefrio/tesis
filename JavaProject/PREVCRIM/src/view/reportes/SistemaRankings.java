@@ -6,6 +6,7 @@
 package view.reportes;
 
 import backend.Graficas;
+import backend.Operador;
 import com.toedter.calendar.JDateChooser;
 import view.Tabla;
 
@@ -248,7 +249,7 @@ public class SistemaRankings extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        Tabla tabla = new Tabla("RankingSectores", "", "");
+        Tabla tabla = new Tabla("RankingSectores", "", "",  new Operador());
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -257,12 +258,12 @@ public class SistemaRankings extends javax.swing.JFrame {
         String desde = aux[2] + "-" + getMonth(aux[1]) + "-" + aux[0];
         String[] aux2 = tabla2.getDate().toGMTString().split(" ");
         String hasta = aux2[2] + "-" + getMonth(aux2[1]) + "-" + aux2[0];
-        Tabla tabla = new Tabla("RankingSectoresFecha", desde, hasta);
+        Tabla tabla = new Tabla("RankingSectoresFecha", desde, hasta,new Operador());
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        Tabla tabla = new Tabla("RankingComunas", "", "");
+        Tabla tabla = new Tabla("RankingComunas", "", "",new Operador());
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -271,7 +272,7 @@ public class SistemaRankings extends javax.swing.JFrame {
         String desde = aux[2] + "-" + getMonth(aux[1]) + "-" + aux[0];
         String[] aux2 = tabla2.getDate().toGMTString().split(" ");
         String hasta = aux2[2] + "-" + getMonth(aux2[1]) + "-" + aux2[0];
-        Tabla tabla= new Tabla("RankingComunasFecha",desde,hasta);
+        Tabla tabla= new Tabla("RankingComunasFecha",desde,hasta,new Operador());
     }//GEN-LAST:event_jButton8ActionPerformed
 
     /**

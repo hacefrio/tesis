@@ -14,13 +14,9 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.scene.control.ComboBox;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import jxl.write.WriteException;
 import org.apache.commons.codec.digest.DigestUtils;
 import view.reportes.SistemaRankings;
 
@@ -67,7 +63,7 @@ public class Menu extends javax.swing.JFrame {
             this.delincuentesButton.setVisible(true);
             this.delitosButton.setVisible(true);
             this.reportesButton.setVisible(true);
-            this.comunaButton.setEnabled(true);
+            this.comunaButton.setVisible(true);
             this.menu3.setText("Rango: AdministradorGeneral");
         } else if (rango.equals("JefeDeZona")) {
             this.homeButton.setVisible(true);
@@ -77,18 +73,18 @@ public class Menu extends javax.swing.JFrame {
             this.delincuentesButton.setVisible(true);
             this.delitosButton.setVisible(true);
             this.reportesButton.setVisible(true);
-            this.comunaButton.setEnabled(true);
+            this.comunaButton.setVisible(true);
             this.menu3.setText("Rango: JefeDeZona");
 
         } else {
-            this.homeButton.setEnabled(false);
-            this.usuariosButton.setEnabled(false);
-            this.sectoresButton.setEnabled(false);
-            this.institucionesButton.setEnabled(false);
-            this.delincuentesButton.setEnabled(true);
-            this.delitosButton.setEnabled(true);
-            this.reportesButton.setEnabled(true);
-            this.comunaButton.setEnabled(false);
+            this.homeButton.setVisible(true);
+            this.usuariosButton.setVisible(false);
+            this.sectoresButton.setVisible(false);
+            this.institucionesButton.setVisible(false);
+            this.delincuentesButton.setVisible(true);
+            this.delitosButton.setVisible(true);
+            this.reportesButton.setVisible(true);
+            this.comunaButton.setVisible(false);
             this.menu3.setText("Rango: Operador");
 
         }
@@ -378,6 +374,11 @@ public class Menu extends javax.swing.JFrame {
 
         jButton9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jButton9.setText("Ver usuarios");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         UsuarioComprobar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         UsuarioComprobar.setText("Comprobar");
@@ -508,6 +509,11 @@ public class Menu extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton1.setText("Ver instituciones");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         InstitucionesCrear.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         InstitucionesCrear.setText("Crear");
@@ -2027,7 +2033,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-     
+
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
@@ -2263,6 +2269,29 @@ public class Menu extends javax.swing.JFrame {
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        if (operador.getZona().equals("AdministradorGeneral")) {
+            Tabla tabla = new Tabla("MostrarUsuariosAdministradorGeneral", "", "", operador);
+            tabla.setVisible(true);
+        } else {
+            Tabla tabla = new Tabla("MostrarUsuariosJefeDeZona", "", "", operador);
+            tabla.setVisible(true);
+        }
+
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (operador.getZona().equals("AdministradorGeneral")) {
+            Tabla tabla = new Tabla("MostrarInstitucionesAdministradorGeneral", "", "", operador);
+            tabla.setVisible(true);
+        } else {
+            Tabla tabla = new Tabla("MostrarInstitucionesJefeDeZona", "", "", operador);
+            tabla.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public void textDefault(JTextField entrada) {
         entrada.setEditable(false);

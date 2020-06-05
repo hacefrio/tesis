@@ -510,6 +510,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Ver usuarios"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="UsuarioComprobar">
               <Properties>
@@ -659,6 +662,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Ver instituciones"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="InstitucionesCrear">
               <Properties>

@@ -6,6 +6,7 @@
 package view;
 
 import backend.GestorArchivos;
+import backend.Operador;
 import conexion.Connect;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -23,15 +24,17 @@ public class Tabla extends javax.swing.JFrame {
     private String desde;
     private String hasta;
     private GestorArchivos GA = new GestorArchivos();
+    private Operador operador;
 
     /**
      * Creates new form Tabla
      */
-    public Tabla(String entrada, String desde, String hasta) {
+    public Tabla(String entrada, String desde, String hasta, Operador operador) {
         initComponents();
         this.entrada = entrada;
         this.desde = desde;
         this.hasta = hasta;
+        this.operador = operador;
         this.setVisible(true);
         cargarTabla();
     }
@@ -45,6 +48,14 @@ public class Tabla extends javax.swing.JFrame {
             RankingSectores();
         } else if (entrada.equals("RankingSectoresFecha")) {
             RankingSectoresFecha();
+        } else if (entrada.equals("MostrarUsuariosJefeDeZona")) {
+            MostrarUsuariosJefeDeZona();
+        } else if (entrada.equals("MostrarUsuariosAdministradorGeneral")) {
+            MostrarUsuariosAdministradorGeneral();
+        } else if (entrada.equals("MostrarInstitucionesJefeDeZona")) {
+            MostrarInstitucionesJefeDeZona();
+        } else if (entrada.equals("MostrarInstitucionesAdministradorGeneral")) {
+            MostrarInstitucionesAdministradorGeneral();
         }
 
     }
@@ -63,6 +74,22 @@ public class Tabla extends javax.swing.JFrame {
 
     public void RankingSectoresFecha() {
         c.cargarTopSectoresTablaRangoFechas(Tabla, this.filtro.getText(), desde, hasta);
+    }
+
+    public void MostrarUsuariosJefeDeZona() {
+        c.cargarTablaUsuariosJF(Tabla, this.filtro.getText(), operador.getZona());
+    }
+
+    public void MostrarUsuariosAdministradorGeneral() {
+        c.cargarTablaUsuariosAdministradorGeneral(Tabla, this.filtro.getText());
+    }
+
+    public void MostrarInstitucionesAdministradorGeneral() {
+        c.cargarTablaInstitucionesAdministradorGeneral(Tabla, this.filtro.getText());
+    }
+
+    public void MostrarInstitucionesJefeDeZona() {
+        c.cargarTablaInstitucionesJF(Tabla, this.filtro.getText(), operador.getZona());
     }
 
     /**

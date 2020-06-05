@@ -72,16 +72,15 @@ public class GestorArchivos {
         int valor1 = 0, valor2 = 0;
         for (int i = 11; i < tabla.getRowCount() + 11; i++) {
             for (int j = 0; j < tabla.getColumnCount(); j++) {
+                System.out.println("i: "+i + " J:"+j +" valor1: "+valor1+" valor2: "+valor2);
                 hoja1.addCell(new jxl.write.Label(j, i, String.valueOf(tm.getValueAt(valor1, valor2))));
                 valor2++;
             }
             valor1++;
+            valor2=0;
         }
-
         woorBook.setProtected(true);
         woorBook.write();
         woorBook.close();
-
     }
-
 }

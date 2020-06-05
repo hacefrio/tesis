@@ -19,8 +19,8 @@ Features :
 * programacion home (✓)
 * encriptacion md5 contraseñas(✓) (Falta desencriptar md5 para editar contraseña)
 * diseño de los crud(✓❌)
-	* Usuarios(✓) Falta mostrar tabla y validadores
-	* Instituciones(✓) Falta mostrar tabla y validadores
+	* Usuarios(✓) 
+	* Instituciones(✓) 
 	* Sectores(✓) Falta mostrar tabla y validadores
 	* comunas(✓) Falta mostrar tabla y validadores
 	* Delincuentes(✓) Falta mostrar tabla y validadores

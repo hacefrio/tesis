@@ -926,6 +926,7 @@ public class Connect {
                 Object[] fila = new Object[3];
                 fila[0] = rs.getString(1);
                 fila[1] = rs.getString(2);
+
                 if (filtro.isEmpty()) {
                     modelo.addRow(fila);
                 } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro)) {
@@ -1019,6 +1020,7 @@ public class Connect {
                 Object[] fila = new Object[3];
                 fila[0] = rs.getString(1);
                 fila[1] = rs.getString(2);
+
                 if (filtro.isEmpty()) {
                     modelo.addRow(fila);
                 } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro)) {
@@ -1074,6 +1076,164 @@ public class Connect {
     }
 
     /*              FIN DE METODOS RELACIONADOS CON RANKING DE SECTORES         */
+ /*                    METODOS RELACIONADOS CON CRUD USUARIOS                  */
+    public void cargarTablaUsuariosJF(JTable tabla, String filtro, String sector) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from operador "
+                    + "inner join institucion  "
+                    + "on institucion.codigo= operador.institucion "
+                    + "inner join sector "
+                    + "on sector.codigo= institucion.sector "
+                    + "where sector.codigo=" + sector + ";");
+
+            modelo.addColumn("rut");
+            modelo.addColumn("nombre");
+            modelo.addColumn("Apellidos");
+            modelo.addColumn("rango");
+            modelo.addColumn("institucion");
+            modelo.addColumn("Sector");
+            while (rs.next()) {
+                Object[] fila = new Object[6];
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(3);
+                fila[2] = rs.getString(4);
+                fila[3] = rs.getString(5);
+                fila[4] = rs.getString(8);
+                fila[5] = rs.getString(11);
+                if (filtro.isEmpty()) {
+                    modelo.addRow(fila);
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro) || fila[3].toString().contains(filtro) || fila[4].toString().contains(filtro) || fila[5].toString().contains(filtro)) {
+                    modelo.addRow(fila);
+                }
+            }
+            tabla.setModel(modelo);
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void cargarTablaUsuariosAdministradorGeneral(JTable tabla, String filtro) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from operador "
+                    + "inner join institucion  "
+                    + "on institucion.codigo= operador.institucion "
+                    + "inner join sector "
+                    + "on sector.codigo= institucion.sector ;");
+
+            modelo.addColumn("rut");
+            modelo.addColumn("nombre");
+            modelo.addColumn("Apellidos");
+            modelo.addColumn("rango");
+            modelo.addColumn("institucion");
+            modelo.addColumn("Sector");
+            while (rs.next()) {
+                Object[] fila = new Object[6];
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(3);
+                fila[2] = rs.getString(4);
+                fila[3] = rs.getString(5);
+                fila[4] = rs.getString(8);
+                fila[5] = rs.getString(11);
+                if (filtro.isEmpty()) {
+                    modelo.addRow(fila);
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro) || fila[3].toString().contains(filtro) || fila[4].toString().contains(filtro) || fila[5].toString().contains(filtro)) {
+                    modelo.addRow(fila);
+                }
+            }
+            tabla.setModel(modelo);
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /*      FIN METODOS RELACIONADOS CON CRUD USUARIOS*/
+ /*                    METODOS RELACIONADOS CON CRUD INSTITUCIONES                  */
+    public void cargarTablaInstitucionesJF(JTable tabla, String filtro, String sector) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from institucion "
+                    + "inner join sector "
+                    + "on institucion.sector=sector.codigo "
+                    + "where institucion.sector=" + sector + ";");
+
+            modelo.addColumn("codigo");
+            modelo.addColumn("nombre");
+            modelo.addColumn("sector");
+            while (rs.next()) {
+                Object[] fila = new Object[3];
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+                fila[2] = rs.getString(5);
+                if (filtro.isEmpty()) {
+                    modelo.addRow(fila);
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro)) {
+                    modelo.addRow(fila);
+                }
+            }
+            tabla.setModel(modelo);
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void cargarTablaInstitucionesAdministradorGeneral(JTable tabla, String filtro) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from institucion "
+                    + "inner join sector "
+                    + "on institucion.sector=sector.codigo ;");
+
+            modelo.addColumn("codigo");
+            modelo.addColumn("nombre");
+            modelo.addColumn("sector");
+            while (rs.next()) {
+                Object[] fila = new Object[3];
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+                fila[2] = rs.getString(5);
+                if (filtro.isEmpty()) {
+                    modelo.addRow(fila);
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro)) {
+                    modelo.addRow(fila);
+                }
+            }
+            tabla.setModel(modelo);
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /*      FIN METODOS RELACIONADOS CON CRUD INSTITUCIONES*/
     public void DelintuentesToExcelOrdenAlfabetico(WritableSheet hoja1) throws WriteException {
         try {
             Connect SQL = new Connect();

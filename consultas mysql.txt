@@ -52,3 +52,24 @@ FROM (SELECT sector.nombre as nombreSector
       GROUP BY sector.nombre) AS Total;
 
 /****************************************************************/
+/****************************************************************/
+Mostar tabla usuariosJF
+
+select * from operador
+inner join institucion
+on institucion.codigo= operador.institucion
+inner join sector 
+on sector.codigo= institucion.sector
+where sector.codigo=1
+
+/****************************************************************/
+/****************************************************************/
+Mostar tabla institucionesJF
+
+select * from institucion
+inner join sector
+on institucion.sector=sector.codigo
+where institucion.sector=1
+
+/****************************************************************/
+/****************************************************************/
