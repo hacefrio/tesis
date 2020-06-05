@@ -18,7 +18,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import jxl.write.WritableSheet;
 import jxl.write.WriteException;
 import org.jfree.data.category.DefaultCategoryDataset;
@@ -844,6 +846,41 @@ public class Connect {
         }
     }
 
+    public void cargarTopComunasTabla(JTable tabla, String filtro) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("SELECT count(*) as total, nombreComuna "
+                    + "FROM (SELECT comuna.nombre as nombreComuna "
+                    + "      FROM delito "
+                    + "      inner join comuna "
+                    + "      on comuna.codigo = delito.comuna "
+                    + "      GROUP BY delito.comuna ) AS Total;");
+
+            modelo.addColumn("Total");
+            modelo.addColumn("Cumuna");
+            while (rs.next()) {
+                Object[] fila = new Object[3];
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+                if (filtro.isEmpty()) {
+                    modelo.addRow(fila);
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro)) {
+                    modelo.addRow(fila);
+                }
+            }
+            tabla.setModel(modelo);
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public static void cargarTopComunasGraficoRangoFechas(DefaultCategoryDataset ds, String desde, String hasta) {
         try {
             Connect SQL = new Connect();
@@ -860,6 +897,42 @@ public class Connect {
             while (rs.next()) {
                 ds.addValue(rs.getInt(1), rs.getString(2), "");
             }
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void cargarTopComunasTablaRangoFechas(JTable tabla, String filtro, String desde, String hasta) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("SELECT count(*) as total, nombreComuna "
+                    + "FROM (SELECT comuna.nombre as nombreComuna "
+                    + "      FROM delito  "
+                    + "      inner join comuna "
+                    + "      on comuna.codigo = delito.comuna "
+                    + "      where delito.fecha BETWEEN '" + desde + "' AND '" + hasta + "' "
+                    + "      GROUP BY delito.comuna) AS Total;");
+
+            modelo.addColumn("Total");
+            modelo.addColumn("Cumuna");
+            while (rs.next()) {
+                Object[] fila = new Object[3];
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+                if (filtro.isEmpty()) {
+                    modelo.addRow(fila);
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro)) {
+                    modelo.addRow(fila);
+                }
+            }
+            tabla.setModel(modelo);
             conn.close();
             conn.close();
             rs.close();
@@ -925,8 +998,82 @@ public class Connect {
         }
     }
 
-    /*              FIN DE METODOS RELACIONADOS CON RANKING DE SECTORES         */
+    public void cargarTopSectoresTabla(JTable tabla, String filtro) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("SELECT count(*) as total, nombreSector "
+                    + "FROM (SELECT sector.nombre as nombreSector "
+                    + "      FROM delito "
+                    + "      inner join comuna "
+                    + "      on comuna.codigo = delito.comuna "
+                    + "      inner join sector  "
+                    + "      on sector.codigo =comuna.sector "
+                    + "      GROUP BY sector.nombre) AS Total;");
 
+            modelo.addColumn("Total");
+            modelo.addColumn("Sector");
+            while (rs.next()) {
+                Object[] fila = new Object[3];
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+                if (filtro.isEmpty()) {
+                    modelo.addRow(fila);
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro)) {
+                    modelo.addRow(fila);
+                }
+                tabla.setModel(modelo);
+            }
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void cargarTopSectoresTablaRangoFechas(JTable tabla, String filtro, String desde, String hasta) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("SELECT count(*) as total, nombreSector "
+                    + "FROM (SELECT sector.nombre as nombreSector "
+                    + "      FROM delito "
+                    + "      inner join comuna "
+                    + "      on comuna.codigo = delito.comuna "
+                    + "      inner join sector  "
+                    + "      on sector.codigo =comuna.sector "
+                    + "      where delito.fecha BETWEEN '" + desde + "' AND '" + hasta + "' "
+                    + "      GROUP BY sector.nombre) AS Total;");
+
+            modelo.addColumn("Total");
+            modelo.addColumn("Sector");
+            while (rs.next()) {
+                Object[] fila = new Object[3];
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+                if (filtro.isEmpty()) {
+                    modelo.addRow(fila);
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro)) {
+                    modelo.addRow(fila);
+                }
+            }
+            tabla.setModel(modelo);
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /*              FIN DE METODOS RELACIONADOS CON RANKING DE SECTORES         */
     public void DelintuentesToExcelOrdenAlfabetico(WritableSheet hoja1) throws WriteException {
         try {
             Connect SQL = new Connect();

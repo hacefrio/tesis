@@ -27,8 +27,8 @@ Features :
 	* Delincuentes parentesco (❌)
 	* Delitos(✓) Falta mostrar tabla y validadores
 	
-* Programacion sistema de generacion de reportes (✓(Excel)❌(Graficos))
-	* Mostrar delincuentes orden Alfabetico(✓)(Falta mostrar antes de generar reporte en excel)
+* Programacion sistema de generacion de reportes (❌Excel)(❌Graficos)
+	* Mostrar delincuentes orden Alfabetico(❌)
 	* listado de delincuentes agrupado por delito cometido(❌)(❌)
 	* mostrar delincuentes por comuna de residencia(❌) (❌)
 	* mostrar delincuentes por ultimo lugar visto(❌)
@@ -36,8 +36,8 @@ Features :
 	* listado de delitos ocurrido por comuna o sector dentro de un rango de fechas(❌)
 	* Listado histórico de delitos ocurridos por sectores (❌)
 	* Búsqueda en cualquier campo (❌)
-	* Mostrar ranking de comunas con mayor cantidad de delitos dentro de un rango de fechas(✓)(❌) 
-	* Mostrar ranking de sectores con mayor cantidad de delitos dentro de un rango de fechas(✓) (❌) 
+	* Mostrar ranking de comunas con mayor cantidad de delitos dentro de un rango de fechas (✓)(✓) 
+	* Mostrar ranking de sectores con mayor cantidad de delitos dentro de un rango de fechas(✓) (✓) 
 	
 * Validadores rut(❌)
 * funciones anti sqlinyection(❌)
