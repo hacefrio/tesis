@@ -5,6 +5,8 @@
  */
 package view;
 
+import javax.swing.JTextField;
+
 /**
  *
  * @author Sebastian
@@ -16,18 +18,24 @@ public class ParentescoCRUD extends javax.swing.JFrame {
      */
     public ParentescoCRUD() {
         initComponents();
-        parentescoDefault();
+        this.parentescoDefault();
     }
+    
     public void parentescoDefault(){
+        this.ParentescoCodigo.setText("");
         this.ParentescoCodigo.setEditable(true);
+        textDefault(ParentescoRut1);
+        textDefault(ParentescoRut2);
+        textDefault(ParentescoParentesco);
         this.ParentescoCrear.setEnabled(false);
         this.ParentescoEditar.setEnabled(false);
         this.ParentescoEliminar.setEnabled(false);
-        this.ParentescoRut1.setEditable(false);
-        this.ParentescoRut2.setEditable(false);
-        this.ParentescoParentesco.setEditable(false);
     }
-
+        public void textDefault(JTextField entrada) {
+        entrada.setEditable(false);
+        entrada.setText("");
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

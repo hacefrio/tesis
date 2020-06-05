@@ -1,0 +1,41 @@
+
+
+/****************************************************************/
+TOP COMUNAS HISTORICO 
+
+SELECT count(*) as total, nombreComuna
+FROM (SELECT comuna.nombre as nombreComuna
+      FROM delito
+      inner join comuna
+      on comuna.codigo = delito.comuna
+      GROUP BY delito.comuna) AS Total;
+
+
+/****************************************************************/
+/****************************************************************/
+
+TOP COMUNAS RANGO DE FECHA
+
+SELECT count(*) as total, nombreComuna
+FROM (SELECT comuna.nombre as nombreComuna
+      FROM delito
+      inner join comuna
+      on comuna.codigo = delito.comuna
+      where delito.fecha BETWEEN '"+desde+"' AND '"+desde+"'
+      GROUP BY delito.comuna) AS Total;
+
+/****************************************************************/
+/****************************************************************/
+TOP SECTORES 
+
+SELECT count(*) as total, nombreSector
+FROM (SELECT sector.nombre as nombreSector
+      FROM delito
+      inner join comuna
+      on comuna.codigo = delito.comuna
+      inner join sector 
+      on sector.codigo =comuna.sector
+      GROUP BY sector.nombre) AS Total;
+
+/****************************************************************/
+/****************************************************************/

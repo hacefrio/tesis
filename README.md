@@ -2,12 +2,6 @@
 
 Version conceptual 0.01
 
-# Proyecto en fluter: 
-
-Features :
-* Splash Screen (✓) 
-* Login  (❌) (Falta actualizar coneccion a base de datos(cambio nombre de campos BD))
-* Home (❌)(Falta diseñar sistema)
 
 # Proyecto java
 Features :
@@ -32,15 +26,18 @@ Features :
 	* Delincuentes(✓) Falta mostrar tabla y validadores
 	* Delincuentes parentesco (❌)
 	* Delitos(✓) Falta mostrar tabla y validadores
-* Programacion sistema de generacion de reportes (✓❌)
-	* Mostrar delincuentes orden Alfabetico(✓)
-	* listado de delincuentes agrupado por delito cometido(❌)
-	* mostrar delincuentes por comuna de residencia(❌)
+	
+* Programacion sistema de generacion de reportes (✓(Excel)❌(Graficos))
+	* Mostrar delincuentes orden Alfabetico(✓)(Falta mostrar antes de generar reporte en excel)
+	* listado de delincuentes agrupado por delito cometido(❌)(❌)
+	* mostrar delincuentes por comuna de residencia(❌) (❌)
 	* mostrar delincuentes por ultimo lugar visto(❌)
 	* mostrar delincuentes por parentezco entre ellos(❌)
 	* listado de delitos ocurrido por comuna o sector dentro de un rango de fechas(❌)
-	* Mostrar ranking de comunas con mayor cantidad de delitos dentro de un rango de fechas(❌)
-	* Listado historico de delitos ocurrido por sectores(❌)
+	* Listado histórico de delitos ocurridos por sectores (❌)
+	* Búsqueda en cualquier campo (❌)
+	* Mostrar ranking de comunas con mayor cantidad de delitos dentro de un rango de fechas(✓)(❌) 
+	* Mostrar ranking de sectores con mayor cantidad de delitos dentro de un rango de fechas(✓) (❌) 
 	
 * Validadores rut(❌)
 * funciones anti sqlinyection(❌)
@@ -48,12 +45,10 @@ Features :
 	
 # Idea general del proyecto
 
-Crear una aplicacion en java con todos los requisitos que pide el proyecto, pero a eso le sumamos una aplicacion de android/ios programada en flutter donde se podrá crear informes en tiempo real, ver el mapa para ver los registros y muchas otras cosas que aún están volando en el aire.
+Crear una aplicacion en java con todos los requisitos que pide el proyecto.
 
 # lenguajes utilizados
 * java
-* php
-* Dart
 
 # base de datos
 * Mysql
@@ -63,3 +58,5 @@ Crear una aplicacion en java con todos los requisitos que pide el proyecto, pero
 * MYSQL - JDBC
 * Commons-codec-1.14 : PAra encriptar las contraseñas MD5
 * JXL : Libreria para generar archivos excel 
+* JCalendar : Libreria para utilizar un calendario
+* JFreeCharts: Libreria para generar graficos en java

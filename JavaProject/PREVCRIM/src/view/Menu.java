@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import jxl.write.WriteException;
 import org.apache.commons.codec.digest.DigestUtils;
+import view.reportes.SistemaRankings;
 
 /**
  *
@@ -172,6 +173,8 @@ public class Menu extends javax.swing.JFrame {
         delitosEliminar = new javax.swing.JButton();
         delitosEditar = new javax.swing.JButton();
         delitosEliminar1 = new javax.swing.JButton();
+        jLabel48 = new javax.swing.JLabel();
+        delitosFecha = new com.toedter.calendar.JDateChooser();
         delincuentesPage = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         DelincuentesRut = new javax.swing.JTextField();
@@ -308,7 +311,7 @@ public class Menu extends javax.swing.JFrame {
                             .addComponent(menu3, javax.swing.GroupLayout.DEFAULT_SIZE, 879, Short.MAX_VALUE)
                             .addGroup(menuNormalLayout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(menu5, javax.swing.GroupLayout.DEFAULT_SIZE, 866, Short.MAX_VALUE)))))
+                                .addComponent(menu5, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         menuNormalLayout.setVerticalGroup(
@@ -657,7 +660,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jButton16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton16.setText("Mostrar rankin comunas con mayor cantidad de delitos dentro de un rango de fechas");
+        jButton16.setText("Generador de Rankings");
         jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton16ActionPerformed(evt);
@@ -714,21 +717,21 @@ public class Menu extends javax.swing.JFrame {
             reportesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(reportesPageLayout.createSequentialGroup()
                 .addComponent(jLabel16)
-                .addGap(96, 96, 96)
+                .addGap(85, 85, 85)
                 .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(115, 115, 115))
+                .addGap(58, 58, 58)
+                .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64))
             .addGroup(reportesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(reportesPageLayout.createSequentialGroup()
                     .addGap(74, 74, 74)
@@ -797,51 +800,60 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        jLabel48.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel48.setText("Fecha:");
+
         javax.swing.GroupLayout delitosPageLayout = new javax.swing.GroupLayout(delitosPage);
         delitosPage.setLayout(delitosPageLayout);
         delitosPageLayout.setHorizontalGroup(
             delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
+            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
             .addGroup(delitosPageLayout.createSequentialGroup()
-                .addGap(180, 180, 180)
-                .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delitosPageLayout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delitosPageLayout.createSequentialGroup()
+                                .addComponent(jLabel46)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(delitosComuna, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(delitosPageLayout.createSequentialGroup()
+                                .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel48)
+                                    .addComponent(jLabel45))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(delitosDelincuente, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                                    .addComponent(delitosFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delitosPageLayout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(delitosPageLayout.createSequentialGroup()
+                                    .addComponent(delitosCrear)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(delitosEditar))
+                                .addGroup(delitosPageLayout.createSequentialGroup()
+                                    .addGap(35, 35, 35)
+                                    .addComponent(delitosEliminar))
+                                .addGroup(delitosPageLayout.createSequentialGroup()
+                                    .addGap(26, 26, 26)
+                                    .addComponent(delitosEliminar1)))
+                            .addGap(133, 133, 133)))
+                    .addGroup(delitosPageLayout.createSequentialGroup()
                         .addComponent(jLabel43)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(delitosDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delitosPageLayout.createSequentialGroup()
+                    .addGroup(delitosPageLayout.createSequentialGroup()
                         .addComponent(jLabel44)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(delitosDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delitosPageLayout.createSequentialGroup()
-                        .addComponent(jLabel46)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(delitosComuna, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(delitosPageLayout.createSequentialGroup()
-                        .addComponent(jLabel45)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(delitosDelincuente, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delitosPageLayout.createSequentialGroup()
                         .addComponent(jLabel42)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(delitosCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton27)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, delitosPageLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(delitosPageLayout.createSequentialGroup()
-                        .addComponent(delitosCrear)
-                        .addGap(18, 18, 18)
-                        .addComponent(delitosEditar))
-                    .addGroup(delitosPageLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(delitosEliminar))
-                    .addGroup(delitosPageLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(delitosEliminar1)))
-                .addGap(352, 352, 352))
         );
         delitosPageLayout.setVerticalGroup(
             delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -860,6 +872,10 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(delitosDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel44))
+                .addGap(9, 9, 9)
+                .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel48)
+                    .addComponent(delitosFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(delitosPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(delitosDelincuente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -876,7 +892,7 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(delitosEliminar)
                 .addGap(34, 34, 34)
                 .addComponent(delitosEliminar1)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
         delincuentesPage.setBackground(new java.awt.Color(204, 204, 204));
@@ -1736,11 +1752,9 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
+        SistemaRankings RC=new SistemaRankings();
+        RC.setVisible(true);
     }//GEN-LAST:event_jButton16ActionPerformed
-
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton18ActionPerformed
 
     private void UsuarioComprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioComprobarActionPerformed
         // TODO add your handling code here:
@@ -2197,19 +2211,24 @@ public class Menu extends javax.swing.JFrame {
 
     private void delitosCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delitosCrearActionPerformed
         // TODO add your handling code here:
-        c.crearDelito(this.delitosCodigo.getText(), this.delitosDescripcion.getText(), this.delitosDireccion.getText(),this.delitosDelincuente.getText(), this.delitosComuna.getText());
-        this.delincuentesDefault();
+        String[] test = this.delitosFecha.getDate().toGMTString().split(" ");
+        String dia = test[2] + "-" + getMonth(test[1]) + "-" + test[0];
+        c.crearDelito(this.delitosCodigo.getText(), this.delitosDescripcion.getText(), this.delitosDireccion.getText(), dia, this.delitosDelincuente.getText(), this.delitosComuna.getText());
+        this.delitosDefault();
     }//GEN-LAST:event_delitosCrearActionPerformed
 
     private void delitosEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delitosEliminarActionPerformed
         // TODO add your handling code here:
         c.eliminarDelito(this.delitosCodigo.getText());
-        this.delincuentesDefault();
+        this.delitosDefault();
     }//GEN-LAST:event_delitosEliminarActionPerformed
 
     private void delitosEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delitosEditarActionPerformed
-        // TODO add your handling code here:
-        c.editarDelito(this.delitosCodigo.getText(), this.delitosDescripcion.getText(), this.delitosDireccion.getText(),this.delitosDelincuente.getText(), this.delitosComuna.getText());
+        // TODO add your handling code here:String[] test = this.delitosFecha.getDate().toGMTString().split(" ");
+        String[] test = this.delitosFecha.getDate().toGMTString().split(" ");
+        String dia = test[2] + "-" + getMonth(test[1]) + "-" + test[0];
+        c.editarDelito(this.delitosCodigo.getText(), this.delitosDescripcion.getText(), this.delitosDireccion.getText(), dia, this.delitosDelincuente.getText(), this.delitosComuna.getText());
+        this.delitosDefault();
     }//GEN-LAST:event_delitosEditarActionPerformed
 
     private void DelincuentesMostrarDelincuentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelincuentesMostrarDelincuentesActionPerformed
@@ -2233,17 +2252,23 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
         // TODO add your handling code here:
-        if (c.comprobarDelito(this.delitosCodigo.getText())) {
-            JOptionPane.showMessageDialog(null, "Delito existente, proceda a editar");
-            c.setDelitosDatos(this.delitosCodigo.getText(), this.delitosDescripcion, this.delitosDireccion, this.delitosDelincuente, delitosCodigo);
-            this.delitosActivar();
-            this.delitosEditar.setEnabled(true);
-            this.delitosEliminar.setEnabled(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "Delito no existente, proceda a editar");
-            this.delitosActivar();
-            this.delitosCrear.setEnabled(true);
+        try {
+            if (c.comprobarDelito(this.delitosCodigo.getText())) {
+                JOptionPane.showMessageDialog(null, "Delito existente, proceda a editar");
 
+                c.setDelitosDatos(this.delitosCodigo.getText(), this.delitosDescripcion, this.delitosDireccion, this.delitosFecha, this.delitosDelincuente, this.delitosComuna);
+
+                this.delitosActivar();
+                this.delitosEditar.setEnabled(true);
+                this.delitosEliminar.setEnabled(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Delito no existente, proceda a editar");
+                this.delitosActivar();
+                this.delitosCrear.setEnabled(true);
+
+            }
+        } catch (ParseException ex) {
+            System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_jButton27ActionPerformed
 
@@ -2252,17 +2277,21 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_delitosEliminar1ActionPerformed
 
     private void parentescosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parentescosActionPerformed
-       
+
         // TODO add your handling code here:
-        ParentescoCRUD p=new ParentescoCRUD();
+        ParentescoCRUD p = new ParentescoCRUD();
         p.setVisible(true);
     }//GEN-LAST:event_parentescosActionPerformed
-    
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton18ActionPerformed
+
     public void textDefault(JTextField entrada) {
         entrada.setEditable(false);
         entrada.setText("");
     }
-    
+
     public void delitosDefault() {
         this.delitosCodigo.setText("");
         this.delitosCodigo.setEditable(true);
@@ -2274,14 +2303,14 @@ public class Menu extends javax.swing.JFrame {
         this.delitosEditar.setEnabled(false);
         this.delitosEliminar.setEnabled(false);
     }
-    
-    public void delitosActivar(){
+
+    public void delitosActivar() {
         this.delitosCodigo.setEditable(false);
         this.delitosDescripcion.setEditable(true);
         this.delitosDireccion.setEditable(true);
         this.delitosDelincuente.setEditable(true);
         this.delitosComuna.setEditable(true);
-        
+
     }
 
     public void delincuentesActivar() {
@@ -2300,7 +2329,6 @@ public class Menu extends javax.swing.JFrame {
         this.DelincuentesRadioButton2.setEnabled(true);
         this.DelincuentesRadioButton3.setEnabled(true);
     }
-
 
     public void delincuentesDefault() {
         this.DelincuentesRut.setEditable(true);
@@ -2463,6 +2491,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton delitosEditar;
     private javax.swing.JButton delitosEliminar;
     private javax.swing.JButton delitosEliminar1;
+    private com.toedter.calendar.JDateChooser delitosFecha;
     private javax.swing.JPanel delitosPage;
     private javax.swing.JButton homeButton;
     private javax.swing.JButton institucionesButton;
@@ -2521,6 +2550,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

@@ -65,6 +65,7 @@ CREATE TABLE IF NOT EXISTS delito(
     codigo varchar(11) primary key not null,
     descripcion text(400) not null,
     direccion text(400) not null,
+    fecha date not null,
     delincuente varchar(13) not null,
     comuna int not null
 );

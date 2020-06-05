@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import jxl.write.WritableSheet;
 import jxl.write.WriteException;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -724,11 +725,11 @@ public class Connect {
         }
     }
 
-    public void crearDelito(String codigo, String descripcion, String direccion,String delincuente, String comuna) {
+    public void crearDelito(String codigo, String descripcion, String direccion, String fecha, String delincuente, String comuna) {
         try {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
-            String sql = "insert into delito values( '" + codigo + "','" + descripcion + "','" + direccion + "','"+delincuente+"'," + comuna + ");";
+            String sql = "insert into delito values( '" + codigo + "','" + descripcion + "','" + direccion + "','" + fecha + "','" + delincuente + "'," + comuna + ");";
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.execute();
             conn.close();
@@ -739,11 +740,11 @@ public class Connect {
         }
     }
 
-    public void editarDelito(String codigo, String descripcion, String direccion,String delincuente, String comuna) {
+    public void editarDelito(String codigo, String descripcion, String direccion, String fecha, String delincuente, String comuna) {
         try {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
-            String sql = "UPDATE delito SET descripcion='" + descripcion + "' , direccion = '" + comuna + "', delincuente = '"+delincuente +"'  WHERE `codigo` = '" + codigo + "';";
+            String sql = "UPDATE delito SET descripcion='" + descripcion + "' , direccion = '" + direccion + "',fecha = '" + fecha + "' delincuente = '" + delincuente + "', comuna =" + comuna + "  WHERE `codigo` = '" + codigo + "';";
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.execute();
             conn.close();
@@ -769,7 +770,7 @@ public class Connect {
         }
     }
 
-    public void setDelitosDatos(String codigo, JTextField descripcion, JTextField direccion, JTextField delincuente, JTextField comuna) {
+    public void setDelitosDatos(String codigo, JTextField descripcion, JTextField direccion, JDateChooser dia, JTextField delincuente, JTextField comuna) throws ParseException {
 
         try {
             Connect SQL = new Connect();
@@ -779,8 +780,11 @@ public class Connect {
             if (rs.next()) {
                 descripcion.setText(rs.getString(2));
                 direccion.setText(rs.getString(3));
-                delincuente.setText(rs.getString(4));
-                comuna.setText(rs.getString(5));
+                String fecha = rs.getString(4);
+                java.util.Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
+                dia.setDate(date2);
+                delincuente.setText(rs.getString(5));
+                comuna.setText(rs.getString(6));
             }
             conn.close();
             rs.close();
@@ -811,9 +815,117 @@ public class Connect {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return false;
-        } 
+        }
         return false;
     }
+
+    /*              METODOS RELACIONADOS CON RANKING DE COMUNAS         */
+    public static void cargarTopComunasGrafico(DefaultCategoryDataset ds) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("SELECT count(*) as total, nombreComuna "
+                    + "FROM (SELECT comuna.nombre as nombreComuna "
+                    + "      FROM delito "
+                    + "      inner join comuna "
+                    + "      on comuna.codigo = delito.comuna "
+                    + "      GROUP BY delito.comuna ) AS Total;");
+
+            while (rs.next()) {
+                ds.addValue(rs.getInt(1), rs.getString(2), "");
+            }
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void cargarTopComunasGraficoRangoFechas(DefaultCategoryDataset ds, String desde, String hasta) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("SELECT count(*) as total, nombreComuna "
+                    + "FROM (SELECT comuna.nombre as nombreComuna "
+                    + "      FROM delito  "
+                    + "      inner join comuna "
+                    + "      on comuna.codigo = delito.comuna "
+                    + "      where delito.fecha BETWEEN '" + desde + "' AND '" + hasta + "' "
+                    + "      GROUP BY delito.comuna) AS Total;");
+
+            while (rs.next()) {
+                ds.addValue(rs.getInt(1), rs.getString(2), "");
+            }
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /*              FIN DE METODOS RELACIONADOS CON RANKING DE COMUNAS         */
+
+ /*              METODOS RELACIONADOS CON RANKING DE SECTORES         */
+    public static void cargarTopSectoresGrafico(DefaultCategoryDataset ds) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("SELECT count(*) as total, nombreSector "
+                    + "FROM (SELECT sector.nombre as nombreSector "
+                    + "      FROM delito "
+                    + "      inner join comuna "
+                    + "      on comuna.codigo = delito.comuna "
+                    + "      inner join sector  "
+                    + "      on sector.codigo =comuna.sector "
+                    + "      GROUP BY sector.nombre) AS Total;");
+
+            while (rs.next()) {
+                ds.addValue(rs.getInt(1), rs.getString(2), "");
+            }
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void cargarTopSectoresGraficoRangoFechas(DefaultCategoryDataset ds, String desde, String hasta) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("SELECT count(*) as total, nombreSector "
+                    + "FROM (SELECT sector.nombre as nombreSector "
+                    + "      FROM delito "
+                    + "      inner join comuna "
+                    + "      on comuna.codigo = delito.comuna "
+                    + "      inner join sector  "
+                    + "      on sector.codigo =comuna.sector "
+                    + "      where delito.fecha BETWEEN '" + desde + "' AND '" + hasta + "' "
+                    + "      GROUP BY sector.nombre) AS Total;");
+
+            while (rs.next()) {
+                ds.addValue(rs.getInt(1), rs.getString(2), "");
+            }
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /*              FIN DE METODOS RELACIONADOS CON RANKING DE SECTORES         */
 
     public void DelintuentesToExcelOrdenAlfabetico(WritableSheet hoja1) throws WriteException {
         try {
