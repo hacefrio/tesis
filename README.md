@@ -28,12 +28,12 @@ Features :
 	* Delitos(✓) Falta  validadores
 	
 * Programacion sistema de generacion de reportes (❌Excel)(❌Graficos)
-	* Mostrar delincuentes orden Alfabetico(❌)
-	* listado de delincuentes agrupado por delito cometido(❌)(❌)
-	* mostrar delincuentes por comuna de residencia(❌) (❌)
-	* mostrar delincuentes por ultimo lugar visto(❌)
-	* mostrar delincuentes por parentezco entre ellos(❌)
-	* listado de delitos ocurrido por comuna o sector dentro de un rango de fechas(❌)
+	* Mostrar delincuentes orden Alfabetico (✓)
+	* listado de delincuentes agrupado por delito cometido (✓)
+	* mostrar delincuentes por comuna de residencia (❌) 
+	* mostrar delincuentes por ultimo lugar visto (❌)
+	* mostrar delincuentes por parentezco entre ellos (❌)
+	* listado de delitos ocurrido por comuna o sector dentro de un rango de fechas (❌)
 	* Listado histórico de delitos ocurridos por sectores (❌)
 	* Búsqueda en cualquier campo (❌)
 	* Mostrar ranking de comunas con mayor cantidad de delitos dentro de un rango de fechas (✓)(✓) 

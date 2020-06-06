@@ -1462,7 +1462,7 @@ public class Connect {
 
                 if (filtro.isEmpty()) {
                     modelo.addRow(fila);
-                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro) || fila[3].toString().contains(filtro) || fila[4].toString().contains(filtro) || fila[5].toString().contains(filtro) ) {
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro) || fila[3].toString().contains(filtro) || fila[4].toString().contains(filtro) || fila[5].toString().contains(filtro)) {
                     modelo.addRow(fila);
                 }
             }
@@ -1477,28 +1477,56 @@ public class Connect {
     }
 
     /*      FIN METODOS RELACIONADOS CON CRUD DELITOS*/
-    public void DelintuentesToExcelOrdenAlfabetico(WritableSheet hoja1) throws WriteException {
+    public void cargarTablaDelincuentesOrdenAlfabetico(JTable tabla, String filtro) {
         try {
+            DefaultTableModel modelo = new DefaultTableModel();
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
             Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("select * from delincuente ORDER BY apellidos DESC;");
-            int i = 11;
+            ResultSet rs = s.executeQuery("select* from delincuente inner join comuna on comuna.codigo=delincuente.comuna order by apellidos desc");
+
+            modelo.addColumn("rut");
+            modelo.addColumn("apellidos");
+            modelo.addColumn("nombres");
+            modelo.addColumn("apodo");
+            modelo.addColumn("domicilio");
+            modelo.addColumn("ultimo lugar visto");
+            modelo.addColumn("telefono hogar");
+            modelo.addColumn("telefono celular");
+            modelo.addColumn("correo");
+            modelo.addColumn("fecha de nacimiento");
+            modelo.addColumn("estado");
+            modelo.addColumn("comuna");
+
             while (rs.next()) {
-                hoja1.addCell(new jxl.write.Label(0, i, rs.getString(1)));
-                hoja1.addCell(new jxl.write.Label(1, i, rs.getString(2)));
-                hoja1.addCell(new jxl.write.Label(2, i, rs.getString(3)));
-                hoja1.addCell(new jxl.write.Label(3, i, rs.getString(4)));
-                hoja1.addCell(new jxl.write.Label(4, i, rs.getString(5)));
-                hoja1.addCell(new jxl.write.Label(5, i, rs.getString(6)));
-                hoja1.addCell(new jxl.write.Label(6, i, rs.getString(7)));
-                hoja1.addCell(new jxl.write.Label(7, i, rs.getString(8)));
-                hoja1.addCell(new jxl.write.Label(8, i, rs.getString(9)));
-                hoja1.addCell(new jxl.write.Label(9, i, rs.getString(10)));
-                hoja1.addCell(new jxl.write.Label(10, i, rs.getString(11)));
-                hoja1.addCell(new jxl.write.Label(11, i, rs.getString(12)));
-                i++;
+                Object[] fila = new Object[12];
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+                fila[2] = rs.getString(3);
+                fila[3] = rs.getString(4);
+                fila[4] = rs.getString(5);
+                fila[5] = rs.getString(6);
+                fila[6] = rs.getString(7);
+                fila[7] = rs.getString(8);
+                fila[8] = rs.getString(9);
+                fila[9] = rs.getString(10);
+                fila[10] = rs.getString(11);
+                fila[11] = rs.getString(14);
+
+                if (fila[10].toString().equals("L")) {
+                    fila[10] = "Libre";
+                } else if (fila[10].toString().equals("P")) {
+                    fila[10] = "Preso";
+                } else {
+                    fila[10] = "Orden de arresto";
+                }
+                if (filtro.isEmpty()) {
+                    modelo.addRow(fila);
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro) || fila[3].toString().contains(filtro) || fila[4].toString().contains(filtro) || fila[5].toString().contains(filtro) || fila[6].toString().contains(filtro) || fila[7].toString().contains(filtro) || fila[8].toString().contains(filtro) || fila[9].toString().contains(filtro) || fila[10].toString().contains(filtro) || fila[11].toString().contains(filtro)) {
+                    modelo.addRow(fila);
+                }
             }
+            tabla.setModel(modelo);
             conn.close();
             conn.close();
             rs.close();
@@ -1508,4 +1536,94 @@ public class Connect {
         }
     }
 
+    public void cargarTablaDelincuentesPorDelitoCometido(JTable tabla, String filtro) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from delito "
+                    + "inner join comuna "
+                    + "on delito.comuna=comuna.codigo "
+                    + "inner join delincuente "
+                    + "on delito.delincuente=delincuente.rut "
+                    + "order by delito.comuna desc ");
+
+            modelo.addColumn("codigo");
+            modelo.addColumn("descripcion");
+            modelo.addColumn("direccion");
+            modelo.addColumn("fecha");
+            modelo.addColumn("rut");
+            modelo.addColumn("nombre");
+            modelo.addColumn("apellidos");
+            modelo.addColumn("apodo");
+            modelo.addColumn("comuna");
+
+            while (rs.next()) {
+                Object[] fila = new Object[12];
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+                fila[2] = rs.getString(3);
+                fila[3] = rs.getString(4);
+                fila[4] = rs.getString(5);
+                fila[5] = rs.getString(12);
+                fila[6] = rs.getString(11);
+                fila[7] = rs.getString(13);
+                fila[8] = rs.getString(8);
+
+                if (filtro.isEmpty()) {
+                    modelo.addRow(fila);
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro) || fila[3].toString().contains(filtro) || fila[4].toString().contains(filtro) || fila[5].toString().contains(filtro) || fila[6].toString().contains(filtro) || fila[7].toString().contains(filtro) || fila[8].toString().contains(filtro) || fila[9].toString().contains(filtro) || fila[10].toString().contains(filtro) || fila[11].toString().contains(filtro)) {
+                    modelo.addRow(fila);
+                }
+            }
+            tabla.setModel(modelo);
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void cargarTablaDelincuentesPorComunaResidencia(JTable tabla, String filtro) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from delincuente "
+                    + "inner join comuna "
+                    + "on delincuente.comuna=comuna.codigo "
+                    + "GROUP BY comuna.nombre  desc");
+
+            modelo.addColumn("rut");
+            modelo.addColumn("apellidos");
+            modelo.addColumn("nombre");
+            modelo.addColumn("domicilio");
+            modelo.addColumn("comuna");
+
+            while (rs.next()) {
+                Object[] fila = new Object[6];
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+                fila[2] = rs.getString(3);
+                fila[3] = rs.getString(5);
+                fila[4] = rs.getString(14);
+                if (filtro.isEmpty()) {
+                    modelo.addRow(fila);
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro) || fila[3].toString().contains(filtro) || fila[4].toString().contains(filtro) || fila[5].toString().contains(filtro)) {
+                    modelo.addRow(fila);
+                }
+            }
+            tabla.setModel(modelo);
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

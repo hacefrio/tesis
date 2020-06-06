@@ -68,6 +68,12 @@ public class Tabla extends javax.swing.JFrame {
             MostrarDelincuentes();
         }else if (entrada.equals("MostrarDelitos")) {
             MostrarDelitos();
+        }else if (entrada.equals("MostrarDelincuentesOrdenAlfabetico")) {
+            MostrarDelincuentesOrgenAlfabetico();
+        }else if (entrada.equals("MostrarDelincuentesPorDelitoCometido")) {
+            MostrarDelincuentesPorDelitoCometido();
+        }else if (entrada.equals("MostrarDelincuentesPorComunaResidencia")) {
+            MostrarDelincuentesPorComunaResidencia();
         }
 
     }
@@ -123,6 +129,16 @@ public class Tabla extends javax.swing.JFrame {
     }
     public void MostrarDelitos() {
         c.cargarTablaDelitos(Tabla, this.filtro.getText());
+    }
+    public void MostrarDelincuentesOrgenAlfabetico() {
+        c.cargarTablaDelincuentesOrdenAlfabetico(Tabla, this.filtro.getText());
+    }
+    public void MostrarDelincuentesPorDelitoCometido() {
+        c.cargarTablaDelincuentesPorDelitoCometido(Tabla, this.filtro.getText());
+    }
+    
+    public void MostrarDelincuentesPorComunaResidencia() {
+        c.cargarTablaDelincuentesPorComunaResidencia(Tabla, this.filtro.getText());
     }
     /**
      * This method is called from within the constructor to initialize the form.

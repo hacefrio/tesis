@@ -18,6 +18,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import org.apache.commons.codec.digest.DigestUtils;
+import view.reportes.ListadoDelitos;
 import view.reportes.SistemaRankings;
 
 /**
@@ -641,6 +642,11 @@ public class Menu extends javax.swing.JFrame {
 
         jButton5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton5.setText("Mostrar delincuentes por comuna de residencia");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton13.setText("Mostrar delincuentes Ordenados alfabeticamente");
@@ -1754,6 +1760,8 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
+        Tabla tabla=new Tabla("MostrarDelincuentesPorDelitoCometido","","",operador);
+        tabla.setVisible(true);
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
@@ -2046,6 +2054,8 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
 
+        Tabla tabla=new Tabla("MostrarDelincuentesOrdenAlfabetico","","",operador);
+        tabla.setVisible(true);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
@@ -2284,6 +2294,8 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
+        ListadoDelitos LD=new ListadoDelitos();
+        LD.setVisible(true);
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -2330,6 +2342,12 @@ public class Menu extends javax.swing.JFrame {
             tabla.setVisible(true);
         }
     }//GEN-LAST:event_jButton23ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        Tabla tabla=new Tabla("MostrarDelincuentesPorComunaResidencia","","",operador);
+        tabla.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     public void textDefault(JTextField entrada) {
         entrada.setEditable(false);
