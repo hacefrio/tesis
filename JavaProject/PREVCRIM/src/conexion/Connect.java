@@ -1301,8 +1301,7 @@ public class Connect {
     }
 
     /*      FIN METODOS RELACIONADOS CON CRUD SECTORES*/
-    
-     /*                    METODOS RELACIONADOS CON CRUD COMUNA                  */
+ /*                    METODOS RELACIONADOS CON CRUD COMUNA                  */
     public void cargarTablaComunasJF(JTable tabla, String filtro, String sector) {
         try {
             DefaultTableModel modelo = new DefaultTableModel();
@@ -1373,6 +1372,111 @@ public class Connect {
     }
 
     /*      FIN METODOS RELACIONADOS CON CRUD COMUNA*/
+ /*       METODOS RELACIONADOS CON CRUD DELINCUENTES*/
+    public void cargarTablaDelincuentes(JTable tabla, String filtro) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select* from delincuente inner join comuna on comuna.codigo=delincuente.comuna ");
+
+            modelo.addColumn("rut");
+            modelo.addColumn("apellidos");
+            modelo.addColumn("nombres");
+            modelo.addColumn("apodo");
+            modelo.addColumn("domicilio");
+            modelo.addColumn("ultimo lugar visto");
+            modelo.addColumn("telefono hogar");
+            modelo.addColumn("telefono celular");
+            modelo.addColumn("correo");
+            modelo.addColumn("fecha de nacimiento");
+            modelo.addColumn("estado");
+            modelo.addColumn("comuna");
+
+            while (rs.next()) {
+                Object[] fila = new Object[12];
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+                fila[2] = rs.getString(3);
+                fila[3] = rs.getString(4);
+                fila[4] = rs.getString(5);
+                fila[5] = rs.getString(6);
+                fila[6] = rs.getString(7);
+                fila[7] = rs.getString(8);
+                fila[8] = rs.getString(9);
+                fila[9] = rs.getString(10);
+                fila[10] = rs.getString(11);
+                fila[11] = rs.getString(14);
+
+                if (fila[10].toString().equals("L")) {
+                    fila[10] = "Libre";
+                } else if (fila[10].toString().equals("P")) {
+                    fila[10] = "Preso";
+                } else {
+                    fila[10] = "Orden de arresto";
+                }
+                if (filtro.isEmpty()) {
+                    modelo.addRow(fila);
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro) || fila[3].toString().contains(filtro) || fila[4].toString().contains(filtro) || fila[5].toString().contains(filtro) || fila[6].toString().contains(filtro) || fila[7].toString().contains(filtro) || fila[8].toString().contains(filtro) || fila[9].toString().contains(filtro) || fila[10].toString().contains(filtro) || fila[11].toString().contains(filtro)) {
+                    modelo.addRow(fila);
+                }
+            }
+            tabla.setModel(modelo);
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /*      FIN METODOS RELACIONADOS CON CRUD DELINCUENTES*/
+ /*       METODOS RELACIONADOS CON CRUD DELITOS*/
+    public void cargarTablaDelitos(JTable tabla, String filtro) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from delito "
+                    + "join comuna "
+                    + "on comuna.codigo=delito.comuna ");
+
+            modelo.addColumn("codigo");
+            modelo.addColumn("descripcion");
+            modelo.addColumn("direccion");
+            modelo.addColumn("fecha");
+            modelo.addColumn("delincuente");
+            modelo.addColumn("comuna");
+
+            while (rs.next()) {
+                Object[] fila = new Object[6];
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+                fila[2] = rs.getString(3);
+                fila[3] = rs.getString(4);
+                fila[4] = rs.getString(5);
+                fila[5] = rs.getString(8);
+
+                if (filtro.isEmpty()) {
+                    modelo.addRow(fila);
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro) || fila[3].toString().contains(filtro) || fila[4].toString().contains(filtro) || fila[5].toString().contains(filtro) ) {
+                    modelo.addRow(fila);
+                }
+            }
+            tabla.setModel(modelo);
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /*      FIN METODOS RELACIONADOS CON CRUD DELITOS*/
     public void DelintuentesToExcelOrdenAlfabetico(WritableSheet hoja1) throws WriteException {
         try {
             Connect SQL = new Connect();

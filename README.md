@@ -23,9 +23,9 @@ Features :
 	* Instituciones(✓) Falta  validadores
 	* Sectores(✓) Falta  validadores
 	* comunas(✓) Falta  validadores
-	* Delincuentes(✓) Falta mostrar tabla y validadores
+	* Delincuentes(✓) falta validadores
 	* Delincuentes parentesco (❌)
-	* Delitos(✓) Falta mostrar tabla y validadores
+	* Delitos(✓) Falta  validadores
 	
 * Programacion sistema de generacion de reportes (❌Excel)(❌Graficos)
 	* Mostrar delincuentes orden Alfabetico(❌)

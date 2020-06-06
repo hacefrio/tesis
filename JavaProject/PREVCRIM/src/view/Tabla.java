@@ -64,6 +64,10 @@ public class Tabla extends javax.swing.JFrame {
             MostrarComunasJefeDeZona();
         } else if (entrada.equals("MostrarComunasAdministradorGeneral")) {
             MostrarComunasAdministradorGeneral();
+        }else if (entrada.equals("MostrarDelincuentes")) {
+            MostrarDelincuentes();
+        }else if (entrada.equals("MostrarDelitos")) {
+            MostrarDelitos();
         }
 
     }
@@ -113,6 +117,12 @@ public class Tabla extends javax.swing.JFrame {
 
     public void MostrarComunasJefeDeZona() {
         c.cargarTablaComunasJF(Tabla, this.filtro.getText(), operador.getZona());
+    }
+    public void MostrarDelincuentes() {
+        c.cargarTablaDelincuentes(Tabla, this.filtro.getText());
+    }
+    public void MostrarDelitos() {
+        c.cargarTablaDelitos(Tabla, this.filtro.getText());
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -173,24 +183,24 @@ public class Tabla extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 368, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(144, 144, 144)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addGap(494, 494, 494))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jButton6)
                                 .addGap(46, 46, 46)
                                 .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(31, 31, 31)
-                                .addComponent(jButton5))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(313, 313, 313)
-                                .addComponent(jButton2)))
-                        .addGap(0, 178, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(jButton5)
+                                .addGap(370, 370, 370))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,7 +211,7 @@ public class Tabla extends javax.swing.JFrame {
                     .addComponent(jButton5)
                     .addComponent(jButton6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
                 .addContainerGap())
