@@ -1626,4 +1626,44 @@ public class Connect {
             System.out.println(e.getMessage());
         }
     }
+    
+        public void cargarTablaDelincuentesPorUltimoLugarVisto(JTable tabla, String filtro) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from delincuente "
+                    + "inner join comuna "
+                    + "on delincuente.ultimoLugarVisto=comuna.codigo "
+                    + "GROUP BY comuna.nombre  desc");
+
+            modelo.addColumn("rut");
+            modelo.addColumn("apellidos");
+            modelo.addColumn("nombre");
+            modelo.addColumn("domicilio");
+            modelo.addColumn("Ultima comuna visto");
+
+            while (rs.next()) {
+                Object[] fila = new Object[6];
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+                fila[2] = rs.getString(3);
+                fila[3] = rs.getString(5);
+                fila[4] = rs.getString(14);
+                if (filtro.isEmpty()) {
+                    modelo.addRow(fila);
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro) || fila[3].toString().contains(filtro) || fila[4].toString().contains(filtro) || fila[5].toString().contains(filtro)) {
+                    modelo.addRow(fila);
+                }
+            }
+            tabla.setModel(modelo);
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

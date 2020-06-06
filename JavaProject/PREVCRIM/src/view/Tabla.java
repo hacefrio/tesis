@@ -7,6 +7,7 @@ package view;
 
 import backend.GestorArchivos;
 import backend.Operador;
+import com.itextpdf.text.DocumentException;
 import conexion.Connect;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -60,20 +61,22 @@ public class Tabla extends javax.swing.JFrame {
             MostrarInstitucionesJefeDeZona();
         } else if (entrada.equals("MostrarSectoresAdministradorGeneral")) {
             MostrarInstitucionesAdministradorGeneral();
-        }else if (entrada.equals("MostrarComunasJefeDeZona")) {
+        } else if (entrada.equals("MostrarComunasJefeDeZona")) {
             MostrarComunasJefeDeZona();
         } else if (entrada.equals("MostrarComunasAdministradorGeneral")) {
             MostrarComunasAdministradorGeneral();
-        }else if (entrada.equals("MostrarDelincuentes")) {
+        } else if (entrada.equals("MostrarDelincuentes")) {
             MostrarDelincuentes();
-        }else if (entrada.equals("MostrarDelitos")) {
+        } else if (entrada.equals("MostrarDelitos")) {
             MostrarDelitos();
-        }else if (entrada.equals("MostrarDelincuentesOrdenAlfabetico")) {
+        } else if (entrada.equals("MostrarDelincuentesOrdenAlfabetico")) {
             MostrarDelincuentesOrgenAlfabetico();
-        }else if (entrada.equals("MostrarDelincuentesPorDelitoCometido")) {
+        } else if (entrada.equals("MostrarDelincuentesPorDelitoCometido")) {
             MostrarDelincuentesPorDelitoCometido();
-        }else if (entrada.equals("MostrarDelincuentesPorComunaResidencia")) {
+        } else if (entrada.equals("MostrarDelincuentesPorComunaResidencia")) {
             MostrarDelincuentesPorComunaResidencia();
+        } else if (entrada.equals("MostrarDelincuentesPorUltimoLugarVisto")) {
+            MostrarDelincuentesPorUltimoLugarVisto();
         }
 
     }
@@ -117,6 +120,7 @@ public class Tabla extends javax.swing.JFrame {
     public void MostrarSectoresJefeDeZona() {
         c.cargarTablaSectoresJF(Tabla, this.filtro.getText(), operador.getZona());
     }
+
     public void MostrarComunasAdministradorGeneral() {
         c.cargarTablaComunasAdministradorGeneral(Tabla, this.filtro.getText());
     }
@@ -124,22 +128,31 @@ public class Tabla extends javax.swing.JFrame {
     public void MostrarComunasJefeDeZona() {
         c.cargarTablaComunasJF(Tabla, this.filtro.getText(), operador.getZona());
     }
+
     public void MostrarDelincuentes() {
         c.cargarTablaDelincuentes(Tabla, this.filtro.getText());
     }
+
     public void MostrarDelitos() {
         c.cargarTablaDelitos(Tabla, this.filtro.getText());
     }
+
     public void MostrarDelincuentesOrgenAlfabetico() {
         c.cargarTablaDelincuentesOrdenAlfabetico(Tabla, this.filtro.getText());
     }
+
     public void MostrarDelincuentesPorDelitoCometido() {
         c.cargarTablaDelincuentesPorDelitoCometido(Tabla, this.filtro.getText());
     }
-    
+
     public void MostrarDelincuentesPorComunaResidencia() {
         c.cargarTablaDelincuentesPorComunaResidencia(Tabla, this.filtro.getText());
     }
+
+    public void MostrarDelincuentesPorUltimoLugarVisto() {
+        c.cargarTablaDelincuentesPorUltimoLugarVisto(Tabla, this.filtro.getText());
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -155,6 +168,7 @@ public class Tabla extends javax.swing.JFrame {
         filtro = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -194,6 +208,14 @@ public class Tabla extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton3.setText("Generar PDF");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -209,7 +231,9 @@ public class Tabla extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jButton2)
-                                .addGap(494, 494, 494))
+                                .addGap(85, 85, 85)
+                                .addComponent(jButton3)
+                                .addGap(250, 250, 250))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jButton6)
                                 .addGap(46, 46, 46)
@@ -229,7 +253,9 @@ public class Tabla extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addContainerGap())
         );
 
@@ -257,6 +283,19 @@ public class Tabla extends javax.swing.JFrame {
             Logger.getLogger(Tabla.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        try {
+            // TODO add your handling code here:
+            GA.crearReportePDF(Tabla);
+        } catch (IOException ex) {
+            Logger.getLogger(Tabla.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(Tabla.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,6 +335,7 @@ public class Tabla extends javax.swing.JFrame {
     private javax.swing.JTable Tabla;
     private javax.swing.JTextField filtro;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JScrollPane jScrollPane1;

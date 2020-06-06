@@ -2060,6 +2060,8 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
         // TODO add your handling code here:
+        Tabla tabla=new Tabla("MostrarDelincuentesPorUltimoLugarVisto","","",operador);
+        tabla.setVisible(true);
     }//GEN-LAST:event_jButton24ActionPerformed
 
     private void InstitucionesSectoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InstitucionesSectoresActionPerformed

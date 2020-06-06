@@ -27,11 +27,11 @@ Features :
 	* Delincuentes parentesco (❌)
 	* Delitos(✓) Falta  validadores
 	
-* Programacion sistema de generacion de reportes (❌Excel)(❌Graficos)
+* Programacion sistema de generacion de reportes (❌Excel Y PDF)(❌Graficos) 
 	* Mostrar delincuentes orden Alfabetico (✓)
 	* listado de delincuentes agrupado por delito cometido (✓)
-	* mostrar delincuentes por comuna de residencia (❌) 
-	* mostrar delincuentes por ultimo lugar visto (❌)
+	* mostrar delincuentes por comuna de residencia (✓) 
+	* mostrar delincuentes por ultimo lugar visto  (✓) 
 	* mostrar delincuentes por parentezco entre ellos (❌)
 	* listado de delitos ocurrido por comuna o sector dentro de un rango de fechas (❌)
 	* Listado histórico de delitos ocurridos por sectores (❌)
@@ -60,3 +60,4 @@ Crear una aplicacion en java con todos los requisitos que pide el proyecto.
 * JXL : Libreria para generar archivos excel 
 * JCalendar : Libreria para utilizar un calendario
 * JFreeCharts: Libreria para generar graficos en java
+* IText: libreria para generar archivos pdf
