@@ -1234,6 +1234,145 @@ public class Connect {
     }
 
     /*      FIN METODOS RELACIONADOS CON CRUD INSTITUCIONES*/
+ /*                    METODOS RELACIONADOS CON CRUD SECTORES                  */
+    public void cargarTablaSectoresJF(JTable tabla, String filtro, String sector) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from sector "
+                    + "where sector.codigo=" + sector + ";");
+
+            modelo.addColumn("codigo");
+            modelo.addColumn("nombre");
+            modelo.addColumn("descripcion");
+            while (rs.next()) {
+                Object[] fila = new Object[3];
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+                fila[2] = rs.getString(3);
+                if (filtro.isEmpty()) {
+                    modelo.addRow(fila);
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro)) {
+                    modelo.addRow(fila);
+                }
+            }
+            tabla.setModel(modelo);
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void cargarTablaSectoresAdministradorGeneral(JTable tabla, String filtro) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from sector;");
+
+            modelo.addColumn("codigo");
+            modelo.addColumn("nombre");
+            modelo.addColumn("descripcion");
+            while (rs.next()) {
+                Object[] fila = new Object[3];
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+                fila[2] = rs.getString(3);
+                if (filtro.isEmpty()) {
+                    modelo.addRow(fila);
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro)) {
+                    modelo.addRow(fila);
+                }
+            }
+            tabla.setModel(modelo);
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /*      FIN METODOS RELACIONADOS CON CRUD SECTORES*/
+    
+     /*                    METODOS RELACIONADOS CON CRUD COMUNA                  */
+    public void cargarTablaComunasJF(JTable tabla, String filtro, String sector) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from comuna"
+                    + "inner join sector"
+                    + "on sector.codigo= comuna.sector "
+                    + "where sector.codigo=" + sector + ";");
+
+            modelo.addColumn("codigo");
+            modelo.addColumn("nombre");
+            modelo.addColumn("sector");
+            while (rs.next()) {
+                Object[] fila = new Object[3];
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+                fila[2] = rs.getString(5);
+                if (filtro.isEmpty()) {
+                    modelo.addRow(fila);
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro)) {
+                    modelo.addRow(fila);
+                }
+            }
+            tabla.setModel(modelo);
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void cargarTablaComunasAdministradorGeneral(JTable tabla, String filtro) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from comuna"
+                    + "inner join sector"
+                    + "on sector.codigo= comuna.sector ");
+
+            modelo.addColumn("codigo");
+            modelo.addColumn("nombre");
+            modelo.addColumn("sector");
+            while (rs.next()) {
+                Object[] fila = new Object[3];
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+                fila[2] = rs.getString(5);
+                if (filtro.isEmpty()) {
+                    modelo.addRow(fila);
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro)) {
+                    modelo.addRow(fila);
+                }
+            }
+            tabla.setModel(modelo);
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /*      FIN METODOS RELACIONADOS CON CRUD COMUNA*/
     public void DelintuentesToExcelOrdenAlfabetico(WritableSheet hoja1) throws WriteException {
         try {
             Connect SQL = new Connect();

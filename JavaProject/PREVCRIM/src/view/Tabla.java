@@ -56,6 +56,14 @@ public class Tabla extends javax.swing.JFrame {
             MostrarInstitucionesJefeDeZona();
         } else if (entrada.equals("MostrarInstitucionesAdministradorGeneral")) {
             MostrarInstitucionesAdministradorGeneral();
+        } else if (entrada.equals("MostrarSectoresJefeDeZona")) {
+            MostrarInstitucionesJefeDeZona();
+        } else if (entrada.equals("MostrarSectoresAdministradorGeneral")) {
+            MostrarInstitucionesAdministradorGeneral();
+        }else if (entrada.equals("MostrarComunasJefeDeZona")) {
+            MostrarComunasJefeDeZona();
+        } else if (entrada.equals("MostrarComunasAdministradorGeneral")) {
+            MostrarComunasAdministradorGeneral();
         }
 
     }
@@ -92,6 +100,20 @@ public class Tabla extends javax.swing.JFrame {
         c.cargarTablaInstitucionesJF(Tabla, this.filtro.getText(), operador.getZona());
     }
 
+    public void MostrarSectoresAdministradorGeneral() {
+        c.cargarTablaSectoresAdministradorGeneral(Tabla, this.filtro.getText());
+    }
+
+    public void MostrarSectoresJefeDeZona() {
+        c.cargarTablaSectoresJF(Tabla, this.filtro.getText(), operador.getZona());
+    }
+    public void MostrarComunasAdministradorGeneral() {
+        c.cargarTablaComunasAdministradorGeneral(Tabla, this.filtro.getText());
+    }
+
+    public void MostrarComunasJefeDeZona() {
+        c.cargarTablaComunasJF(Tabla, this.filtro.getText(), operador.getZona());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

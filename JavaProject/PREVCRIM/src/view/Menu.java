@@ -1190,6 +1190,11 @@ public class Menu extends javax.swing.JFrame {
 
         jButton12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton12.setText("Ver Sectores");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout SectoresPageLayout = new javax.swing.GroupLayout(SectoresPage);
         SectoresPage.setLayout(SectoresPageLayout);
@@ -1312,6 +1317,11 @@ public class Menu extends javax.swing.JFrame {
 
         jButton23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton23.setText("Ver comunas");
+        jButton23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton23ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout comunaPageLayout = new javax.swing.GroupLayout(comunaPage);
         comunaPage.setLayout(comunaPageLayout);
@@ -2292,6 +2302,28 @@ public class Menu extends javax.swing.JFrame {
             tabla.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        if (operador.getRango().equals("AdministradorGeneral")) {
+            Tabla tabla = new Tabla("MostrarSectoresAdministradorGeneral", "", "", operador);
+            tabla.setVisible(true);
+        } else if (operador.getRango().equals("JefeDeZona")) {
+            Tabla tabla = new Tabla("MostrarSectoresJefeDeZona", "", "", operador);
+            tabla.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
+        // TODO add your handling code here:
+        if (operador.getRango().equals("AdministradorGeneral")) {
+            Tabla tabla = new Tabla("MostrarComunasAdministradorGeneral", "", "", operador);
+            tabla.setVisible(true);
+        } else if (operador.getRango().equals("JefeDeZona")) {
+            Tabla tabla = new Tabla("MostrarComunasJefeDeZona", "", "", operador);
+            tabla.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton23ActionPerformed
 
     public void textDefault(JTextField entrada) {
         entrada.setEditable(false);
