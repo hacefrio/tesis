@@ -24,6 +24,7 @@ public class Tabla extends javax.swing.JFrame {
     private String entrada;
     private String desde;
     private String hasta;
+    private String comuna;
     private GestorArchivos GA = new GestorArchivos();
     private Operador operador;
 
@@ -36,6 +37,17 @@ public class Tabla extends javax.swing.JFrame {
         this.desde = desde;
         this.hasta = hasta;
         this.operador = operador;
+        this.setVisible(true);
+        cargarTabla();
+    }
+
+    public Tabla(String entrada, String desde, String hasta, Operador operador, String comuna) {
+        initComponents();
+        this.entrada = entrada;
+        this.desde = desde;
+        this.hasta = hasta;
+        this.operador = operador;
+        this.comuna = comuna;
         this.setVisible(true);
         cargarTabla();
     }
@@ -77,6 +89,14 @@ public class Tabla extends javax.swing.JFrame {
             MostrarDelincuentesPorComunaResidencia();
         } else if (entrada.equals("MostrarDelincuentesPorUltimoLugarVisto")) {
             MostrarDelincuentesPorUltimoLugarVisto();
+        } else if (entrada.equals("MostrarDelitosComuna")) {
+            MostrarDelitosComuna();
+        } else if (entrada.equals("MostrarDelitosComunaFechas")) {
+            MostrarDelitosComunaFechas();
+        } else if (entrada.equals("MostrarDelitosSector")) {
+            MostrarDelitosSector();
+        } else if (entrada.equals("MostrarDelitosSectorFechas")) {
+            MostrarDelitosSectorFechas();
         }
 
     }
@@ -153,6 +173,21 @@ public class Tabla extends javax.swing.JFrame {
         c.cargarTablaDelincuentesPorUltimoLugarVisto(Tabla, this.filtro.getText());
     }
 
+    public void MostrarDelitosComuna() {
+        c.cargarTablaDelitosComuna(Tabla, comuna, this.filtro.getText());
+    }
+
+    public void MostrarDelitosComunaFechas() {
+        c.cargarTablaDelitosComuna(Tabla, comuna, this.filtro.getText(), desde, hasta);
+    }
+
+    public void MostrarDelitosSector() {
+        c.cargarTablaDelitosSector(Tabla, comuna, this.filtro.getText());
+    }
+
+    public void MostrarDelitosSectorFechas() {
+        c.cargarTablaDelitosSector(Tabla, comuna, this.filtro.getText(), desde, hasta);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

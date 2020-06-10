@@ -114,13 +114,13 @@ public class GestorArchivos {
 
         FileOutputStream ficheroPdf = new FileOutputStream(ElegirRutaPDF());
 
-        PdfWriter.getInstance(documento, ficheroPdf).setInitialLeading(20);
+        PdfWriter.getInstance(documento, ficheroPdf).setInitialLeading(1);
 
         documento.open();
         try {
             Image foto = Image.getInstance("src/img/PREVCRIMLOGO.png");
             foto.scaleToFit(100, 100);
-            foto.setAlignment(Chunk.ALIGN_LEFT);
+            foto.setAlignment(Chunk.ALIGN_RIGHT);
             documento.add(foto);
         } catch (Exception e) {
             e.printStackTrace();
@@ -136,7 +136,6 @@ public class GestorArchivos {
                         Font.ITALIC, // estilo
                         BaseColor.BLACK)));
         PdfPTable tablaPDF = new PdfPTable(tabla.getColumnCount());
-
         DefaultTableModel tm = (DefaultTableModel) tabla.getModel();
         for (int i = 0; i < tabla.getColumnCount(); i++) {
             tablaPDF.addCell(tabla.getColumnName(i));

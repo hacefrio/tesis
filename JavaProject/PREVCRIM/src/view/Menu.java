@@ -2296,7 +2296,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
-        ListadoDelitos LD=new ListadoDelitos();
+        ListadoDelitos LD=new ListadoDelitos(operador);
         LD.setVisible(true);
     }//GEN-LAST:event_jButton18ActionPerformed
 

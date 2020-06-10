@@ -5,17 +5,23 @@
  */
 package view.reportes;
 
+import backend.Operador;
+import view.Tabla;
+
 /**
  *
  * @author Sebastian
  */
 public class ListadoDelitos extends javax.swing.JFrame {
 
+    private Operador operador;
+
     /**
      * Creates new form ListadoDelitos
      */
-    public ListadoDelitos() {
+    public ListadoDelitos(Operador operador) {
         initComponents();
+        this.operador = operador;
     }
 
     /**
@@ -29,21 +35,21 @@ public class ListadoDelitos extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
-        tabla2 = new com.toedter.calendar.JDateChooser();
+        comunaHasta = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
-        tabla1 = new com.toedter.calendar.JDateChooser();
+        comunaDesde = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        comuna = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButton10 = new javax.swing.JButton();
-        tabla3 = new com.toedter.calendar.JDateChooser();
-        tabla4 = new com.toedter.calendar.JDateChooser();
+        sectorHasta = new com.toedter.calendar.JDateChooser();
+        sectorDesde = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
         jButton11 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        sector = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
 
@@ -81,7 +87,7 @@ public class ListadoDelitos extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Nombre de comuna:");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        comuna.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -106,7 +112,7 @@ public class ListadoDelitos extends javax.swing.JFrame {
             }
         });
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        sector.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("Nombre de sector:");
@@ -124,9 +130,8 @@ public class ListadoDelitos extends javax.swing.JFrame {
                 .addGap(196, 196, 196)
                 .addComponent(jLabel8)
                 .addGap(29, 29, 29)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sector, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,26 +144,27 @@ public class ListadoDelitos extends javax.swing.JFrame {
                                 .addGap(184, 184, 184)
                                 .addComponent(jLabel3)
                                 .addGap(29, 29, 29)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(comuna, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(155, 155, 155)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tabla1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(comunaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(98, 98, 98)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tabla2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(comunaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(167, 167, 167)
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tabla4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(sectorDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(98, 98, 98)
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tabla3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(sectorHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jButton10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -172,13 +178,13 @@ public class ListadoDelitos extends javax.swing.JFrame {
                 .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comuna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton8)
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tabla1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tabla2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comunaDesde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comunaHasta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -188,18 +194,18 @@ public class ListadoDelitos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton11)
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tabla4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tabla3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sectorDesde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sectorHasta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton10)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(10, 10, 10)
@@ -213,18 +219,32 @@ public class ListadoDelitos extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
+        Tabla tabla = new Tabla("MostrarDelitosComuna", "", "", operador, comuna.getText());
+        tabla.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
+        String[] aux = comunaDesde.getDate().toGMTString().split(" ");
+        String desde = aux[2] + "-" + getMonth(aux[1]) + "-" + aux[0];
+        String[] aux2 = comunaHasta.getDate().toGMTString().split(" ");
+        String hasta = aux2[2] + "-" + getMonth(aux2[1]) + "-" + aux2[0];
+        Tabla tabla=new Tabla("MostrarDelitosComunaFechas",desde,hasta,operador,comuna.getText());
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
+        String[] aux = sectorDesde.getDate().toGMTString().split(" ");
+        String desde = aux[2] + "-" + getMonth(aux[1]) + "-" + aux[0];
+        String[] aux2 = sectorHasta.getDate().toGMTString().split(" ");
+        String hasta = aux2[2] + "-" + getMonth(aux2[1]) + "-" + aux2[0];
+        Tabla tabla=new Tabla("MostrarDelitosSectorFechas",desde,hasta,operador,sector.getText());
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
+        Tabla tabla=new Tabla("MostrarDelitosSector","","",operador,sector.getText());
+        tabla.setVisible(true);
     }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
@@ -257,12 +277,14 @@ public class ListadoDelitos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListadoDelitos().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField comuna;
+    private com.toedter.calendar.JDateChooser comunaDesde;
+    private com.toedter.calendar.JDateChooser comunaHasta;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton8;
@@ -276,11 +298,37 @@ public class ListadoDelitos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private com.toedter.calendar.JDateChooser tabla1;
-    private com.toedter.calendar.JDateChooser tabla2;
-    private com.toedter.calendar.JDateChooser tabla3;
-    private com.toedter.calendar.JDateChooser tabla4;
+    private javax.swing.JTextField sector;
+    private com.toedter.calendar.JDateChooser sectorDesde;
+    private com.toedter.calendar.JDateChooser sectorHasta;
     // End of variables declaration//GEN-END:variables
+ public String getMonth(String mes) {
+        String salida = "1";
+        if (mes.equals("Jan")) {
+            salida = "1";
+        } else if (mes.equals("Feb")) {
+            salida = "2";
+        } else if (mes.equals("Mar")) {
+            salida = "3";
+        } else if (mes.equals("Apr")) {
+            salida = "4";
+        } else if (mes.equals("May")) {
+            salida = "5";
+        } else if (mes.equals("Jun")) {
+            salida = "6";
+        } else if (mes.equals("Jul")) {
+            salida = "7";
+        } else if (mes.equals("Aug")) {
+            salida = "8";
+        } else if (mes.equals("Sep")) {
+            salida = "9";
+        } else if (mes.equals("Oct")) {
+            salida = "10";
+        } else if (mes.equals("Nov")) {
+            salida = "11";
+        } else if (mes.equals("Dec")) {
+            salida = "12";
+        }
+        return salida;
+    }
 }
