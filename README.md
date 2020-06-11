@@ -24,15 +24,15 @@ Features :
 	* Sectores(✓) Falta  validadores
 	* comunas(✓) Falta  validadores
 	* Delincuentes(✓) falta validadores
-	* Delincuentes parentesco (❌)
+	* Delincuentes parentesco (✓) falta validadores
 	* Delitos(✓) Falta  validadores
 	
-* Programacion sistema de generacion de reportes (❌Excel Y PDF)(❌Graficos) 
+* Programacion sistema de generacion de reportes (✓)(✓)
 	* Mostrar delincuentes orden Alfabetico (✓)
 	* listado de delincuentes agrupado por delito cometido (✓)
 	* mostrar delincuentes por comuna de residencia (✓) 
 	* mostrar delincuentes por ultimo lugar visto  (✓) 
-	* mostrar delincuentes por parentezco entre ellos (❌)
+	* mostrar delincuentes por parentezco entre ellos (✓)
 	* listado de delitos ocurrido por comuna o sector dentro de un rango de fechas (✓) 
 	* Listado histórico de delitos ocurridos por sectores (✓)
 	* Búsqueda en cualquier campo (✓)

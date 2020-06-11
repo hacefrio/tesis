@@ -15,14 +15,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import jxl.write.WritableSheet;
-import jxl.write.WriteException;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
@@ -819,6 +816,97 @@ public class Connect {
             return false;
         }
         return false;
+    }
+
+    public boolean comprobarParentesco(String codigo) {
+        String salida = "";
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from parentesco where codigo='" + codigo + "' ;");
+            if (rs.next()) {
+                salida = rs.getString(1);
+            }
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+            if (salida != "") {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return false;
+    }
+
+    public void eliminarParentesco(String codigo) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            String sql = "DELETE FROM parentesco WHERE codigo = '" + codigo + "';";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            conn.close();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Parentesco eliminado exitosamente ");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void crearParentesco(String codigo, String rut1, String parentesco, String rut2) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            String sql = "insert into parentesco values( '" + codigo + "','" + rut1 + "','" + parentesco + "','" + rut2 + "');";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            conn.close();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Parentesco creado exitosamente ");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public String setParentescoDatos(String codigo, JTextField rut1, JTextField parentesco, JTextField rut2) {
+        String estado = "";
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from parentesco where rut='" + codigo + "';");
+            if (rs.next()) {
+                rut1.setText(rs.getString(2));
+                parentesco.setText(rs.getString(3));
+                rut2.setText(rs.getString(4));
+            }
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return estado;
+    }
+
+    public void editarParentesco(String codigo, String rut1, String parentesco, String rut2) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            String sql = "UPDATE parentesco SET delincuente1 = '" + rut1 + "' , parentesco='" + parentesco + "' , delincuente2 = '" + rut2 + "'  WHERE `codigo` = '" + codigo + "';";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            conn.close();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Parentesco editado exitosamente ");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /*              METODOS RELACIONADOS CON RANKING DE COMUNAS         */
@@ -1834,6 +1922,41 @@ public class Connect {
                 if (filtro.isEmpty()) {
                     modelo.addRow(fila);
                 } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro) || fila[3].toString().contains(filtro) || fila[4].toString().contains(filtro) || fila[5].toString().contains(filtro)) {
+                    modelo.addRow(fila);
+                }
+            }
+            tabla.setModel(modelo);
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void cargarTablaParentesco(JTable tabla, String filtro) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from parentesco;");
+
+            modelo.addColumn("codigo");
+            modelo.addColumn("delincuente 1");
+            modelo.addColumn("parentesco");
+            modelo.addColumn("delincuente 2");
+
+            while (rs.next()) {
+                Object[] fila = new Object[6];
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+                fila[2] = rs.getString(3);
+                fila[3] = rs.getString(4);
+                if (filtro.isEmpty()) {
+                    modelo.addRow(fila);
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro) || fila[3].toString().contains(filtro)) {
                     modelo.addRow(fila);
                 }
             }

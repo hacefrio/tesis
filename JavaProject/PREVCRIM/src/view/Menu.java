@@ -2290,7 +2290,7 @@ public class Menu extends javax.swing.JFrame {
     private void parentescosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parentescosActionPerformed
 
         // TODO add your handling code here:
-        ParentescoCRUD p = new ParentescoCRUD();
+        ParentescoCRUD p = new ParentescoCRUD(operador);
         p.setVisible(true);
     }//GEN-LAST:event_parentescosActionPerformed
 

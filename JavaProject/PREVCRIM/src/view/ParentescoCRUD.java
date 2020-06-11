@@ -5,6 +5,9 @@
  */
 package view;
 
+import backend.Operador;
+import conexion.Connect;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -13,15 +16,18 @@ import javax.swing.JTextField;
  */
 public class ParentescoCRUD extends javax.swing.JFrame {
 
+    private Connect c = new Connect();
+    private Operador operador;
+
     /**
      * Creates new form ParentescoCRUD
      */
-    public ParentescoCRUD() {
+    public ParentescoCRUD(Operador operador) {
         initComponents();
         this.parentescoDefault();
     }
-    
-    public void parentescoDefault(){
+
+    public void parentescoDefault() {
         this.ParentescoCodigo.setText("");
         this.ParentescoCodigo.setEditable(true);
         textDefault(ParentescoRut1);
@@ -31,11 +37,19 @@ public class ParentescoCRUD extends javax.swing.JFrame {
         this.ParentescoEditar.setEnabled(false);
         this.ParentescoEliminar.setEnabled(false);
     }
-        public void textDefault(JTextField entrada) {
+
+    public void textDefault(JTextField entrada) {
         entrada.setEditable(false);
         entrada.setText("");
     }
-    
+
+    public void habilitar() {
+        this.ParentescoCodigo.setEditable(false);
+        this.ParentescoParentesco.setEditable(true);
+        this.ParentescoRut1.setEditable(true);
+        this.ParentescoRut2.setEditable(true);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -233,22 +247,38 @@ public class ParentescoCRUD extends javax.swing.JFrame {
 
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
         // TODO add your handling code here:
+        Tabla tabla=new Tabla("MostrarParentesco","","",operador);
     }//GEN-LAST:event_jButton34ActionPerformed
 
     private void ParentescoComprobar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParentescoComprobar1ActionPerformed
         // TODO add your handling code here:
+        if (c.comprobarParentesco(this.ParentescoCodigo.getText())) {
+            JOptionPane.showMessageDialog(null, "Parentesco ya existe, modifique o elimine registros.");
+            habilitar();
+            c.setParentescoDatos(this.ParentescoCodigo.getText(), ParentescoRut1, ParentescoParentesco, ParentescoRut2);
+            this.ParentescoEditar.setEnabled(true);
+            this.ParentescoEliminar.setEnabled(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Parentesco no existe, proceda a crear.");
+            habilitar();
+            this.ParentescoCrear.setEnabled(true);
+        }
     }//GEN-LAST:event_ParentescoComprobar1ActionPerformed
 
     private void ParentescoEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParentescoEliminarActionPerformed
         // TODO add your handling code here:
+        c.eliminarParentesco(this.ParentescoCodigo.getText());
     }//GEN-LAST:event_ParentescoEliminarActionPerformed
 
     private void ParentescoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParentescoEditarActionPerformed
         // TODO add your handling code here:
+        
+        c.editarParentesco(this.ParentescoCodigo.getText(), this.ParentescoRut1.getText(), this.ParentescoParentesco.getText(), this.ParentescoRut2.getText());
     }//GEN-LAST:event_ParentescoEditarActionPerformed
 
     private void ParentescoCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParentescoCrearActionPerformed
         // TODO add your handling code here:
+        c.crearParentesco(this.ParentescoCodigo.getText(), this.ParentescoRut1.getText(), this.ParentescoParentesco.getText(), this.ParentescoRut2.getText());
     }//GEN-LAST:event_ParentescoCrearActionPerformed
 
     /**
@@ -281,7 +311,6 @@ public class ParentescoCRUD extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ParentescoCRUD().setVisible(true);
             }
         });
     }
