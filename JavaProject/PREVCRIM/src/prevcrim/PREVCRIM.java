@@ -5,6 +5,7 @@
  */
 package prevcrim;
 
+import conexion.Connect;
 import view.Login;
 import view.SplashScreen;
 
@@ -14,18 +15,25 @@ import view.SplashScreen;
  */
 public class PREVCRIM {
 
+    Connect c = new Connect();
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InterruptedException {
         // TODO code application logic here
-        SplashScreen sc=new SplashScreen();
+        boolean estadoBaseDeDatos = true;
+        SplashScreen sc = new SplashScreen();
         sc.setVisible(true);
-
         Thread.sleep(5000);
-        sc.dispose();
-        Login login=new Login();
-        login.setVisible(true);
-        
+        estadoBaseDeDatos = Connect.testConnection();
+        if (estadoBaseDeDatos) {
+            sc.dispose();
+            Login login = new Login();
+            login.setVisible(true);
+        } else {
+            sc.dispose();
+        }
+
     }
 }

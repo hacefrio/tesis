@@ -48,6 +48,7 @@ public class Menu extends javax.swing.JFrame {
         this.delitosPage.setVisible(false);
         this.reportesPage.setVisible(false);
         this.comunaPage.setVisible(false);
+        this.ControlesPage.setVisible(false);
         permisos();
         this.menu1.setText("Nombre: " + operador.getNombre() + " " + operador.getApellidos());
         this.menu4.setText("Institucion: " + operador.getInstitucion());
@@ -231,6 +232,25 @@ public class Menu extends javax.swing.JFrame {
         ComunaEliminar = new javax.swing.JButton();
         ComunaEditar = new javax.swing.JButton();
         jButton23 = new javax.swing.JButton();
+        ControlesPage = new javax.swing.JPanel();
+        jLabel50 = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
+        ControlesCodigo = new javax.swing.JTextField();
+        jButton21 = new javax.swing.JButton();
+        jLabel52 = new javax.swing.JLabel();
+        ControlesComuna = new javax.swing.JTextField();
+        jLabel53 = new javax.swing.JLabel();
+        ControlesCrear = new javax.swing.JButton();
+        ControlesEliminar = new javax.swing.JButton();
+        ControlesEditar = new javax.swing.JButton();
+        jButton26 = new javax.swing.JButton();
+        ControlesDelincuente = new javax.swing.JTextField();
+        jLabel54 = new javax.swing.JLabel();
+        ControlesDireccion = new javax.swing.JTextField();
+        jLabel55 = new javax.swing.JLabel();
+        jLabel56 = new javax.swing.JLabel();
+        ControlesMotivo = new javax.swing.JTextField();
+        ControlesFecha = new com.toedter.calendar.JDateChooser();
         botonera = new javax.swing.JPanel();
         userView = new javax.swing.JLabel();
         reportesButton = new javax.swing.JButton();
@@ -242,6 +262,7 @@ public class Menu extends javax.swing.JFrame {
         homeButton = new javax.swing.JButton();
         sectoresButton = new javax.swing.JButton();
         comunaButton = new javax.swing.JButton();
+        delitosButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -294,20 +315,20 @@ public class Menu extends javax.swing.JFrame {
         menuNormalLayout.setHorizontalGroup(
             menuNormalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
             .addGroup(menuNormalLayout.createSequentialGroup()
                 .addGroup(menuNormalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(menuNormalLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addComponent(menu1, javax.swing.GroupLayout.DEFAULT_SIZE, 868, Short.MAX_VALUE))
+                        .addComponent(menu1, javax.swing.GroupLayout.DEFAULT_SIZE, 865, Short.MAX_VALUE))
                     .addGroup(menuNormalLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(menuNormalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(menu4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(menu3, javax.swing.GroupLayout.DEFAULT_SIZE, 879, Short.MAX_VALUE)
+                            .addComponent(menu3, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
                             .addGroup(menuNormalLayout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(menu5, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)))))
+                                .addComponent(menu5, javax.swing.GroupLayout.DEFAULT_SIZE, 866, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         menuNormalLayout.setVerticalGroup(
@@ -706,10 +727,10 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(reportesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton24, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 879, Short.MAX_VALUE)
-                    .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, 879, Short.MAX_VALUE)
+                    .addComponent(jButton24, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
+                    .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
                     .addComponent(jButton18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, 879, Short.MAX_VALUE))
+                    .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(reportesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(reportesPageLayout.createSequentialGroup()
@@ -1208,7 +1229,7 @@ public class Menu extends javax.swing.JFrame {
         SectoresPage.setLayout(SectoresPageLayout);
         SectoresPageLayout.setHorizontalGroup(
             SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
+            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
             .addGroup(SectoresPageLayout.createSequentialGroup()
                 .addGroup(SectoresPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(SectoresPageLayout.createSequentialGroup()
@@ -1408,12 +1429,173 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(138, Short.MAX_VALUE))
         );
 
+        ControlesPage.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel50.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel50.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel50.setText("Controles");
+
+        jLabel51.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel51.setText("Codigo :");
+
+        jButton21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton21.setText("Comprobar");
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
+
+        jLabel52.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel52.setText("Delincuente:");
+
+        jLabel53.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel53.setText("Comuna:");
+
+        ControlesCrear.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        ControlesCrear.setText("Crear");
+        ControlesCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ControlesCrearActionPerformed(evt);
+            }
+        });
+
+        ControlesEliminar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        ControlesEliminar.setText("Eliminar");
+        ControlesEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ControlesEliminarActionPerformed(evt);
+            }
+        });
+
+        ControlesEditar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        ControlesEditar.setText("Editar");
+        ControlesEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ControlesEditarActionPerformed(evt);
+            }
+        });
+
+        jButton26.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton26.setText("Ver controles");
+        jButton26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton26ActionPerformed(evt);
+            }
+        });
+
+        jLabel54.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel54.setText("Direccion:");
+
+        jLabel55.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel55.setText("Fecha:");
+
+        jLabel56.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel56.setText("Motivo:");
+
+        javax.swing.GroupLayout ControlesPageLayout = new javax.swing.GroupLayout(ControlesPage);
+        ControlesPage.setLayout(ControlesPageLayout);
+        ControlesPageLayout.setHorizontalGroup(
+            ControlesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ControlesPageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel50, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(ControlesPageLayout.createSequentialGroup()
+                .addGap(189, 189, 189)
+                .addGroup(ControlesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ControlesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(ControlesPageLayout.createSequentialGroup()
+                            .addComponent(jLabel54)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(ControlesDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(ControlesPageLayout.createSequentialGroup()
+                            .addComponent(jLabel53)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(ControlesComuna, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(ControlesPageLayout.createSequentialGroup()
+                            .addGroup(ControlesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel52)
+                                .addComponent(jLabel51))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(ControlesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(ControlesPageLayout.createSequentialGroup()
+                                    .addComponent(ControlesCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(30, 30, 30)
+                                    .addComponent(jButton21))
+                                .addComponent(ControlesDelincuente, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(ControlesPageLayout.createSequentialGroup()
+                            .addComponent(jLabel55)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(ControlesFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(ControlesPageLayout.createSequentialGroup()
+                            .addComponent(jLabel56)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(ControlesMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(ControlesPageLayout.createSequentialGroup()
+                        .addGroup(ControlesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ControlesPageLayout.createSequentialGroup()
+                                .addGap(176, 176, 176)
+                                .addComponent(jButton26))
+                            .addGroup(ControlesPageLayout.createSequentialGroup()
+                                .addGap(206, 206, 206)
+                                .addComponent(ControlesEditar)))
+                        .addGap(104, 104, 104))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ControlesPageLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ControlesCrear)
+                        .addGap(42, 42, 42)
+                        .addComponent(ControlesEliminar)
+                        .addGap(51, 51, 51)))
+                .addContainerGap(278, Short.MAX_VALUE))
+        );
+        ControlesPageLayout.setVerticalGroup(
+            ControlesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ControlesPageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel50)
+                .addGap(32, 32, 32)
+                .addGroup(ControlesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel51)
+                    .addComponent(jButton21)
+                    .addComponent(ControlesCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ControlesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel52)
+                    .addComponent(ControlesDelincuente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(ControlesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ControlesComuna, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel53))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ControlesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ControlesDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel54))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ControlesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel55)
+                    .addComponent(ControlesFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ControlesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ControlesMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel56))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ControlesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ControlesCrear)
+                    .addComponent(ControlesEliminar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(ControlesEditar)
+                .addGap(29, 29, 29)
+                .addComponent(jButton26)
+                .addGap(101, 101, 101))
+        );
+
         javax.swing.GroupLayout paginasLayout = new javax.swing.GroupLayout(paginas);
         paginas.setLayout(paginasLayout);
         paginasLayout.setHorizontalGroup(
             paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paginasLayout.createSequentialGroup()
-                .addContainerGap(715, Short.MAX_VALUE)
+                .addContainerGap(712, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addContainerGap())
             .addComponent(usuariosPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1431,6 +1613,8 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(reportesPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(comunaPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(ControlesPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         paginasLayout.setVerticalGroup(
             paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1459,7 +1643,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(paginasLayout.createSequentialGroup()
                     .addGap(86, 86, 86)
                     .addComponent(delincuentesPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(20, Short.MAX_VALUE)))
+                    .addContainerGap(14, Short.MAX_VALUE)))
             .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(paginasLayout.createSequentialGroup()
                     .addGap(85, 85, 85)
@@ -1474,6 +1658,10 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paginasLayout.createSequentialGroup()
                     .addGap(0, 131, Short.MAX_VALUE)
                     .addComponent(comunaPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(paginasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paginasLayout.createSequentialGroup()
+                    .addGap(0, 125, Short.MAX_VALUE)
+                    .addComponent(ControlesPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         getContentPane().add(paginas, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 900, 650));
@@ -1568,6 +1756,16 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        delitosButton1.setBackground(new java.awt.Color(255, 255, 255));
+        delitosButton1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        delitosButton1.setForeground(new java.awt.Color(206, 51, 0));
+        delitosButton1.setText("Controles");
+        delitosButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delitosButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout botoneraLayout = new javax.swing.GroupLayout(botonera);
         botonera.setLayout(botoneraLayout);
         botoneraLayout.setHorizontalGroup(
@@ -1582,6 +1780,7 @@ public class Menu extends javax.swing.JFrame {
             .addComponent(homeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(sectoresButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(comunaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(delitosButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         botoneraLayout.setVerticalGroup(
             botoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1604,9 +1803,11 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(delincuentesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(delitosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(delitosButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(reportesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
         getContentPane().add(botonera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 648));
@@ -1625,6 +1826,7 @@ public class Menu extends javax.swing.JFrame {
         this.delitosPage.setVisible(false);
         this.reportesPage.setVisible(false);
         this.comunaPage.setVisible(false);
+        this.ControlesPage.setVisible(false);
         if (operador.getRango().equals("AdministradorGeneral")) {
             c.loadInstituciones2(this.UsuarioInstitucionBoxUsuarios);
         } else {
@@ -1664,6 +1866,7 @@ public class Menu extends javax.swing.JFrame {
         this.delincuentesPage.setVisible(false);
         this.delitosPage.setVisible(false);
         this.reportesPage.setVisible(false);
+        this.ControlesPage.setVisible(false);
         institucionesDefault();
     }//GEN-LAST:event_institucionesButtonActionPerformed
 
@@ -1677,6 +1880,7 @@ public class Menu extends javax.swing.JFrame {
         this.delincuentesPage.setVisible(false);
         this.delitosPage.setVisible(false);
         this.reportesPage.setVisible(false);
+        this.ControlesPage.setVisible(false);
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void jLabel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseEntered
@@ -1709,6 +1913,7 @@ public class Menu extends javax.swing.JFrame {
         this.delitosPage.setVisible(false);
         this.reportesPage.setVisible(false);
         this.comunaPage.setVisible(false);
+        this.ControlesPage.setVisible(false);
         sectoresDefault();
     }//GEN-LAST:event_sectoresButtonActionPerformed
 
@@ -1722,6 +1927,8 @@ public class Menu extends javax.swing.JFrame {
         this.delitosPage.setVisible(false);
         this.reportesPage.setVisible(false);
         this.comunaPage.setVisible(false);
+        this.ControlesPage.setVisible(false);
+
         ButtonGroup rb = new ButtonGroup();
         rb.add(this.DelincuentesRadioButton1);
         rb.add(this.DelincuentesRadioButton2);
@@ -1739,6 +1946,7 @@ public class Menu extends javax.swing.JFrame {
         this.delitosPage.setVisible(true);
         this.reportesPage.setVisible(false);
         this.comunaPage.setVisible(false);
+        this.ControlesPage.setVisible(false);
         this.delitosDefault();
     }//GEN-LAST:event_delitosButtonActionPerformed
 
@@ -1752,6 +1960,7 @@ public class Menu extends javax.swing.JFrame {
         this.delitosPage.setVisible(false);
         this.reportesPage.setVisible(true);
         this.comunaPage.setVisible(false);
+        this.ControlesPage.setVisible(false);
     }//GEN-LAST:event_reportesButtonActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
@@ -1760,7 +1969,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
-        Tabla tabla=new Tabla("MostrarDelincuentesPorDelitoCometido","","",operador);
+        Tabla tabla = new Tabla("MostrarDelincuentesPorDelitoCometido", "", "", operador);
         tabla.setVisible(true);
     }//GEN-LAST:event_jButton15ActionPerformed
 
@@ -1942,6 +2151,8 @@ public class Menu extends javax.swing.JFrame {
         this.delitosPage.setVisible(false);
         this.reportesPage.setVisible(false);
         this.comunaPage.setVisible(true);
+        this.ControlesPage.setVisible(false);
+
         this.comunaDefault();
     }//GEN-LAST:event_comunaButtonActionPerformed
 
@@ -2054,13 +2265,13 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
 
-        Tabla tabla=new Tabla("MostrarDelincuentesOrdenAlfabetico","","",operador);
+        Tabla tabla = new Tabla("MostrarDelincuentesOrdenAlfabetico", "", "", operador);
         tabla.setVisible(true);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
         // TODO add your handling code here:
-        Tabla tabla=new Tabla("MostrarDelincuentesPorUltimoLugarVisto","","",operador);
+        Tabla tabla = new Tabla("MostrarDelincuentesPorUltimoLugarVisto", "", "", operador);
         tabla.setVisible(true);
     }//GEN-LAST:event_jButton24ActionPerformed
 
@@ -2240,7 +2451,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void DelincuentesMostrarDelincuentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelincuentesMostrarDelincuentesActionPerformed
         // TODO add your handling code here:
-        Tabla tabla=new Tabla("MostrarDelincuentes","","",operador);
+        Tabla tabla = new Tabla("MostrarDelincuentes", "", "", operador);
         tabla.setVisible(true);
     }//GEN-LAST:event_DelincuentesMostrarDelincuentesActionPerformed
 
@@ -2283,7 +2494,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void delitosEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delitosEliminar1ActionPerformed
         // TODO add your handling code here:
-        Tabla tabla=new Tabla("MostrarDelitos","","",operador);
+        Tabla tabla = new Tabla("MostrarDelitos", "", "", operador);
         tabla.setVisible(true);
     }//GEN-LAST:event_delitosEliminar1ActionPerformed
 
@@ -2296,7 +2507,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
-        ListadoDelitos LD=new ListadoDelitos(operador);
+        ListadoDelitos LD = new ListadoDelitos(operador);
         LD.setVisible(true);
     }//GEN-LAST:event_jButton18ActionPerformed
 
@@ -2347,13 +2558,78 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        Tabla tabla=new Tabla("MostrarDelincuentesPorComunaResidencia","","",operador);
+        Tabla tabla = new Tabla("MostrarDelincuentesPorComunaResidencia", "", "", operador);
         tabla.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void delitosButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delitosButton1ActionPerformed
+        // TODO add your handling code here:
+        this.menuNormal.setVisible(false);
+        this.usuariosPane.setVisible(false);
+        this.SectoresPage.setVisible(false);
+        this.institucionesPage.setVisible(false);
+        this.delincuentesPage.setVisible(false);
+        this.delitosPage.setVisible(false);
+        this.reportesPage.setVisible(false);
+        this.comunaPage.setVisible(false);
+        this.ControlesPage.setVisible(true);
+        
+        this.controlesDefalut();
+        this.ControlesCrear.setEnabled(false);
+        this.ControlesEditar.setEnabled(false);
+        this.ControlesEliminar.setEnabled(false);
+    }//GEN-LAST:event_delitosButton1ActionPerformed
+
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        // TODO add your handling code here:
+        if (c.comprobarControl(this.ControlesCodigo.getText())) {
+            this.controlesActivar();
+            this.ControlesEditar.setEnabled(true);
+            this.ControlesEliminar.setEnabled(true);
+        } else {
+            this.controlesActivar();
+            this.ControlesCrear.setEnabled(true);
+        }
+    }//GEN-LAST:event_jButton21ActionPerformed
+
+    private void ControlesCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ControlesCrearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ControlesCrearActionPerformed
+
+    private void ControlesEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ControlesEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ControlesEliminarActionPerformed
+
+    private void ControlesEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ControlesEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ControlesEditarActionPerformed
+
+    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton26ActionPerformed
 
     public void textDefault(JTextField entrada) {
         entrada.setEditable(false);
         entrada.setText("");
+    }
+
+    public void controlesDefalut() {
+        this.ControlesCodigo.setText("");
+        this.ControlesCodigo.setEditable(true);
+        this.textDefault(this.ControlesComuna);
+        this.ControlesFecha.setDate(null);
+        this.ControlesFecha.setEnabled(false);
+        this.textDefault(this.ControlesDelincuente);
+        this.textDefault(this.ControlesDireccion);
+        this.textDefault(this.ControlesMotivo);
+    }
+
+    public void controlesActivar() {
+        this.ControlesDelincuente.setEditable(true);
+        this.ControlesFecha.setEnabled(true);
+        this.ControlesComuna.setEditable(true);
+        this.ControlesDireccion.setEditable(true);
+        this.ControlesMotivo.setEditable(true);
     }
 
     public void delitosDefault() {
@@ -2491,11 +2767,27 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ComunaCodigo;
+    private javax.swing.JTextField ComunaCodigo1;
     private javax.swing.JButton ComunaCrear;
+    private javax.swing.JButton ComunaCrear1;
     private javax.swing.JButton ComunaEditar;
+    private javax.swing.JButton ComunaEditar1;
     private javax.swing.JButton ComunaEliminar;
+    private javax.swing.JButton ComunaEliminar1;
     private javax.swing.JTextField ComunaNombre;
+    private javax.swing.JTextField ComunaNombre1;
     private javax.swing.JComboBox<String> ComunaSectores;
+    private javax.swing.JComboBox<String> ComunaSectores1;
+    private javax.swing.JTextField ControlesCodigo;
+    private javax.swing.JTextField ControlesComuna;
+    private javax.swing.JButton ControlesCrear;
+    private javax.swing.JTextField ControlesDelincuente;
+    private javax.swing.JTextField ControlesDireccion;
+    private javax.swing.JButton ControlesEditar;
+    private javax.swing.JButton ControlesEliminar;
+    private com.toedter.calendar.JDateChooser ControlesFecha;
+    private javax.swing.JTextField ControlesMotivo;
+    private javax.swing.JPanel ControlesPage;
     private javax.swing.JTextField DelincuentesApellidos;
     private javax.swing.JTextField DelincuentesApodos;
     private javax.swing.JButton DelincuentesComprobarRut;
@@ -2543,9 +2835,11 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel botonera;
     private javax.swing.JButton comunaButton;
     private javax.swing.JPanel comunaPage;
+    private javax.swing.JPanel comunaPage1;
     private javax.swing.JButton delincuentesButton;
     private javax.swing.JPanel delincuentesPage;
     private javax.swing.JButton delitosButton;
+    private javax.swing.JButton delitosButton1;
     private javax.swing.JTextField delitosCodigo;
     private javax.swing.JTextField delitosComuna;
     private javax.swing.JButton delitosCrear;
@@ -2568,8 +2862,12 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
+    private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton24;
+    private javax.swing.JButton jButton25;
+    private javax.swing.JButton jButton26;
     private javax.swing.JButton jButton27;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -2606,7 +2904,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
@@ -2614,7 +2915,15 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

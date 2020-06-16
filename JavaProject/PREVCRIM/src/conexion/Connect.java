@@ -53,6 +53,26 @@ public class Connect {
         return con;
     }
 
+    public static boolean testConnection() {
+        try {
+            Class.forName(driverName);
+            try {
+                con = DriverManager.getConnection(url, username, password);
+                return true;
+            } catch (SQLException ex) {
+                // log an exception. fro example:
+                System.out.println(ex.getMessage());
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+                return false;
+
+            }
+        } catch (ClassNotFoundException ex) {
+            // log an exception. for example:
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        return true;
+    }
+
     public boolean logear(String rut, String clave) {
         String salida = "";
         try {
@@ -906,6 +926,56 @@ public class Connect {
             JOptionPane.showMessageDialog(null, "Parentesco editado exitosamente ");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public boolean comprobarControl(String codigo) {
+        String salida = "";
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from control \n"
+                    + "where control.codigo=" + codigo + ";");
+            if (rs.next()) {
+                salida = rs.getString(1);
+            }
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+            if (salida != "") {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return false;
+    }
+
+        public void setControlesDatos(String codigo, JTextField delincuente , JTextField comuna, JTextField direccion, JTextField motivo, JDateChooser fecha) throws ParseException {
+        String estado = "";
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from control where codigo='" + codigo + "';");
+            if (rs.next()) {
+                delincuente.setText(rs.getString(2));
+                comuna.setText(rs.getString(3));
+                direccion.setText(rs.getString(4));
+                motivo.setText(rs.getString(5));
+                String fechaString = rs.getString(6);
+                java.util.Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(fechaString);
+                fecha.setDate(date2);
+            }
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
     }
 

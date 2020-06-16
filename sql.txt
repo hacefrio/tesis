@@ -89,3 +89,17 @@ FOREIGN KEY (delincuente1) REFERENCES delincuente(rut);
 ALTER TABLE parentesco
 ADD CONSTRAINT fk_parentesco2
 FOREIGN KEY (delincuente2) REFERENCES delincuente(rut);
+CREATE TABLE IF NOT EXISTS control(
+    codigo int not null primary key,
+    delincuente varchar(13) not null,
+    comuna int not null,
+    direccion text not null,
+    motivo text not null,
+    fecha date not null
+);
+ALTER TABLE control
+ADD CONSTRAINT fk_controldelincuente
+FOREIGN KEY (delincuente) REFERENCES delincuente(rut);
+ALTER TABLE control
+ADD CONSTRAINT fk_controlcomuna
+FOREIGN KEY (comuna) REFERENCES comuna(codigo);
