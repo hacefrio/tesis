@@ -7,6 +7,7 @@ package view;
 
 import backend.GestorArchivos;
 import backend.Operador;
+import backend.TryParse;
 import conexion.Connect;
 import java.awt.Cursor;
 import java.awt.Desktop;
@@ -30,6 +31,7 @@ public class Menu extends javax.swing.JFrame {
     private Connect c = new Connect();
     private Operador operador;
     private GestorArchivos GA = new GestorArchivos();
+    private TryParse tp = new TryParse();
 
     /**
      * Creates new form Menu
@@ -1981,84 +1983,89 @@ public class Menu extends javax.swing.JFrame {
 
     private void UsuarioComprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioComprobarActionPerformed
         // TODO add your handling code here:
-        String consulta = c.comprobarUsuariosRutPermisos(this.UsuarioRut.getText(), operador);
-        System.out.println(consulta);
-        this.UsuarioInstitucionBoxUsuarios.removeAllItems();
-        if (operador.getRango().equals("AdministradorGeneral")) {
-            c.loadInstituciones2(this.UsuarioInstitucionBoxUsuarios);
-        } else {
-            c.loadInstituciones1(this.UsuarioInstitucionBoxUsuarios, operador);
 
-        }
-        if (consulta.equals("si")) {
-            this.UsuarioRut.setEditable(false);
-            JOptionPane.showMessageDialog(null, "El usuario ya existe");
-            this.UsuarioApellido.setEditable(true);
-            this.UsuarioInstitucionBoxUsuarios.setEnabled(true);
-            this.UsuarioApellido.setEditable(true);
-            this.UsuarioContrasena.setEditable(true);
-            this.RadioAdministradorGeneral.setEnabled(true);
-            this.RadioOperador.setEnabled(true);
-            this.RadioJefeDeZona.setEnabled(true);
-            this.UsuarioNombre.setEditable(true);
-            this.UsuarioEliminarUsuario.setEnabled(true);
-            this.UsuarioCrearUsuario.setEnabled(false);
-            this.UsuarioEditarUsuario.setEnabled(true);
-            Operador usuario = new Operador();
-            c.setOperador2(this.UsuarioRut.getText(), usuario);
-            this.UsuarioApellido.setText(usuario.getApellidos());
-            this.UsuarioNombre.setText(usuario.getNombre());
-            this.UsuarioInstitucionBoxUsuarios.setSelectedItem(usuario.getInstitucion());
-        } else if (consulta.equals("noExiste")) {
-            JOptionPane.showMessageDialog(null, "El usuario no existe, proceda a crear usuario");
-            this.UsuarioApellido.setEditable(true);
-            this.UsuarioInstitucionBoxUsuarios.setEnabled(true);
-            this.UsuarioApellido.setEditable(true);
-            this.UsuarioContrasena.setEditable(true);
-            this.RadioAdministradorGeneral.setEnabled(true);
-            this.RadioOperador.setEnabled(true);
-            this.RadioJefeDeZona.setEnabled(true);
-            this.UsuarioNombre.setEditable(true);
-            this.UsuarioEliminarUsuario.setEnabled(false);
-            this.UsuarioCrearUsuario.setEnabled(true);
-            this.UsuarioEditarUsuario.setEnabled(false);
-        } else if (consulta.equals("otraZona")) {
-            JOptionPane.showMessageDialog(null, "El usuario es de otra zona, no puedes editarlo");
-            this.UsuarioApellido.setEditable(false);
-            this.UsuarioInstitucionBoxUsuarios.setEnabled(false);
-            this.UsuarioApellido.setEditable(false);
-            this.UsuarioContrasena.setEditable(false);
-            this.RadioAdministradorGeneral.setEnabled(false);
-            this.RadioOperador.setEnabled(false);
-            this.RadioJefeDeZona.setEnabled(false);
-            this.UsuarioNombre.setEditable(false);
-            this.UsuarioEliminarUsuario.setEnabled(false);
-            this.UsuarioCrearUsuario.setEnabled(false);
-            this.UsuarioEditarUsuario.setEnabled(false);
-        } else if (consulta.equals("noPermisos")) {
-            JOptionPane.showMessageDialog(null, "No tienes los permisos suficientes para editar este usuario");
-            this.UsuarioApellido.setEditable(false);
-            this.UsuarioInstitucionBoxUsuarios.setEnabled(false);
-            this.UsuarioApellido.setEditable(false);
-            this.UsuarioContrasena.setEditable(false);
-            this.RadioAdministradorGeneral.setEnabled(false);
-            this.RadioOperador.setEnabled(false);
-            this.RadioJefeDeZona.setEnabled(false);
-            this.UsuarioNombre.setEditable(false);
-            this.UsuarioEliminarUsuario.setEnabled(false);
-            this.UsuarioCrearUsuario.setEnabled(false);
-            this.UsuarioEditarUsuario.setEnabled(false);
-        }
-        if (operador.getRango().equals("AdministradorGeneral")) {
-            this.RadioAdministradorGeneral.setEnabled(true);
-            this.RadioOperador.setEnabled(true);
-            this.RadioJefeDeZona.setEnabled(true);
-        } else if (operador.getRango().equals("JefeDeZona")) {
-            this.RadioAdministradorGeneral.setEnabled(false);
-            this.RadioOperador.setEnabled(true);
-            this.RadioJefeDeZona.setEnabled(false);
-        }
+        if (!this.UsuarioRut.getText().isEmpty()|| tp.TryRut(this.UsuarioRut.getText())) {
 
+            String consulta = c.comprobarUsuariosRutPermisos(this.UsuarioRut.getText(), operador);
+            System.out.println(consulta);
+            this.UsuarioInstitucionBoxUsuarios.removeAllItems();
+            if (operador.getRango().equals("AdministradorGeneral")) {
+                c.loadInstituciones2(this.UsuarioInstitucionBoxUsuarios);
+            } else {
+                c.loadInstituciones1(this.UsuarioInstitucionBoxUsuarios, operador);
+
+            }
+            if (consulta.equals("si") ) {
+                this.UsuarioRut.setEditable(false);
+                JOptionPane.showMessageDialog(null, "El usuario ya existe");
+                this.UsuarioApellido.setEditable(true);
+                this.UsuarioInstitucionBoxUsuarios.setEnabled(true);
+                this.UsuarioApellido.setEditable(true);
+                this.UsuarioContrasena.setEditable(true);
+                this.RadioAdministradorGeneral.setEnabled(true);
+                this.RadioOperador.setEnabled(true);
+                this.RadioJefeDeZona.setEnabled(true);
+                this.UsuarioNombre.setEditable(true);
+                this.UsuarioEliminarUsuario.setEnabled(true);
+                this.UsuarioCrearUsuario.setEnabled(false);
+                this.UsuarioEditarUsuario.setEnabled(true);
+                Operador usuario = new Operador();
+                c.setOperador2(this.UsuarioRut.getText(), usuario);
+                this.UsuarioApellido.setText(usuario.getApellidos());
+                this.UsuarioNombre.setText(usuario.getNombre());
+                this.UsuarioInstitucionBoxUsuarios.setSelectedItem(usuario.getInstitucion());
+            } else if (consulta.equals("noExiste")) {
+                JOptionPane.showMessageDialog(null, "El usuario no existe, proceda a crear usuario");
+                this.UsuarioApellido.setEditable(true);
+                this.UsuarioInstitucionBoxUsuarios.setEnabled(true);
+                this.UsuarioApellido.setEditable(true);
+                this.UsuarioContrasena.setEditable(true);
+                this.RadioAdministradorGeneral.setEnabled(true);
+                this.RadioOperador.setEnabled(true);
+                this.RadioJefeDeZona.setEnabled(true);
+                this.UsuarioNombre.setEditable(true);
+                this.UsuarioEliminarUsuario.setEnabled(false);
+                this.UsuarioCrearUsuario.setEnabled(true);
+                this.UsuarioEditarUsuario.setEnabled(false);
+            } else if (consulta.equals("otraZona")) {
+                JOptionPane.showMessageDialog(null, "El usuario es de otra zona, no puedes editarlo");
+                this.UsuarioApellido.setEditable(false);
+                this.UsuarioInstitucionBoxUsuarios.setEnabled(false);
+                this.UsuarioApellido.setEditable(false);
+                this.UsuarioContrasena.setEditable(false);
+                this.RadioAdministradorGeneral.setEnabled(false);
+                this.RadioOperador.setEnabled(false);
+                this.RadioJefeDeZona.setEnabled(false);
+                this.UsuarioNombre.setEditable(false);
+                this.UsuarioEliminarUsuario.setEnabled(false);
+                this.UsuarioCrearUsuario.setEnabled(false);
+                this.UsuarioEditarUsuario.setEnabled(false);
+            } else if (consulta.equals("noPermisos")) {
+                JOptionPane.showMessageDialog(null, "No tienes los permisos suficientes para editar este usuario");
+                this.UsuarioApellido.setEditable(false);
+                this.UsuarioInstitucionBoxUsuarios.setEnabled(false);
+                this.UsuarioApellido.setEditable(false);
+                this.UsuarioContrasena.setEditable(false);
+                this.RadioAdministradorGeneral.setEnabled(false);
+                this.RadioOperador.setEnabled(false);
+                this.RadioJefeDeZona.setEnabled(false);
+                this.UsuarioNombre.setEditable(false);
+                this.UsuarioEliminarUsuario.setEnabled(false);
+                this.UsuarioCrearUsuario.setEnabled(false);
+                this.UsuarioEditarUsuario.setEnabled(false);
+            }
+            if (operador.getRango().equals("AdministradorGeneral")) {
+                this.RadioAdministradorGeneral.setEnabled(true);
+                this.RadioOperador.setEnabled(true);
+                this.RadioJefeDeZona.setEnabled(true);
+            } else if (operador.getRango().equals("JefeDeZona")) {
+                this.RadioAdministradorGeneral.setEnabled(false);
+                this.RadioOperador.setEnabled(true);
+                this.RadioJefeDeZona.setEnabled(false);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese un rut valido");
+        }
     }//GEN-LAST:event_UsuarioComprobarActionPerformed
 
     private void UsuarioCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioCrearUsuarioActionPerformed
@@ -2573,7 +2580,7 @@ public class Menu extends javax.swing.JFrame {
         this.reportesPage.setVisible(false);
         this.comunaPage.setVisible(false);
         this.ControlesPage.setVisible(true);
-        
+
         this.controlesDefalut();
         this.ControlesCrear.setEnabled(false);
         this.ControlesEditar.setEnabled(false);
@@ -2582,7 +2589,9 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
         // TODO add your handling code here:
+
         if (c.comprobarControl(this.ControlesCodigo.getText())) {
+            this.ControlesCodigo.setEditable(false);
             this.controlesActivar();
             this.ControlesEditar.setEnabled(true);
             this.ControlesEliminar.setEnabled(true);
@@ -2594,14 +2603,22 @@ public class Menu extends javax.swing.JFrame {
 
     private void ControlesCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ControlesCrearActionPerformed
         // TODO add your handling code here:
+        String[] test = this.ControlesFecha.getDate().toGMTString().split(" ");
+        String dia = test[2] + "-" + getMonth(test[1]) + "-" + test[0];
+        c.crearControl(this.ControlesCodigo.getText(), this.ControlesDelincuente.getText(), this.ControlesComuna.getText(), this.ControlesDireccion.getText(), this.ControlesMotivo.getText(), dia);
+        c.crearControl2(this.ControlesDelincuente.getText(), this.ControlesComuna.getText());
     }//GEN-LAST:event_ControlesCrearActionPerformed
 
     private void ControlesEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ControlesEliminarActionPerformed
         // TODO add your handling code here:
+        c.eliminarControl(this.ControlesCodigo.getText());
     }//GEN-LAST:event_ControlesEliminarActionPerformed
 
     private void ControlesEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ControlesEditarActionPerformed
         // TODO add your handling code here:
+        String[] test = this.ControlesFecha.getDate().toGMTString().split(" ");
+        String dia = test[2] + "-" + getMonth(test[1]) + "-" + test[0];
+        c.editarControl(this.ControlesCodigo.getText(), this.ControlesDelincuente.getText(), this.ControlesComuna.getText(), this.ControlesDireccion.getText(), this.ControlesMotivo.getText(), dia);
     }//GEN-LAST:event_ControlesEditarActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed

@@ -6,7 +6,9 @@
 package view;
 
 import backend.Operador;
+import backend.TryParse;
 import conexion.Connect;
+import javax.swing.JOptionPane;
 import org.apache.commons.codec.digest.DigestUtils;
 import placeholder.PlaceHolder;
 
@@ -18,7 +20,9 @@ public class Login extends javax.swing.JFrame {
 
     private PlaceHolder placeHolder1;
     private PlaceHolder placeHolder2;
-    private Operador operador= new Operador();
+    private Operador operador = new Operador();
+    private TryParse tp = new TryParse();
+
     /**
      * Creates new form Login
      */
@@ -134,17 +138,26 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Connect c=new Connect();
-        String textoSinEncriptar=clave.getText(); 
-        String textoEncriptadoConMD5=DigestUtils.md5Hex(textoSinEncriptar);
-        if(c.logear(rut.getText(), textoEncriptadoConMD5)){
-            c.setOperador(rut.getText(), operador);
-            Menu m=new Menu(operador);
-            m.setVisible(true);
-            this.dispose();
-        }else{
-            System.out.println("incorrecto");
+        Connect c = new Connect();
+        String textoSinEncriptar = clave.getText();
+        String textoEncriptadoConMD5 = DigestUtils.md5Hex(textoSinEncriptar);
+        if (tp.TryRut(this.rut.getText())) {
+            if (c.logear(rut.getText(), textoEncriptadoConMD5)) {
+                c.setOperador(rut.getText(), operador);
+                Menu m = new Menu(operador);
+                m.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null,"Rut o contraseña incorrecto");
+            }
+        } else if (this.clave.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese un rut valido");
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese un rut valido");
+
         }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

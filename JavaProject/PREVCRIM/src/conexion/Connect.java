@@ -955,7 +955,67 @@ public class Connect {
         return false;
     }
 
-        public void setControlesDatos(String codigo, JTextField delincuente , JTextField comuna, JTextField direccion, JTextField motivo, JDateChooser fecha) throws ParseException {
+    public void crearControl(String codigo, String delincuente, String comuna, String direccion, String motivo, String fecha) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            String sql = "insert into control values(" + codigo + ",'" + delincuente + "', " + comuna + ", '" + direccion + "','" + motivo + "','" + fecha + "');";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            conn.close();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Control creada exitosamente ");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void crearControl2( String rut,String comuna) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            String sql = "UPDATE delincuente SET ultimoLugarVisto = '"+comuna+"'   WHERE `rut` = " + rut + ";)";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            conn.close();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Se ha actualizado ultimo lugar visto ");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void editarControl(String codigo, String delincuente, String comuna, String direccion, String motivo, String fecha) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            String sql = "UPDATE comuna SET nombre =  '" + delincuente + "', comuna=" + comuna + ", direccion='" + direccion + "', motivo='" + motivo + "',fecha='" + fecha + "'  WHERE `codigo` = " + codigo + ";";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            conn.close();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Control editada exitosamente ");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void eliminarControl(String codigo) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            String sql = "DELETE FROM control WHERE codigo = '" + codigo + "';";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            conn.close();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Control eliminado exitosamente ");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void setControlesDatos(String codigo, JTextField delincuente, JTextField comuna, JTextField direccion, JTextField motivo, JDateChooser fecha) throws ParseException {
         String estado = "";
         try {
             Connect SQL = new Connect();

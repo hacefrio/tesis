@@ -26,6 +26,7 @@ Features :
 	* Delincuentes(✓) falta validadores
 	* Delincuentes parentesco (✓) falta validadores
 	* Delitos(✓) Falta  validadores
+	* Controles(✓) Falta  validadores
 	
 * Programacion sistema de generacion de reportes (✓)(✓)
 	* Mostrar delincuentes orden Alfabetico (✓)
