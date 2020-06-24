@@ -6,6 +6,7 @@
 package view.reportes;
 
 import backend.Operador;
+import javax.swing.JOptionPane;
 import view.Tabla;
 
 /**
@@ -219,32 +220,56 @@ public class ListadoDelitos extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        Tabla tabla = new Tabla("MostrarDelitosComuna", "", "", operador, comuna.getText());
-        tabla.setVisible(true);
+        if (!this.comuna.getText().isEmpty()) {
+            Tabla tabla = new Tabla("MostrarDelitosComuna", "", "", operador, comuna.getText());
+            tabla.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese nombre de la comuna");
+        }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        String[] aux = comunaDesde.getDate().toGMTString().split(" ");
-        String desde = aux[2] + "-" + getMonth(aux[1]) + "-" + aux[0];
-        String[] aux2 = comunaHasta.getDate().toGMTString().split(" ");
-        String hasta = aux2[2] + "-" + getMonth(aux2[1]) + "-" + aux2[0];
-        Tabla tabla=new Tabla("MostrarDelitosComunaFechas",desde,hasta,operador,comuna.getText());
+        if (this.comuna.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese nombre de la comuna");
+        } else if (this.comunaDesde.getDate().toGMTString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese la fecha desde");
+        } else if (this.comunaHasta.getDate().toGMTString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese la fecha hasta");
+        } else {
+            String[] aux = comunaDesde.getDate().toGMTString().split(" ");
+            String desde = aux[2] + "-" + getMonth(aux[1]) + "-" + aux[0];
+            String[] aux2 = comunaHasta.getDate().toGMTString().split(" ");
+            String hasta = aux2[2] + "-" + getMonth(aux2[1]) + "-" + aux2[0];
+            Tabla tabla = new Tabla("MostrarDelitosComunaFechas", desde, hasta, operador, comuna.getText());
+        }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        String[] aux = sectorDesde.getDate().toGMTString().split(" ");
-        String desde = aux[2] + "-" + getMonth(aux[1]) + "-" + aux[0];
-        String[] aux2 = sectorHasta.getDate().toGMTString().split(" ");
-        String hasta = aux2[2] + "-" + getMonth(aux2[1]) + "-" + aux2[0];
-        Tabla tabla=new Tabla("MostrarDelitosSectorFechas",desde,hasta,operador,sector.getText());
+        if (this.sector.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese nombre de la comuna");
+        } else if (this.sectorDesde.getDate().toGMTString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese la fecha desde");
+        } else if (this.sectorHasta.getDate().toGMTString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese la fecha hasta");
+        } else {
+            String[] aux = sectorDesde.getDate().toGMTString().split(" ");
+            String desde = aux[2] + "-" + getMonth(aux[1]) + "-" + aux[0];
+            String[] aux2 = sectorHasta.getDate().toGMTString().split(" ");
+            String hasta = aux2[2] + "-" + getMonth(aux2[1]) + "-" + aux2[0];
+            Tabla tabla = new Tabla("MostrarDelitosSectorFechas", desde, hasta, operador, sector.getText());
+        }
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
-        Tabla tabla=new Tabla("MostrarDelitosSector","","",operador,sector.getText());
-        tabla.setVisible(true);
+        if (this.sector.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese nombre de sector");
+        } else {
+            Tabla tabla = new Tabla("MostrarDelitosSector", "", "", operador, sector.getText());
+            tabla.setVisible(true);
+        }
     }//GEN-LAST:event_jButton11ActionPerformed
 
     /**

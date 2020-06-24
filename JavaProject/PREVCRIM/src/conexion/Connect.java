@@ -62,13 +62,13 @@ public class Connect {
             } catch (SQLException ex) {
                 // log an exception. fro example:
                 System.out.println(ex.getMessage());
-                JOptionPane.showMessageDialog(null, ex.getMessage());
+                JOptionPane.showMessageDialog(null, "Error al conectar a la Base de datos \n"+ ex.getMessage());
                 return false;
 
             }
         } catch (ClassNotFoundException ex) {
             // log an exception. for example:
-            JOptionPane.showMessageDialog(null, ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error librerias Base de datos \n"+ ex.getMessage());
         }
         return true;
     }

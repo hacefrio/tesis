@@ -8,6 +8,7 @@ package view.reportes;
 import backend.Graficas;
 import backend.Operador;
 import com.toedter.calendar.JDateChooser;
+import javax.swing.JOptionPane;
 import view.Tabla;
 
 /**
@@ -147,35 +148,34 @@ public class SistemaRankings extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(241, 241, 241)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(graficos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(98, 98, 98)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(graficos2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(235, 235, 235)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tabla1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(91, 91, 91)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tabla2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(graficos1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(graficos2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(123, 123, 123))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(131, 131, 131)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tabla1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tabla2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,21 +225,32 @@ public class SistemaRankings extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-
-        String[] aux = graficos1.getDate().toGMTString().split(" ");
-        String desde = aux[2] + "-" + getMonth(aux[1]) + "-" + aux[0];
-        String[] aux2 = graficos2.getDate().toGMTString().split(" ");
-        String hasta = aux2[2] + "-" + getMonth(aux2[1]) + "-" + aux2[0];
-        g.MostrarTopComunaRangoFechas(desde, hasta);
+        if (graficos1.getDate().toGMTString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese fecha de grafico desde");
+        } else if (graficos2.getDate().toGMTString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese fecha de grafico hasta");
+        } else {
+            String[] aux = graficos1.getDate().toGMTString().split(" ");
+            String desde = aux[2] + "-" + getMonth(aux[1]) + "-" + aux[0];
+            String[] aux2 = graficos2.getDate().toGMTString().split(" ");
+            String hasta = aux2[2] + "-" + getMonth(aux2[1]) + "-" + aux2[0];
+            g.MostrarTopComunaRangoFechas(desde, hasta);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        String[] aux = graficos1.getDate().toGMTString().split(" ");
-        String desde = aux[2] + "-" + getMonth(aux[1]) + "-" + aux[0];
-        String[] aux2 = graficos2.getDate().toGMTString().split(" ");
-        String hasta = aux2[2] + "-" + getMonth(aux2[1]) + "-" + aux2[0];
-        g.MostrarTopSectoresRangoFechas(desde, hasta);
+        if (graficos1.getDate().toGMTString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese fecha de grafico desde");
+        } else if (graficos2.getDate().toGMTString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese fecha de grafico hasta");
+        } else {
+            String[] aux = graficos1.getDate().toGMTString().split(" ");
+            String desde = aux[2] + "-" + getMonth(aux[1]) + "-" + aux[0];
+            String[] aux2 = graficos2.getDate().toGMTString().split(" ");
+            String hasta = aux2[2] + "-" + getMonth(aux2[1]) + "-" + aux2[0];
+            g.MostrarTopSectoresRangoFechas(desde, hasta);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -249,30 +260,42 @@ public class SistemaRankings extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        Tabla tabla = new Tabla("RankingSectores", "", "",  new Operador());
+        Tabla tabla = new Tabla("RankingSectores", "", "", new Operador());
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        String[] aux = tabla1.getDate().toGMTString().split(" ");
-        String desde = aux[2] + "-" + getMonth(aux[1]) + "-" + aux[0];
-        String[] aux2 = tabla2.getDate().toGMTString().split(" ");
-        String hasta = aux2[2] + "-" + getMonth(aux2[1]) + "-" + aux2[0];
-        Tabla tabla = new Tabla("RankingSectoresFecha", desde, hasta,new Operador());
+        if (tabla1.getDate().toGMTString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese fecha de tabla desde");
+        } else if (tabla2.getDate().toGMTString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese fecha de tabla hasta");
+        } else {
+            String[] aux = tabla1.getDate().toGMTString().split(" ");
+            String desde = aux[2] + "-" + getMonth(aux[1]) + "-" + aux[0];
+            String[] aux2 = tabla2.getDate().toGMTString().split(" ");
+            String hasta = aux2[2] + "-" + getMonth(aux2[1]) + "-" + aux2[0];
+            Tabla tabla = new Tabla("RankingSectoresFecha", desde, hasta, new Operador());
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        Tabla tabla = new Tabla("RankingComunas", "", "",new Operador());
+        Tabla tabla = new Tabla("RankingComunas", "", "", new Operador());
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        String[] aux = tabla1.getDate().toGMTString().split(" ");
-        String desde = aux[2] + "-" + getMonth(aux[1]) + "-" + aux[0];
-        String[] aux2 = tabla2.getDate().toGMTString().split(" ");
-        String hasta = aux2[2] + "-" + getMonth(aux2[1]) + "-" + aux2[0];
-        Tabla tabla= new Tabla("RankingComunasFecha",desde,hasta,new Operador());
+        if (tabla1.getDate().toGMTString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese fecha de tabla desde");
+        } else if (tabla2.getDate().toGMTString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese fecha de tabla hasta");
+        } else {
+            String[] aux = tabla1.getDate().toGMTString().split(" ");
+            String desde = aux[2] + "-" + getMonth(aux[1]) + "-" + aux[0];
+            String[] aux2 = tabla2.getDate().toGMTString().split(" ");
+            String hasta = aux2[2] + "-" + getMonth(aux2[1]) + "-" + aux2[0];
+            Tabla tabla = new Tabla("RankingComunasFecha", desde, hasta, new Operador());
+        }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
