@@ -151,7 +151,7 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"Rut o contraseña incorrecto");
             }
         } else if (this.clave.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ingrese un rut valido");
+            JOptionPane.showMessageDialog(null, "Complete todos los campos");
 
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese un rut valido");

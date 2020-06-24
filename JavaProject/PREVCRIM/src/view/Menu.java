@@ -605,13 +605,10 @@ public class Menu extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jButton6))
                         .addGroup(institucionesPageLayout.createSequentialGroup()
-                            .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, institucionesPageLayout.createSequentialGroup()
-                                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, institucionesPageLayout.createSequentialGroup()
-                                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(12, 12, 12)))
+                            .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(institucionesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(institucionesPageLayout.createSequentialGroup()
                                     .addComponent(InstitucionesCrear)
@@ -789,6 +786,12 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel45.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel45.setText("Rut Delincuente:");
+
+        delitosComuna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delitosComunaActionPerformed(evt);
+            }
+        });
 
         jLabel46.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel46.setText("Comuna :");
@@ -968,6 +971,12 @@ public class Menu extends javax.swing.JFrame {
         DelincuentesRadioButton2.setText("Preso");
 
         DelincuentesRadioButton3.setText("Orden De Arresto");
+
+        DelincuentesComuna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DelincuentesComunaActionPerformed(evt);
+            }
+        });
 
         jLabel38.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel38.setText("Comuna:");
@@ -1535,14 +1544,11 @@ public class Menu extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(ControlesMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(ControlesPageLayout.createSequentialGroup()
-                        .addGroup(ControlesPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(ControlesPageLayout.createSequentialGroup()
-                                .addGap(176, 176, 176)
-                                .addComponent(jButton26))
-                            .addGroup(ControlesPageLayout.createSequentialGroup()
-                                .addGap(206, 206, 206)
-                                .addComponent(ControlesEditar)))
-                        .addGap(104, 104, 104))
+                        .addGap(176, 176, 176)
+                        .addComponent(jButton26))
+                    .addGroup(ControlesPageLayout.createSequentialGroup()
+                        .addGap(206, 206, 206)
+                        .addComponent(ControlesEditar))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ControlesPageLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(ControlesCrear)
@@ -1967,6 +1973,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
+        Tabla tabla = new Tabla("MostrarParentesco", "", "", operador);
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
@@ -1984,7 +1991,7 @@ public class Menu extends javax.swing.JFrame {
     private void UsuarioComprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioComprobarActionPerformed
         // TODO add your handling code here:
 
-        if (!this.UsuarioRut.getText().isEmpty()|| tp.TryRut(this.UsuarioRut.getText())) {
+        if (!this.UsuarioRut.getText().isEmpty()) {
 
             String consulta = c.comprobarUsuariosRutPermisos(this.UsuarioRut.getText(), operador);
             System.out.println(consulta);
@@ -1995,7 +2002,7 @@ public class Menu extends javax.swing.JFrame {
                 c.loadInstituciones1(this.UsuarioInstitucionBoxUsuarios, operador);
 
             }
-            if (consulta.equals("si") ) {
+            if (consulta.equals("si")) {
                 this.UsuarioRut.setEditable(false);
                 JOptionPane.showMessageDialog(null, "El usuario ya existe");
                 this.UsuarioApellido.setEditable(true);
@@ -2063,13 +2070,16 @@ public class Menu extends javax.swing.JFrame {
                 this.RadioOperador.setEnabled(true);
                 this.RadioJefeDeZona.setEnabled(false);
             }
-        }else{
+        } else if (tp.TryRut(this.UsuarioRut.getText())) {
             JOptionPane.showMessageDialog(null, "Por favor, ingrese un rut valido");
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese un rut");
         }
     }//GEN-LAST:event_UsuarioComprobarActionPerformed
 
     private void UsuarioCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioCrearUsuarioActionPerformed
         // TODO add your handling code here:
+
         String rango = "Operador";
         if (this.RadioOperador.isSelected()) {
             rango = "Operador";
@@ -2077,25 +2087,37 @@ public class Menu extends javax.swing.JFrame {
             rango = "JefeDeZona";
         } else if (this.RadioAdministradorGeneral.isSelected()) {
             rango = "AdministradorGeneral";
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione un rango");
         }
-        String textoSinEncriptar = UsuarioContrasena.getText();
-        String textoEncriptadoConMD5 = DigestUtils.md5Hex(textoSinEncriptar);
-        c.crearOperador(this.UsuarioRut.getText(), textoEncriptadoConMD5, this.UsuarioNombre.getText(), this.UsuarioApellido.getText(), rango, this.UsuarioInstitucionBoxUsuarios.getSelectedItem().toString());
-        this.UsuarioApellido.setText("");
-        this.UsuarioContrasena.setText("");
-        this.UsuarioNombre.setText("");
-        this.UsuarioRut.setText("");
-        this.UsuarioApellido.setEditable(false);
-        this.UsuarioInstitucionBoxUsuarios.setEnabled(false);
-        this.UsuarioApellido.setEditable(false);
-        this.UsuarioContrasena.setEditable(false);
-        this.RadioAdministradorGeneral.setEnabled(false);
-        this.RadioOperador.setEnabled(false);
-        this.RadioJefeDeZona.setEnabled(false);
-        this.UsuarioNombre.setEditable(false);
-        this.UsuarioEliminarUsuario.setEnabled(false);
-        this.UsuarioCrearUsuario.setEnabled(false);
-        this.UsuarioEditarUsuario.setEnabled(false);
+        if (this.UsuarioContrasena.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese una contraseña");
+        } else if (this.UsuarioNombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese el nombre");
+        } else if (this.UsuarioApellido.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese el apellido");
+        } else if (this.UsuarioInstitucionBoxUsuarios.getSelectedItem().toString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, Seleccione una institucion");
+        } else {
+            String textoSinEncriptar = UsuarioContrasena.getText();
+            String textoEncriptadoConMD5 = DigestUtils.md5Hex(textoSinEncriptar);
+            c.crearOperador(this.UsuarioRut.getText(), textoEncriptadoConMD5, this.UsuarioNombre.getText(), this.UsuarioApellido.getText(), rango, this.UsuarioInstitucionBoxUsuarios.getSelectedItem().toString());
+            this.UsuarioApellido.setText("");
+            this.UsuarioContrasena.setText("");
+            this.UsuarioNombre.setText("");
+            this.UsuarioRut.setText("");
+            this.UsuarioApellido.setEditable(false);
+            this.UsuarioInstitucionBoxUsuarios.setEnabled(false);
+            this.UsuarioApellido.setEditable(false);
+            this.UsuarioContrasena.setEditable(false);
+            this.RadioAdministradorGeneral.setEnabled(false);
+            this.RadioOperador.setEnabled(false);
+            this.RadioJefeDeZona.setEnabled(false);
+            this.UsuarioNombre.setEditable(false);
+            this.UsuarioEliminarUsuario.setEnabled(false);
+            this.UsuarioCrearUsuario.setEnabled(false);
+            this.UsuarioEditarUsuario.setEnabled(false);
+        }
     }//GEN-LAST:event_UsuarioCrearUsuarioActionPerformed
 
     private void UsuarioEliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioEliminarUsuarioActionPerformed
@@ -2127,25 +2149,37 @@ public class Menu extends javax.swing.JFrame {
             rango = "JefeDeZona";
         } else if (this.RadioAdministradorGeneral.isSelected()) {
             rango = "AdministradorGeneral";
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione un rango");
         }
-        String textoSinEncriptar = UsuarioContrasena.getText();
-        String textoEncriptadoConMD5 = DigestUtils.md5Hex(textoSinEncriptar);
-        c.editarOperador(this.UsuarioRut.getText(), textoEncriptadoConMD5, this.UsuarioNombre.getText(), this.UsuarioApellido.getText(), rango, this.UsuarioInstitucionBoxUsuarios.getSelectedItem().toString());
-        this.UsuarioApellido.setText("");
-        this.UsuarioContrasena.setText("");
-        this.UsuarioNombre.setText("");
-        this.UsuarioRut.setText("");
-        this.UsuarioApellido.setEditable(false);
-        this.UsuarioInstitucionBoxUsuarios.setEnabled(false);
-        this.UsuarioApellido.setEditable(false);
-        this.UsuarioContrasena.setEditable(false);
-        this.RadioAdministradorGeneral.setEnabled(false);
-        this.RadioOperador.setEnabled(false);
-        this.RadioJefeDeZona.setEnabled(false);
-        this.UsuarioNombre.setEditable(false);
-        this.UsuarioEliminarUsuario.setEnabled(false);
-        this.UsuarioCrearUsuario.setEnabled(false);
-        this.UsuarioEditarUsuario.setEnabled(false);
+        if (this.UsuarioContrasena.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese una contraseña");
+        } else if (this.UsuarioNombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese el nombre");
+        } else if (this.UsuarioApellido.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese el apellido");
+        } else if (this.UsuarioInstitucionBoxUsuarios.getSelectedItem().toString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, Seleccione una institucion");
+        } else {
+            String textoSinEncriptar = UsuarioContrasena.getText();
+            String textoEncriptadoConMD5 = DigestUtils.md5Hex(textoSinEncriptar);
+            c.editarOperador(this.UsuarioRut.getText(), textoEncriptadoConMD5, this.UsuarioNombre.getText(), this.UsuarioApellido.getText(), rango, this.UsuarioInstitucionBoxUsuarios.getSelectedItem().toString());
+            this.UsuarioApellido.setText("");
+            this.UsuarioContrasena.setText("");
+            this.UsuarioNombre.setText("");
+            this.UsuarioRut.setText("");
+            this.UsuarioApellido.setEditable(false);
+            this.UsuarioInstitucionBoxUsuarios.setEnabled(false);
+            this.UsuarioApellido.setEditable(false);
+            this.UsuarioContrasena.setEditable(false);
+            this.RadioAdministradorGeneral.setEnabled(false);
+            this.RadioOperador.setEnabled(false);
+            this.RadioJefeDeZona.setEnabled(false);
+            this.UsuarioNombre.setEditable(false);
+            this.UsuarioEliminarUsuario.setEnabled(false);
+            this.UsuarioCrearUsuario.setEnabled(false);
+            this.UsuarioEditarUsuario.setEnabled(false);
+        }
     }//GEN-LAST:event_UsuarioEditarUsuarioActionPerformed
 
     private void comunaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comunaButtonActionPerformed
@@ -2165,17 +2199,17 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        this.InstitucionesNombre.setEditable(true);
 
-        if (!this.InstitucionesCodigo.getText().isEmpty()) {
+        if (!this.InstitucionesCodigo.getText().isEmpty() && tp.TryInt(this.InstitucionesCodigo.getText())) {
             if (operador.getRango().equals("AdministradorGeneral")) {
                 if (c.comprobarInstitucion(this.InstitucionesCodigo.getText())) {
-                    JOptionPane.showMessageDialog(null, "La institucion ya exista, proceda a editar o eliminar");
+                    JOptionPane.showMessageDialog(null, "La institucion ya existe, proceda a editar o eliminar");
                     this.InstitucionesCodigo.setEditable(false);
                     this.InstitucionesCrear.setEnabled(false);
                     this.InstitucionesEditar.setEnabled(true);
                     this.InstitucionesEliminar.setEnabled(true);
                     this.InstitucionesSectores.setEnabled(true);
+                    institucionesActivar();
                     c.setInstitucionesDatos(this.InstitucionesCodigo.getText(), this.InstitucionesNombre, this.InstitucionesSectores);
                 } else {
                     JOptionPane.showMessageDialog(null, "La institucion no existe, proceda a crearlo");
@@ -2184,12 +2218,13 @@ public class Menu extends javax.swing.JFrame {
                     this.InstitucionesEditar.setEnabled(false);
                     this.InstitucionesEliminar.setEnabled(false);
                     this.InstitucionesSectores.setEnabled(true);
+                    institucionesActivar();
                     c.loadSectores(this.InstitucionesSectores);
 
                 }
             } else {
-                if (c.comprobarInstitucion(this.InstitucionesCodigo.getText())) {
-                    JOptionPane.showMessageDialog(null, "La institucion ya exista, proceda a editar o eliminar");
+                if (c.comprobarInstitucion(this.InstitucionesCodigo.getText(), operador.getZona())) {
+                    JOptionPane.showMessageDialog(null, "La institucion ya existe, proceda a editar o eliminar");
                     this.InstitucionesCodigo.setEditable(false);
                     this.InstitucionesSectores.setEnabled(true);
                     this.InstitucionesCrear.setEnabled(false);
@@ -2197,6 +2232,8 @@ public class Menu extends javax.swing.JFrame {
                     this.InstitucionesEliminar.setEnabled(true);
                     InstitucionesSectores.addItem(operador.getZona());
                     c.setInstitucionesDatos(this.InstitucionesCodigo.getText(), this.InstitucionesNombre, this.InstitucionesSectores);
+                } else if (c.comprobarInstitucion(this.InstitucionesCodigo.getText())) {
+                    JOptionPane.showMessageDialog(null, "La institucion ya existe, pero pertenece a otra zona");
                 } else {
                     JOptionPane.showMessageDialog(null, "La institucion no existe, proceda a crearlo");
                     this.InstitucionesCodigo.setEditable(false);
@@ -2208,7 +2245,7 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Ingrese codigo");
+            JOptionPane.showMessageDialog(null, "Ingrese codigo numerico");
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -2235,24 +2272,18 @@ public class Menu extends javax.swing.JFrame {
 
     private void InstitucionesEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InstitucionesEditarActionPerformed
         // TODO add your handling code here:
-        c.editarInstitucion(this.InstitucionesCodigo.getText(), this.InstitucionesNombre.getText(), this.InstitucionesSectores.getSelectedItem().toString());
-        institucionesDefault();
+        if (this.InstitucionesCodigo.getText().isEmpty() || this.InstitucionesNombre.getText().isEmpty()) {
+            c.editarInstitucion(this.InstitucionesCodigo.getText(), this.InstitucionesNombre.getText(), this.InstitucionesSectores.getSelectedItem().toString());
+            institucionesDefault();
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese todos los campos");
+        }
     }//GEN-LAST:event_InstitucionesEditarActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        if (operador.getRango().equals("AdministradorGeneral")) {
-            if (c.comprobarSector(this.SectoresCodigo.getText())) {
-                JOptionPane.showMessageDialog(null, "El sector ya existe, proceda a editar o eliminar");
-                sectoresDefault2();
-                c.setSectores(this.SectoresCodigo.getText(), this.SectoresNombre, this.SectoresDescripcion);
-            } else {
-                JOptionPane.showMessageDialog(null, "El sector no existe, proceda a crear");
-                sectoresDefault2();
-                this.SectoresCrear.setEnabled(true);
-            }
-        } else {
-            if (this.SectoresCodigo.getText().equals(operador.getZona())) {
+        if (!this.SectoresCodigo.getText().isEmpty() || tp.TryInt(this.SectoresCodigo.getText())) {
+            if (operador.getRango().equals("AdministradorGeneral")) {
                 if (c.comprobarSector(this.SectoresCodigo.getText())) {
                     JOptionPane.showMessageDialog(null, "El sector ya existe, proceda a editar o eliminar");
                     sectoresDefault2();
@@ -2263,11 +2294,25 @@ public class Menu extends javax.swing.JFrame {
                     this.SectoresCrear.setEnabled(true);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Error, usted no tiene permisos para crear o editar este sector");
+                if (this.SectoresCodigo.getText().equals(operador.getZona())) {
+                    if (c.comprobarSector(this.SectoresCodigo.getText())) {
+                        JOptionPane.showMessageDialog(null, "El sector ya existe, proceda a editar o eliminar");
+                        sectoresDefault2();
+                        c.setSectores(this.SectoresCodigo.getText(), this.SectoresNombre, this.SectoresDescripcion);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "El sector no existe, proceda a crear");
+                        sectoresDefault2();
+                        this.SectoresCrear.setEnabled(true);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error, usted no tiene permisos para crear o editar este sector");
+                }
+
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese un codigo de zona valido");
 
         }
-
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
@@ -2289,109 +2334,136 @@ public class Menu extends javax.swing.JFrame {
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // TODO add your handling code here:
         this.ComunaSectores.removeAllItems();
-        if (operador.getRango().equals("AdministradorGeneral")) {
-            c.loadSectores(this.ComunaSectores);
-            if (c.comprobarComuna(this.ComunaCodigo.getText())) {
-                JOptionPane.showMessageDialog(null, "La comuna ya exite, proceda a editar o eliminar");
-                c.setComunaDatos(this.ComunaCodigo.getText(), this.ComunaNombre, this.ComunaSectores);
-                this.ComunaCodigo.setEditable(false);
-                this.ComunaNombre.setEditable(true);
-                this.ComunaSectores.setEnabled(true);
-                this.ComunaCrear.setEnabled(false);
-                this.ComunaEditar.setEnabled(true);
-                this.ComunaEliminar.setEnabled(true);
-            } else {
-                JOptionPane.showMessageDialog(this, "La comuna no exite, proceda a crear");
-                this.ComunaCodigo.setEditable(false);
-                this.ComunaNombre.setEditable(true);
-                this.ComunaSectores.setEnabled(true);
-                this.ComunaCrear.setEnabled(true);
-                this.ComunaEditar.setEnabled(false);
-                this.ComunaEliminar.setEnabled(false);
-            }
-        } else {
-            this.ComunaSectores.setSelectedItem(operador.getZona());
-            if (c.comprobarComuna(this.ComunaCodigo.getText(), operador.getZona())) {
-                JOptionPane.showMessageDialog(null, "La comuna ya exite, proceda a editar o eliminar");
-                c.setComunaDatos(this.ComunaCodigo.getText(), this.ComunaNombre, this.ComunaSectores);
-                this.ComunaCodigo.setEditable(false);
-                this.ComunaNombre.setEditable(true);
-                this.ComunaSectores.setEnabled(true);
-                this.ComunaCrear.setEnabled(false);
-                this.ComunaEditar.setEnabled(true);
-                this.ComunaEliminar.setEnabled(true);
-            } else {
+        if (!this.ComunaCodigo.getText().isEmpty() && tp.TryInt(this.ComunaCodigo.getText())) {
+            if (operador.getRango().equals("AdministradorGeneral")) {
+                c.loadSectores(this.ComunaSectores);
                 if (c.comprobarComuna(this.ComunaCodigo.getText())) {
-                    JOptionPane.showMessageDialog(this, "La comuna no exite proceda a crearla");
+                    JOptionPane.showMessageDialog(null, "La comuna ya exite, proceda a editar o eliminar");
+                    c.setComunaDatos(this.ComunaCodigo.getText(), this.ComunaNombre, this.ComunaSectores);
+                    this.ComunaCodigo.setEditable(false);
+                    this.ComunaNombre.setEditable(true);
+                    this.ComunaSectores.setEnabled(true);
+                    this.ComunaCrear.setEnabled(false);
+                    this.ComunaEditar.setEnabled(true);
+                    this.ComunaEliminar.setEnabled(true);
+                } else {
+                    JOptionPane.showMessageDialog(this, "La comuna no exite, proceda a crear");
                     this.ComunaCodigo.setEditable(false);
                     this.ComunaNombre.setEditable(true);
                     this.ComunaSectores.setEnabled(true);
                     this.ComunaCrear.setEnabled(true);
                     this.ComunaEditar.setEnabled(false);
                     this.ComunaEliminar.setEnabled(false);
-
+                }
+            } else {
+                this.ComunaSectores.setSelectedItem(operador.getZona());
+                if (c.comprobarComuna(this.ComunaCodigo.getText(), operador.getZona())) {
+                    JOptionPane.showMessageDialog(null, "La comuna ya exite, proceda a editar o eliminar");
+                    c.setComunaDatos(this.ComunaCodigo.getText(), this.ComunaNombre, this.ComunaSectores);
+                    this.ComunaCodigo.setEditable(false);
+                    this.ComunaNombre.setEditable(true);
+                    this.ComunaSectores.setEnabled(true);
+                    this.ComunaCrear.setEnabled(false);
+                    this.ComunaEditar.setEnabled(true);
+                    this.ComunaEliminar.setEnabled(true);
                 } else {
-                    JOptionPane.showMessageDialog(this, "La comuna ya existe en otro sector");
-                    comunaDefault();
+                    if (c.comprobarComuna(this.ComunaCodigo.getText())) {
+                        JOptionPane.showMessageDialog(this, "La comuna no exite proceda a crearla");
+                        this.ComunaCodigo.setEditable(false);
+                        this.ComunaNombre.setEditable(true);
+                        this.ComunaSectores.setEnabled(true);
+                        this.ComunaCrear.setEnabled(true);
+                        this.ComunaEditar.setEnabled(false);
+                        this.ComunaEliminar.setEnabled(false);
+
+                    } else {
+                        JOptionPane.showMessageDialog(this, "La comuna ya existe en otro sector");
+                        comunaDefault();
+
+                    }
 
                 }
-
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese un codigo numerico valido");
         }
-
 
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void ComunaCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComunaCrearActionPerformed
         // TODO add your handling code here:
-        System.out.println(this.ComunaSectores.getSelectedItem().toString());
-        c.crearComuna(this.ComunaCodigo.getText(), this.ComunaNombre.getText(), this.ComunaSectores.getSelectedItem().toString());
-        comunaDefault();
+        if (this.ComunaNombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese un nombre");
+        } else if (this.ComunaSectores.getSelectedItem().toString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese un sector");
+        } else {
+            System.out.println(this.ComunaSectores.getSelectedItem().toString());
+            c.crearComuna(this.ComunaCodigo.getText(), this.ComunaNombre.getText(), this.ComunaSectores.getSelectedItem().toString());
+            comunaDefault();
+        }
     }//GEN-LAST:event_ComunaCrearActionPerformed
 
     private void ComunaEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComunaEliminarActionPerformed
         // TODO add your handling code here:
-        c.eliminarComuna(this.ComunaCodigo.getText());
-        comunaDefault();
+        if (this.ComunaNombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese un nombre");
+        } else if (this.ComunaSectores.getSelectedItem().toString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese un sector");
+        } else {
+            c.eliminarComuna(this.ComunaCodigo.getText());
+            comunaDefault();
+        }
     }//GEN-LAST:event_ComunaEliminarActionPerformed
 
     private void ComunaEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComunaEditarActionPerformed
         // TODO add your handling code here:
-        c.editarComuna(this.ComunaCodigo.getText(), this.ComunaNombre.getText(), this.ComunaSectores.getSelectedItem().toString());
-        comunaDefault();
+        if (this.ComunaNombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese un nombre");
+        } else if (this.ComunaSectores.getSelectedItem().toString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese un sector");
+        } else {
+            c.editarComuna(this.ComunaCodigo.getText(), this.ComunaNombre.getText(), this.ComunaSectores.getSelectedItem().toString());
+            comunaDefault();
+        }
     }//GEN-LAST:event_ComunaEditarActionPerformed
 
     private void DelincuentesComprobarRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelincuentesComprobarRutActionPerformed
         // TODO add your handling code here:
         String estado = "";
-        try {
-            if (c.comprobarDelincuente(this.DelincuentesRut.getText())) {
-                JOptionPane.showMessageDialog(null, "El delincuente existe, proceda a editar o eliminar registros");
-                delincuentesActivar();
+        if (tp.TryRut(this.DelincuentesRut.getText())) {
 
-                estado = c.setDelincuentesDatos(this.DelincuentesRut.getText(), this.DelincuentesApellidos, this.DelincuentesNombre, this.DelincuentesApodos, this.DelincuentesDomicilio, this.DelincuentesUltimoLugarVisto, this.DelincuentesTelefonoHogar, this.DelincuentesTelefonoCelular, this.DelincuentesEmail, this.DelincuentesFechaNac, this.DelincuentesComuna);
-                if (estado.equals("L")) {
-                    this.DelincuentesRadioButton1.setSelected(true);
-                } else if (estado.equals("P")) {
-                    this.DelincuentesRadioButton2.setSelected(true);
-                } else if (estado.equals("A")) {
-                    this.DelincuentesRadioButton3.setSelected(true);
+            try {
+                if (c.comprobarDelincuente(this.DelincuentesRut.getText())) {
+                    JOptionPane.showMessageDialog(null, "El delincuente existe, proceda a editar o eliminar registros");
+                    delincuentesActivar();
+
+                    estado = c.setDelincuentesDatos(this.DelincuentesRut.getText(), this.DelincuentesApellidos, this.DelincuentesNombre, this.DelincuentesApodos, this.DelincuentesDomicilio, this.DelincuentesUltimoLugarVisto, this.DelincuentesTelefonoHogar, this.DelincuentesTelefonoCelular, this.DelincuentesEmail, this.DelincuentesFechaNac, this.DelincuentesComuna);
+                    if (estado.equals("L")) {
+                        this.DelincuentesRadioButton1.setSelected(true);
+                    } else if (estado.equals("P")) {
+                        this.DelincuentesRadioButton2.setSelected(true);
+                    } else if (estado.equals("A")) {
+                        this.DelincuentesRadioButton3.setSelected(true);
+                    }
+
+                    System.out.println("estado: " + estado);
+                    this.DelincuentesCrear.setEnabled(false);
+                    this.DelincuentesEditar.setEnabled(true);
+                    this.DelincuentesEliminar.setEnabled(true);
+                } else {
+                    delincuentesActivar();
+                    this.DelincuentesCrear.setEnabled(true);
+                    this.DelincuentesEditar.setEnabled(false);
+                    this.DelincuentesEliminar.setEnabled(false);
+                    JOptionPane.showMessageDialog(null, "Delincuente no existe, proceda a ingresar los datos");
                 }
-
-                System.out.println("estado: " + estado);
-                this.DelincuentesCrear.setEnabled(false);
-                this.DelincuentesEditar.setEnabled(true);
-                this.DelincuentesEliminar.setEnabled(true);
-            } else {
-                delincuentesActivar();
-                this.DelincuentesCrear.setEnabled(true);
-                this.DelincuentesEditar.setEnabled(false);
-                this.DelincuentesEliminar.setEnabled(false);
-                JOptionPane.showMessageDialog(null, "Delincuente no existe, proceda a ingresar los datos");
+            } catch (ParseException ex) {
+                System.out.println(ex.getMessage());
             }
-        } catch (ParseException ex) {
-            System.out.println(ex.getMessage());
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese un rut valido");
         }
+
     }//GEN-LAST:event_DelincuentesComprobarRutActionPerformed
 
     private void DelincuentesCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelincuentesCrearActionPerformed
@@ -2404,10 +2476,33 @@ public class Menu extends javax.swing.JFrame {
         } else if (this.DelincuentesRadioButton3.isSelected()) {
             estado = "A";
         }
-        String[] test = DelincuentesFechaNac.getDate().toGMTString().split(" ");
-        String dia = test[2] + "-" + getMonth(test[1]) + "-" + test[0];
-        c.crearDelincuente(this.DelincuentesRut.getText(), this.DelincuentesApellidos.getText(), this.DelincuentesNombre.getText(), this.DelincuentesApodos.getText(), this.DelincuentesDomicilio.getText(), this.DelincuentesUltimoLugarVisto.getText(), this.DelincuentesTelefonoHogar.getText(), this.DelincuentesTelefonoCelular.getText(), this.DelincuentesEmail.getText(), dia, estado, this.DelincuentesComuna.getText());
-        this.delincuentesDefault();
+
+        if (this.DelincuentesApellidos.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese Apellidos");
+        } else if (this.DelincuentesNombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese nombres");
+        } else if (this.DelincuentesApodos.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese apodo");
+        } else if (this.DelincuentesDomicilio.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese domicilio");
+        } else if (this.DelincuentesUltimoLugarVisto.getText().isEmpty() || !tp.TryInt(DelincuentesUltimoLugarVisto.getText())) {
+            JOptionPane.showMessageDialog(null, "Ingrese id de comuna valido(Ultimo Lugar Visto)");
+        } else if (this.DelincuentesTelefonoHogar.getText().isEmpty() || !tp.TryInt(DelincuentesTelefonoHogar.getText())) {
+            JOptionPane.showMessageDialog(null, "Ingrese numero de telefono hogar valido");
+        } else if (this.DelincuentesTelefonoCelular.getText().isEmpty() || !tp.TryInt(DelincuentesTelefonoCelular.getText())) {
+            JOptionPane.showMessageDialog(null, "Ingrese numero de telefono celular valido");
+        } else if (this.DelincuentesEmail.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese correo");
+        } else if (this.DelincuentesFechaNac.getDate().toGMTString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese fecha");
+        } else if (this.DelincuentesComuna.getText().isEmpty() || tp.TryInt(this.DelincuentesComuna.getText())) {
+            JOptionPane.showMessageDialog(null, "Ingrese id de comuna valido");
+        } else {
+            String[] test = DelincuentesFechaNac.getDate().toGMTString().split(" ");
+            String dia = test[2] + "-" + getMonth(test[1]) + "-" + test[0];
+            c.crearDelincuente(this.DelincuentesRut.getText(), this.DelincuentesApellidos.getText(), this.DelincuentesNombre.getText(), this.DelincuentesApodos.getText(), this.DelincuentesDomicilio.getText(), this.DelincuentesUltimoLugarVisto.getText(), this.DelincuentesTelefonoHogar.getText(), this.DelincuentesTelefonoCelular.getText(), this.DelincuentesEmail.getText(), dia, estado, this.DelincuentesComuna.getText());
+            this.delincuentesDefault();
+        }
     }//GEN-LAST:event_DelincuentesCrearActionPerformed
 
     private void DelincuentesEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelincuentesEditarActionPerformed
@@ -2420,11 +2515,33 @@ public class Menu extends javax.swing.JFrame {
         } else if (this.DelincuentesRadioButton3.isSelected()) {
             estado = "A";
         }
-        String[] test = DelincuentesFechaNac.getDate().toGMTString().split(" ");
-        String dia = test[2] + "-" + getMonth(test[1]) + "-" + test[0];
+        if (this.DelincuentesApellidos.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese Apellidos");
+        } else if (this.DelincuentesNombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese nombres");
+        } else if (this.DelincuentesApodos.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese apodo");
+        } else if (this.DelincuentesDomicilio.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese domicilio");
+        } else if (this.DelincuentesUltimoLugarVisto.getText().isEmpty() || !tp.TryInt(DelincuentesUltimoLugarVisto.getText())) {
+            JOptionPane.showMessageDialog(null, "Ingrese id de comuna valido(Ultimo Lugar Visto)");
+        } else if (this.DelincuentesTelefonoHogar.getText().isEmpty() || !tp.TryInt(DelincuentesTelefonoHogar.getText())) {
+            JOptionPane.showMessageDialog(null, "Ingrese numero de telefono hogar valido");
+        } else if (this.DelincuentesTelefonoCelular.getText().isEmpty() || !tp.TryInt(DelincuentesTelefonoCelular.getText())) {
+            JOptionPane.showMessageDialog(null, "Ingrese numero de telefono celular valido");
+        } else if (this.DelincuentesEmail.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese correo");
+        } else if (this.DelincuentesFechaNac.getDate().toGMTString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese fecha");
+        } else if (this.DelincuentesComuna.getText().isEmpty() || tp.TryInt(this.DelincuentesComuna.getText())) {
+            JOptionPane.showMessageDialog(null, "Ingrese id de comuna valido");
+        } else {
+            String[] test = DelincuentesFechaNac.getDate().toGMTString().split(" ");
+            String dia = test[2] + "-" + getMonth(test[1]) + "-" + test[0];
 
-        c.editarDelincuente(this.DelincuentesRut.getText(), this.DelincuentesApellidos.getText(), this.DelincuentesNombre.getText(), this.DelincuentesApodos.getText(), this.DelincuentesDomicilio.getText(), this.DelincuentesUltimoLugarVisto.getText(), this.DelincuentesTelefonoHogar.getText(), this.DelincuentesTelefonoCelular.getText(), this.DelincuentesEmail.getText(), dia, estado, this.DelincuentesComuna.getText());
-        this.delincuentesDefault();
+            c.editarDelincuente(this.DelincuentesRut.getText(), this.DelincuentesApellidos.getText(), this.DelincuentesNombre.getText(), this.DelincuentesApodos.getText(), this.DelincuentesDomicilio.getText(), this.DelincuentesUltimoLugarVisto.getText(), this.DelincuentesTelefonoHogar.getText(), this.DelincuentesTelefonoCelular.getText(), this.DelincuentesEmail.getText(), dia, estado, this.DelincuentesComuna.getText());
+            this.delincuentesDefault();
+        }
     }//GEN-LAST:event_DelincuentesEditarActionPerformed
 
     private void DelincuentesEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelincuentesEliminarActionPerformed
@@ -2436,10 +2553,22 @@ public class Menu extends javax.swing.JFrame {
 
     private void delitosCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delitosCrearActionPerformed
         // TODO add your handling code here:
-        String[] test = this.delitosFecha.getDate().toGMTString().split(" ");
-        String dia = test[2] + "-" + getMonth(test[1]) + "-" + test[0];
-        c.crearDelito(this.delitosCodigo.getText(), this.delitosDescripcion.getText(), this.delitosDireccion.getText(), dia, this.delitosDelincuente.getText(), this.delitosComuna.getText());
-        this.delitosDefault();
+        if (this.delitosDescripcion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese una descripcion valida");
+        } else if (this.delitosFecha.getDate().toString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese una fecha valida");
+        } else if (this.delitosDireccion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese una direccion valida");
+        } else if (!c.comprobarDelincuente(this.delitosDelincuente.getText()) || !tp.TryRut(this.delitosDelincuente.getText())) {
+            JOptionPane.showMessageDialog(null, "Rut incorrecto o inexistente");
+        } else if (!tp.TryInt(this.delitosComuna.getText()) || this.delitosComuna.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese una comuna valida");
+        } else {
+            String[] test = this.delitosFecha.getDate().toGMTString().split(" ");
+            String dia = test[2] + "-" + getMonth(test[1]) + "-" + test[0];
+            c.crearDelito(this.delitosCodigo.getText(), this.delitosDescripcion.getText(), this.delitosDireccion.getText(), dia, this.delitosDelincuente.getText(), this.delitosComuna.getText());
+            this.delitosDefault();
+        }
     }//GEN-LAST:event_delitosCrearActionPerformed
 
     private void delitosEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delitosEliminarActionPerformed
@@ -2450,10 +2579,22 @@ public class Menu extends javax.swing.JFrame {
 
     private void delitosEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delitosEditarActionPerformed
         // TODO add your handling code here:String[] test = this.delitosFecha.getDate().toGMTString().split(" ");
-        String[] test = this.delitosFecha.getDate().toGMTString().split(" ");
-        String dia = test[2] + "-" + getMonth(test[1]) + "-" + test[0];
-        c.editarDelito(this.delitosCodigo.getText(), this.delitosDescripcion.getText(), this.delitosDireccion.getText(), dia, this.delitosDelincuente.getText(), this.delitosComuna.getText());
-        this.delitosDefault();
+        if (this.delitosDescripcion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese una descripcion valida");
+        } else if (this.delitosFecha.getDate().toString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese una fecha valida");
+        } else if (this.delitosDireccion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese una direccion valida");
+        } else if (!c.comprobarDelincuente(this.delitosDelincuente.getText()) || tp.TryRut(this.delitosDelincuente.getText())) {
+            JOptionPane.showMessageDialog(null, "Rut incorrecto o inexistente");
+        } else if (tp.TryInt(this.delitosComuna.getText()) || this.delitosComuna.getText().isEmpty() || !c.comprobarComuna(this.delitosComuna.getText(), operador.getZona())) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese una comuna valida");
+        } else {
+            String[] test = this.delitosFecha.getDate().toGMTString().split(" ");
+            String dia = test[2] + "-" + getMonth(test[1]) + "-" + test[0];
+            c.editarDelito(this.delitosCodigo.getText(), this.delitosDescripcion.getText(), this.delitosDireccion.getText(), dia, this.delitosDelincuente.getText(), this.delitosComuna.getText());
+            this.delitosDefault();
+        }
     }//GEN-LAST:event_delitosEditarActionPerformed
 
     private void DelincuentesMostrarDelincuentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelincuentesMostrarDelincuentesActionPerformed
@@ -2464,35 +2605,58 @@ public class Menu extends javax.swing.JFrame {
 
     private void SectoresCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SectoresCrearActionPerformed
         // TODO add your handling code here:
-        c.crearSector(this.SectoresCodigo.getText(), this.SectoresNombre.getText(), this.SectoresDescripcion.getText());
+        if (this.SectoresNombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre del sector");
+        } else if (this.SectoresDescripcion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese la descripcion del sector");
+        } else {
+            c.crearSector(this.SectoresCodigo.getText(), this.SectoresNombre.getText(), this.SectoresDescripcion.getText());
+        }
     }//GEN-LAST:event_SectoresCrearActionPerformed
 
     private void SectoresEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SectoresEliminarActionPerformed
         // TODO add your handling code here:
-        c.eliminarSector(this.SectoresCodigo.getText());
+        if (this.SectoresNombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre del sector");
+        } else if (this.SectoresDescripcion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese la descripcion del sector");
+        } else {
+            c.eliminarSector(this.SectoresCodigo.getText());
+        }
     }//GEN-LAST:event_SectoresEliminarActionPerformed
 
     private void SectoresEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SectoresEditarActionPerformed
         // TODO add your handling code here:
-        c.editarSector(this.SectoresCodigo.getText(), this.SectoresNombre.getText(), this.SectoresDescripcion.getText());
+        if (this.SectoresNombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre del sector");
+        } else if (this.SectoresDescripcion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese la descripcion del sector");
+        } else {
+            c.editarSector(this.SectoresCodigo.getText(), this.SectoresNombre.getText(), this.SectoresDescripcion.getText());
+        }
     }//GEN-LAST:event_SectoresEditarActionPerformed
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
         // TODO add your handling code here:
         try {
-            if (c.comprobarDelito(this.delitosCodigo.getText())) {
-                JOptionPane.showMessageDialog(null, "Delito existente, proceda a editar");
+            if (!this.delitosCodigo.getText().isEmpty() && this.delitosCodigo.getText().length() <= 11) {
 
-                c.setDelitosDatos(this.delitosCodigo.getText(), this.delitosDescripcion, this.delitosDireccion, this.delitosFecha, this.delitosDelincuente, this.delitosComuna);
+                if (c.comprobarDelito(this.delitosCodigo.getText())) {
+                    JOptionPane.showMessageDialog(null, "Delito existente, proceda a editar");
 
-                this.delitosActivar();
-                this.delitosEditar.setEnabled(true);
-                this.delitosEliminar.setEnabled(true);
+                    c.setDelitosDatos(this.delitosCodigo.getText(), this.delitosDescripcion, this.delitosDireccion, this.delitosFecha, this.delitosDelincuente, this.delitosComuna);
+
+                    this.delitosActivar();
+                    this.delitosEditar.setEnabled(true);
+                    this.delitosEliminar.setEnabled(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Delito no existente, proceda a editar");
+                    this.delitosActivar();
+                    this.delitosCrear.setEnabled(true);
+
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Delito no existente, proceda a editar");
-                this.delitosActivar();
-                this.delitosCrear.setEnabled(true);
-
+                JOptionPane.showMessageDialog(null, "Por favor ingrese un codigo valido y con menos de 11 caracteres");
             }
         } catch (ParseException ex) {
             System.out.println(ex.getMessage());
@@ -2589,41 +2753,82 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
         // TODO add your handling code here:
-
-        if (c.comprobarControl(this.ControlesCodigo.getText())) {
-            this.ControlesCodigo.setEditable(false);
-            this.controlesActivar();
-            this.ControlesEditar.setEnabled(true);
-            this.ControlesEliminar.setEnabled(true);
-        } else {
-            this.controlesActivar();
-            this.ControlesCrear.setEnabled(true);
+        if (!this.ControlesCodigo.getText().isEmpty()) {
+            if (c.comprobarControl(this.ControlesCodigo.getText())) {
+                JOptionPane.showMessageDialog(null, "Control existente, proceda a eliminar o modificar");
+                this.ControlesCodigo.setEditable(false);
+                this.controlesActivar();
+                this.ControlesCrear.setEnabled(false);
+                this.ControlesEditar.setEnabled(true);
+                this.ControlesEliminar.setEnabled(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Control no existente, proceda a crear uno");
+                this.controlesActivar();
+                this.ControlesEditar.setEnabled(false);
+                this.ControlesEliminar.setEnabled(false);
+                this.ControlesCrear.setEnabled(true);
+            }
         }
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void ControlesCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ControlesCrearActionPerformed
         // TODO add your handling code here:
-        String[] test = this.ControlesFecha.getDate().toGMTString().split(" ");
-        String dia = test[2] + "-" + getMonth(test[1]) + "-" + test[0];
-        c.crearControl(this.ControlesCodigo.getText(), this.ControlesDelincuente.getText(), this.ControlesComuna.getText(), this.ControlesDireccion.getText(), this.ControlesMotivo.getText(), dia);
-        c.crearControl2(this.ControlesDelincuente.getText(), this.ControlesComuna.getText());
+
+        if (this.ControlesDelincuente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese rut");
+        } else if (this.ControlesComuna.getText().isEmpty() || !tp.TryInt(this.DelincuentesComuna.getText())) {
+            JOptionPane.showMessageDialog(null, "Ingrese una comuna valida");
+        } else if (this.ControlesDireccion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese direccion");
+        } else if (this.ControlesFecha.getDate().toGMTString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese fecha");
+        } else if (this.ControlesMotivo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese motivo");
+        } else {
+            String[] test = this.ControlesFecha.getDate().toGMTString().split(" ");
+            String dia = test[2] + "-" + getMonth(test[1]) + "-" + test[0];
+            c.crearControl(this.ControlesCodigo.getText(), this.ControlesDelincuente.getText(), this.ControlesComuna.getText(), this.ControlesDireccion.getText(), this.ControlesMotivo.getText(), dia);
+            c.crearControl2(this.ControlesDelincuente.getText(), this.ControlesComuna.getText());
+        }
     }//GEN-LAST:event_ControlesCrearActionPerformed
 
     private void ControlesEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ControlesEliminarActionPerformed
         // TODO add your handling code here:
+
         c.eliminarControl(this.ControlesCodigo.getText());
     }//GEN-LAST:event_ControlesEliminarActionPerformed
 
     private void ControlesEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ControlesEditarActionPerformed
         // TODO add your handling code here:
-        String[] test = this.ControlesFecha.getDate().toGMTString().split(" ");
-        String dia = test[2] + "-" + getMonth(test[1]) + "-" + test[0];
-        c.editarControl(this.ControlesCodigo.getText(), this.ControlesDelincuente.getText(), this.ControlesComuna.getText(), this.ControlesDireccion.getText(), this.ControlesMotivo.getText(), dia);
+        if (this.ControlesDelincuente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese rut");
+        } else if (this.ControlesComuna.getText().isEmpty() || !tp.TryInt(this.DelincuentesComuna.getText())) {
+            JOptionPane.showMessageDialog(null, "Ingrese una comuna valida");
+        } else if (this.ControlesDireccion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese direccion");
+        } else if (this.ControlesFecha.getDate().toGMTString().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese fecha");
+        } else if (this.ControlesMotivo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese motivo");
+        } else {
+            String[] test = this.ControlesFecha.getDate().toGMTString().split(" ");
+            String dia = test[2] + "-" + getMonth(test[1]) + "-" + test[0];
+            c.editarControl(this.ControlesCodigo.getText(), this.ControlesDelincuente.getText(), this.ControlesComuna.getText(), this.ControlesDireccion.getText(), this.ControlesMotivo.getText(), dia);
+        }
     }//GEN-LAST:event_ControlesEditarActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
         // TODO add your handling code here:
+        Tabla t = new Tabla("MostrarControles", "", "", operador);
     }//GEN-LAST:event_jButton26ActionPerformed
+
+    private void delitosComunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delitosComunaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_delitosComunaActionPerformed
+
+    private void DelincuentesComunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelincuentesComunaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DelincuentesComunaActionPerformed
 
     public void textDefault(JTextField entrada) {
         entrada.setEditable(false);
@@ -2731,10 +2936,17 @@ public class Menu extends javax.swing.JFrame {
         this.InstitucionesCodigo.setEditable(true);
         this.InstitucionesCodigo.setText("");
         textDefault(InstitucionesNombre);
+        this.InstitucionesSectores.removeAllItems();
+        this.InstitucionesSectores.setEditable(false);
         this.InstitucionesCrear.setEnabled(false);
         this.InstitucionesEditar.setEnabled(false);
         this.InstitucionesEliminar.setEnabled(false);
         this.InstitucionesSectores.removeAllItems();
+    }
+
+    public void institucionesActivar() {
+        this.InstitucionesNombre.setEditable(true);
+        this.InstitucionesSectores.setEditable(true);
     }
 
     public void comunaDefault() {
@@ -2784,17 +2996,11 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ComunaCodigo;
-    private javax.swing.JTextField ComunaCodigo1;
     private javax.swing.JButton ComunaCrear;
-    private javax.swing.JButton ComunaCrear1;
     private javax.swing.JButton ComunaEditar;
-    private javax.swing.JButton ComunaEditar1;
     private javax.swing.JButton ComunaEliminar;
-    private javax.swing.JButton ComunaEliminar1;
     private javax.swing.JTextField ComunaNombre;
-    private javax.swing.JTextField ComunaNombre1;
     private javax.swing.JComboBox<String> ComunaSectores;
-    private javax.swing.JComboBox<String> ComunaSectores1;
     private javax.swing.JTextField ControlesCodigo;
     private javax.swing.JTextField ControlesComuna;
     private javax.swing.JButton ControlesCrear;
@@ -2852,7 +3058,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel botonera;
     private javax.swing.JButton comunaButton;
     private javax.swing.JPanel comunaPage;
-    private javax.swing.JPanel comunaPage1;
     private javax.swing.JButton delincuentesButton;
     private javax.swing.JPanel delincuentesPage;
     private javax.swing.JButton delitosButton;
@@ -2879,11 +3084,9 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton24;
-    private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton26;
     private javax.swing.JButton jButton27;
     private javax.swing.JButton jButton5;
@@ -2921,10 +3124,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
@@ -2932,7 +3132,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;

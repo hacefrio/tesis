@@ -6,6 +6,7 @@
 package view;
 
 import backend.Operador;
+import backend.TryParse;
 import conexion.Connect;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -18,6 +19,7 @@ public class ParentescoCRUD extends javax.swing.JFrame {
 
     private Connect c = new Connect();
     private Operador operador;
+    private TryParse tp = new TryParse();
 
     /**
      * Creates new form ParentescoCRUD
@@ -247,38 +249,66 @@ public class ParentescoCRUD extends javax.swing.JFrame {
 
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
         // TODO add your handling code here:
-        Tabla tabla=new Tabla("MostrarParentesco","","",operador);
+        Tabla tabla = new Tabla("MostrarParentesco", "", "", operador);
     }//GEN-LAST:event_jButton34ActionPerformed
 
     private void ParentescoComprobar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParentescoComprobar1ActionPerformed
         // TODO add your handling code here:
-        if (c.comprobarParentesco(this.ParentescoCodigo.getText())) {
-            JOptionPane.showMessageDialog(null, "Parentesco ya existe, modifique o elimine registros.");
-            habilitar();
-            c.setParentescoDatos(this.ParentescoCodigo.getText(), ParentescoRut1, ParentescoParentesco, ParentescoRut2);
-            this.ParentescoEditar.setEnabled(true);
-            this.ParentescoEliminar.setEnabled(true);
+        if (this.ParentescoCodigo.getText().isEmpty() || !tp.TryInt(this.ParentescoCodigo.getText())) {
+
+            if (c.comprobarParentesco(this.ParentescoCodigo.getText())) {
+                JOptionPane.showMessageDialog(null, "Parentesco ya existe, modifique o elimine registros.");
+                habilitar();
+                c.setParentescoDatos(this.ParentescoCodigo.getText(), ParentescoRut1, ParentescoParentesco, ParentescoRut2);
+                this.ParentescoEditar.setEnabled(true);
+                this.ParentescoEliminar.setEnabled(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Parentesco no existe, proceda a crear.");
+                habilitar();
+                this.ParentescoCrear.setEnabled(true);
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Parentesco no existe, proceda a crear.");
-            habilitar();
-            this.ParentescoCrear.setEnabled(true);
+            JOptionPane.showMessageDialog(null, "Ingrese un codigo numerico");
         }
     }//GEN-LAST:event_ParentescoComprobar1ActionPerformed
 
     private void ParentescoEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParentescoEliminarActionPerformed
         // TODO add your handling code here:
         c.eliminarParentesco(this.ParentescoCodigo.getText());
+        this.parentescoDefault();
     }//GEN-LAST:event_ParentescoEliminarActionPerformed
 
     private void ParentescoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParentescoEditarActionPerformed
         // TODO add your handling code here:
-        
-        c.editarParentesco(this.ParentescoCodigo.getText(), this.ParentescoRut1.getText(), this.ParentescoParentesco.getText(), this.ParentescoRut2.getText());
+        if (!tp.TryRut(this.ParentescoRut1.getText()) || !tp.TryRut(this.ParentescoRut2.getText())) {
+            JOptionPane.showMessageDialog(null, "Ingrese rut delincuente");
+        } else if (!c.comprobarDelincuente(this.ParentescoRut1.getText())) {
+            JOptionPane.showMessageDialog(null, "Ingrese rut delincuente 1 existente");
+        } else if (!c.comprobarDelincuente(this.ParentescoRut2.getText())) {
+            JOptionPane.showMessageDialog(null, "Ingrese rut delincuente 2 existente");
+        } else if (this.ParentescoParentesco.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese parentesco");
+        } else {
+            c.editarParentesco(this.ParentescoCodigo.getText(), this.ParentescoRut1.getText(), this.ParentescoParentesco.getText(), this.ParentescoRut2.getText());
+
+            this.parentescoDefault();
+        }
     }//GEN-LAST:event_ParentescoEditarActionPerformed
 
     private void ParentescoCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParentescoCrearActionPerformed
-        // TODO add your handling code here:
-        c.crearParentesco(this.ParentescoCodigo.getText(), this.ParentescoRut1.getText(), this.ParentescoParentesco.getText(), this.ParentescoRut2.getText());
+        // TODO add your handling code here:i
+        if (!tp.TryRut(this.ParentescoRut1.getText()) || !tp.TryRut(this.ParentescoRut2.getText())) {
+            JOptionPane.showMessageDialog(null, "Ingrese rut delincuente");
+        } else if (!c.comprobarDelincuente(this.ParentescoRut1.getText())) {
+            JOptionPane.showMessageDialog(null, "Ingrese rut delincuente 1 existente");
+        } else if (!c.comprobarDelincuente(this.ParentescoRut2.getText())) {
+            JOptionPane.showMessageDialog(null, "Ingrese rut delincuente 2 existente");
+        } else if (this.ParentescoParentesco.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese parentesco");
+        } else {
+            c.crearParentesco(this.ParentescoCodigo.getText(), this.ParentescoRut1.getText(), this.ParentescoParentesco.getText(), this.ParentescoRut2.getText());
+            this.parentescoDefault();
+        }
     }//GEN-LAST:event_ParentescoCrearActionPerformed
 
     /**

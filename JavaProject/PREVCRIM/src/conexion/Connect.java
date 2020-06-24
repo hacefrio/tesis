@@ -331,6 +331,31 @@ public class Connect {
         return false;
     }
 
+    public boolean comprobarInstitucion(String codigo, String zona) {
+        String salida = "";
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from institucion where codigo=" + codigo + " and  institucion.zona=" + zona + ";");
+            if (rs.next()) {
+                salida = rs.getString(1);
+            }
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+            if (salida != "") {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return false;
+    }
+
     public void crearSector(String codigo, String nombre, String descripcion) {
         try {
             Connect SQL = new Connect();
@@ -778,7 +803,7 @@ public class Connect {
         try {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
-            String sql = "DELETE FROM delito WHERE rut = '" + codigo + "';";
+            String sql = "DELETE FROM delito WHERE codigo = '" + codigo + "';";
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.execute();
             conn.close();
@@ -899,7 +924,7 @@ public class Connect {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
             Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("select * from parentesco where rut='" + codigo + "';");
+            ResultSet rs = s.executeQuery("select * from parentesco where codigo='" + codigo + "';");
             if (rs.next()) {
                 rut1.setText(rs.getString(2));
                 parentesco.setText(rs.getString(3));
@@ -970,11 +995,11 @@ public class Connect {
         }
     }
 
-    public void crearControl2( String rut,String comuna) {
+    public void crearControl2(String rut, String comuna) {
         try {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
-            String sql = "UPDATE delincuente SET ultimoLugarVisto = '"+comuna+"'   WHERE `rut` = " + rut + ";)";
+            String sql = "UPDATE delincuente SET ultimoLugarVisto = " + comuna + "  WHERE `rut` = '" + rut + "';";
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.execute();
             conn.close();
@@ -989,7 +1014,7 @@ public class Connect {
         try {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
-            String sql = "UPDATE comuna SET nombre =  '" + delincuente + "', comuna=" + comuna + ", direccion='" + direccion + "', motivo='" + motivo + "',fecha='" + fecha + "'  WHERE `codigo` = " + codigo + ";";
+            String sql = "UPDATE control SET codigo = " + codigo + ", delincuente='" + delincuente + "', direccion='" + direccion + "', motivo='" + motivo + "',fecha='" + fecha + "'  WHERE `codigo` = " + codigo + ";";
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.execute();
             conn.close();
@@ -1045,15 +1070,16 @@ public class Connect {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
             Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("SELECT count(*) as total, nombreComuna "
-                    + "FROM (SELECT comuna.nombre as nombreComuna "
-                    + "      FROM delito "
-                    + "      inner join comuna "
-                    + "      on comuna.codigo = delito.comuna "
-                    + "      GROUP BY delito.comuna ) AS Total;");
+            ResultSet rs = s.executeQuery("SELECT comuna.nombre as comunanombre, "
+                    + "                    COUNT(*) as Cantidad "
+                    + "                    FROM delito "
+                    + "             		inner JOIN comuna "
+                    + "             		on comuna.codigo=delito.comuna "
+                    + "                    GROUP BY comuna.nombre "
+                    + "                    order by Cantidad desc ");
 
             while (rs.next()) {
-                ds.addValue(rs.getInt(1), rs.getString(2), "");
+                ds.addValue(rs.getInt(2), rs.getString(1), "");
             }
             conn.close();
             conn.close();
@@ -1070,15 +1096,16 @@ public class Connect {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
             Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("SELECT count(*) as total, nombreComuna "
-                    + "FROM (SELECT comuna.nombre as nombreComuna "
-                    + "      FROM delito "
-                    + "      inner join comuna "
-                    + "      on comuna.codigo = delito.comuna "
-                    + "      GROUP BY delito.comuna ) AS Total;");
+            ResultSet rs = s.executeQuery("SELECT comuna.nombre as comunanombre, "
+                    + "                    COUNT(*) as Cantidad "
+                    + "                    FROM delito "
+                    + "             		inner JOIN comuna "
+                    + "             		on comuna.codigo=delito.comuna "
+                    + "                    GROUP BY comuna.nombre "
+                    + "                    order by Cantidad desc ");
 
-            modelo.addColumn("Total");
-            modelo.addColumn("Cumuna");
+            modelo.addColumn("comuna");
+            modelo.addColumn("Cantidad");
             while (rs.next()) {
                 Object[] fila = new Object[3];
                 fila[0] = rs.getString(1);
@@ -1104,16 +1131,16 @@ public class Connect {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
             Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("SELECT count(*) as total, nombreComuna "
-                    + "FROM (SELECT comuna.nombre as nombreComuna "
-                    + "      FROM delito  "
-                    + "      inner join comuna "
-                    + "      on comuna.codigo = delito.comuna "
+            ResultSet rs = s.executeQuery("SELECT comuna.nombre as comunanombre, "
+                    + "                    COUNT(*) as Cantidad "
+                    + "                    FROM delito "
+                    + "             		inner JOIN comuna "
+                    + "             		on comuna.codigo=delito.comuna "
                     + "      where delito.fecha BETWEEN '" + desde + "' AND '" + hasta + "' "
-                    + "      GROUP BY delito.comuna) AS Total;");
-
+                    + "                    GROUP BY comuna.nombre "
+                    + "                    order by Cantidad desc ");
             while (rs.next()) {
-                ds.addValue(rs.getInt(1), rs.getString(2), "");
+                ds.addValue(rs.getInt(2), rs.getString(1), "");
             }
             conn.close();
             conn.close();
@@ -1130,16 +1157,17 @@ public class Connect {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
             Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("SELECT count(*) as total, nombreComuna "
-                    + "FROM (SELECT comuna.nombre as nombreComuna "
-                    + "      FROM delito  "
-                    + "      inner join comuna "
-                    + "      on comuna.codigo = delito.comuna "
+            ResultSet rs = s.executeQuery("SELECT comuna.nombre as comunanombre, "
+                    + "                    COUNT(*) as Cantidad "
+                    + "                    FROM delito "
+                    + "             		inner JOIN comuna "
+                    + "             		on comuna.codigo=delito.comuna "
                     + "      where delito.fecha BETWEEN '" + desde + "' AND '" + hasta + "' "
-                    + "      GROUP BY delito.comuna) AS Total;");
+                    + "                    GROUP BY comuna.nombre "
+                    + "                    order by Cantidad desc ");
 
+            modelo.addColumn("Comuna");
             modelo.addColumn("Total");
-            modelo.addColumn("Cumuna");
             while (rs.next()) {
                 Object[] fila = new Object[3];
                 fila[0] = rs.getString(1);
@@ -1169,17 +1197,18 @@ public class Connect {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
             Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("SELECT count(*) as total, nombreSector "
-                    + "FROM (SELECT sector.nombre as nombreSector "
-                    + "      FROM delito "
-                    + "      inner join comuna "
-                    + "      on comuna.codigo = delito.comuna "
-                    + "      inner join sector  "
-                    + "      on sector.codigo =comuna.sector "
-                    + "      GROUP BY sector.nombre) AS Total;");
+            ResultSet rs = s.executeQuery("SELECT sector.nombre as sectorNombre, "
+                    + "COUNT(*) as Cantidad "
+                    + "FROM delito "
+                    + "inner JOIN comuna "
+                    + "on comuna.codigo=delito.comuna "
+                    + "inner join sector "
+                    + "on sector.codigo= comuna.sector "
+                    + "GROUP BY sector.nombre "
+                    + "order by Cantidad desc");
 
             while (rs.next()) {
-                ds.addValue(rs.getInt(1), rs.getString(2), "");
+                ds.addValue(rs.getInt(2), rs.getString(1), "");
             }
             conn.close();
             conn.close();
@@ -1195,18 +1224,19 @@ public class Connect {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
             Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("SELECT count(*) as total, nombreSector "
-                    + "FROM (SELECT sector.nombre as nombreSector "
-                    + "      FROM delito "
-                    + "      inner join comuna "
-                    + "      on comuna.codigo = delito.comuna "
-                    + "      inner join sector  "
-                    + "      on sector.codigo =comuna.sector "
+            ResultSet rs = s.executeQuery("SELECT sector.nombre as sectorNombre, "
+                    + "COUNT(*) as Cantidad "
+                    + "FROM delito "
+                    + "inner JOIN comuna "
+                    + "on comuna.codigo=delito.comuna "
+                    + "inner join sector "
+                    + "on sector.codigo= comuna.sector "
                     + "      where delito.fecha BETWEEN '" + desde + "' AND '" + hasta + "' "
-                    + "      GROUP BY sector.nombre) AS Total;");
+                    + "GROUP BY sector.nombre "
+                    + "order by Cantidad desc");
 
             while (rs.next()) {
-                ds.addValue(rs.getInt(1), rs.getString(2), "");
+                ds.addValue(rs.getInt(2), rs.getString(1), "");
             }
             conn.close();
             conn.close();
@@ -1223,17 +1253,18 @@ public class Connect {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
             Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("SELECT count(*) as total, nombreSector "
-                    + "FROM (SELECT sector.nombre as nombreSector "
-                    + "      FROM delito "
-                    + "      inner join comuna "
-                    + "      on comuna.codigo = delito.comuna "
-                    + "      inner join sector  "
-                    + "      on sector.codigo =comuna.sector "
-                    + "      GROUP BY sector.nombre) AS Total;");
+            ResultSet rs = s.executeQuery("SELECT sector.nombre as sectorNombre, "
+                    + "COUNT(*) as Cantidad "
+                    + "FROM delito "
+                    + "inner JOIN comuna "
+                    + "on comuna.codigo=delito.comuna "
+                    + "inner join sector "
+                    + "on sector.codigo= comuna.sector "
+                    + "GROUP BY sector.nombre "
+                    + "order by Cantidad desc");
 
-            modelo.addColumn("Total");
             modelo.addColumn("Sector");
+            modelo.addColumn("Cantidad");
             while (rs.next()) {
                 Object[] fila = new Object[3];
                 fila[0] = rs.getString(1);
@@ -1261,15 +1292,16 @@ public class Connect {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
             Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("SELECT count(*) as total, nombreSector "
-                    + "FROM (SELECT sector.nombre as nombreSector "
-                    + "      FROM delito "
-                    + "      inner join comuna "
-                    + "      on comuna.codigo = delito.comuna "
-                    + "      inner join sector  "
-                    + "      on sector.codigo =comuna.sector "
+            ResultSet rs = s.executeQuery("SELECT sector.nombre as sectorNombre, "
+                    + "COUNT(*) as Cantidad "
+                    + "FROM delito "
+                    + "inner JOIN comuna "
+                    + "on comuna.codigo=delito.comuna "
+                    + "inner join sector "
+                    + "on sector.codigo= comuna.sector "
                     + "      where delito.fecha BETWEEN '" + desde + "' AND '" + hasta + "' "
-                    + "      GROUP BY sector.nombre) AS Total;");
+                    + "GROUP BY sector.nombre "
+                    + "order by Cantidad desc");
 
             modelo.addColumn("Total");
             modelo.addColumn("Sector");
@@ -1526,8 +1558,8 @@ public class Connect {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
             Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("select * from comuna"
-                    + "inner join sector"
+            ResultSet rs = s.executeQuery("select * from comuna "
+                    + "inner join sector "
                     + "on sector.codigo= comuna.sector "
                     + "where sector.codigo=" + sector + ";");
 
@@ -1561,9 +1593,9 @@ public class Connect {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
             Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("select * from comuna"
-                    + "inner join sector"
-                    + "on sector.codigo= comuna.sector ");
+            ResultSet rs = s.executeQuery("select * from comuna "
+                    + "inner join sector "
+                    + "on sector.codigo = comuna.sector ");
 
             modelo.addColumn("codigo");
             modelo.addColumn("nombre");
@@ -1765,7 +1797,7 @@ public class Connect {
                     + "on delito.comuna=comuna.codigo "
                     + "inner join delincuente "
                     + "on delito.delincuente=delincuente.rut "
-                    + "order by delito.comuna desc ");
+                    + "order by delito.descripcion desc ");
 
             modelo.addColumn("codigo");
             modelo.addColumn("descripcion");
@@ -1814,7 +1846,7 @@ public class Connect {
             ResultSet rs = s.executeQuery("select * from delincuente "
                     + "inner join comuna "
                     + "on delincuente.comuna=comuna.codigo "
-                    + "GROUP BY comuna.nombre  desc");
+                    + "order BY comuna.nombre desc");
 
             modelo.addColumn("rut");
             modelo.addColumn("apellidos");
@@ -1831,7 +1863,7 @@ public class Connect {
                 fila[4] = rs.getString(14);
                 if (filtro.isEmpty()) {
                     modelo.addRow(fila);
-                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro) || fila[3].toString().contains(filtro) || fila[4].toString().contains(filtro) || fila[5].toString().contains(filtro)) {
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro) || fila[3].toString().contains(filtro) || fila[4].toString().contains(filtro)) {
                     modelo.addRow(fila);
                 }
             }
@@ -1854,7 +1886,7 @@ public class Connect {
             ResultSet rs = s.executeQuery("select * from delincuente "
                     + "inner join comuna "
                     + "on delincuente.ultimoLugarVisto=comuna.codigo "
-                    + "GROUP BY comuna.nombre  desc");
+                    + "order BY comuna.nombre  desc");
 
             modelo.addColumn("rut");
             modelo.addColumn("apellidos");
@@ -2049,6 +2081,45 @@ public class Connect {
                 fila[3] = rs.getString(4);
                 fila[4] = rs.getString(5);
                 fila[5] = rs.getString(10);
+                if (filtro.isEmpty()) {
+                    modelo.addRow(fila);
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro) || fila[3].toString().contains(filtro) || fila[4].toString().contains(filtro) || fila[5].toString().contains(filtro)) {
+                    modelo.addRow(fila);
+                }
+            }
+            tabla.setModel(modelo);
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void cargarTablaControles(JTable tabla, String filtro) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from control  ");
+
+            modelo.addColumn("codigo");
+            modelo.addColumn("delincuente");
+            modelo.addColumn("comuna");
+            modelo.addColumn("direccion");
+            modelo.addColumn("motivo");
+            modelo.addColumn("fecha");
+
+            while (rs.next()) {
+                Object[] fila = new Object[6];
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+                fila[2] = rs.getString(3);
+                fila[3] = rs.getString(4);
+                fila[4] = rs.getString(5);
+                fila[5] = rs.getString(6);
                 if (filtro.isEmpty()) {
                     modelo.addRow(fila);
                 } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro) || fila[3].toString().contains(filtro) || fila[4].toString().contains(filtro) || fila[5].toString().contains(filtro)) {

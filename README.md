@@ -18,29 +18,29 @@ Features :
 # v 0.05
 * programacion home (✓)
 * encriptacion md5 contraseñas(✓) (Falta desencriptar md5 para editar contraseña)
-* diseño de los crud(✓❌)
-	* Usuarios(✓)  Falta  validadores
-	* Instituciones(✓) Falta  validadores
-	* Sectores(✓) Falta  validadores
-	* comunas(✓) Falta  validadores
-	* Delincuentes(✓) falta validadores
-	* Delincuentes parentesco (✓) falta validadores
-	* Delitos(✓) Falta  validadores
-	* Controles(✓) Falta  validadores
+* diseño de los crud(✓)
+	* Usuarios(✓) 
+	* Instituciones(✓) 
+	* Sectores(✓) 
+	* comunas(✓) 
+	* Delincuentes(✓) 
+	* Delincuentes parentesco (✓) 
+	* Delitos(✓) 
+	* Controles(✓) 
 	
-* Programacion sistema de generacion de reportes (✓)(✓)
-	* Mostrar delincuentes orden Alfabetico (✓)
-	* listado de delincuentes agrupado por delito cometido (✓)
-	* mostrar delincuentes por comuna de residencia (✓) 
-	* mostrar delincuentes por ultimo lugar visto  (✓) 
-	* mostrar delincuentes por parentezco entre ellos (✓)
-	* listado de delitos ocurrido por comuna o sector dentro de un rango de fechas (✓) 
-	* Listado histórico de delitos ocurridos por sectores (✓)
-	* Búsqueda en cualquier campo (✓)
-	* Mostrar ranking de comunas con mayor cantidad de delitos dentro de un rango de fechas (✓)(✓) 
-	* Mostrar ranking de sectores con mayor cantidad de delitos dentro de un rango de fechas(✓) (✓) 
+* Programacion sistema de generacion de reportes (✓)(✓) Validadores
+	* Mostrar delincuentes orden Alfabetico (✓) Validadores
+	* listado de delincuentes agrupado por delito cometido (✓) Validadores
+	* mostrar delincuentes por comuna de residencia (✓)  Validadores
+	* mostrar delincuentes por ultimo lugar visto  (✓)  Validadores
+	* mostrar delincuentes por parentezco entre ellos (✓) Validadores
+	* listado de delitos ocurrido por comuna o sector dentro de un rango de fechas (✓)  Validadores
+	* Listado histórico de delitos ocurridos por sectores (✓) Validadores
+	* Búsqueda en cualquier campo (✓) Validadores
+	* Mostrar ranking de comunas con mayor cantidad de delitos dentro de un rango de fechas (✓)(✓) Validadores
+	* Mostrar ranking de sectores con mayor cantidad de delitos dentro de un rango de fechas(✓) (✓) Validadores
 	
-* Validadores rut(❌)
+* Validadores rut(❌) (✓)
 * funciones anti sqlinyection(❌)
 * validadores campos en blancos(❌)
 	
@@ -54,7 +54,7 @@ Crear una aplicacion en java con todos los requisitos que pide el proyecto.
 # base de datos
 * Mysql
 
-#Librerias utilizadas
+# Librerias utilizadas
 * Placeholder : Libreria propia
 * MYSQL - JDBC
 * Commons-codec-1.14 : PAra encriptar las contraseñas MD5

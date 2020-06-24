@@ -97,8 +97,10 @@ public class Tabla extends javax.swing.JFrame {
             MostrarDelitosSector();
         } else if (entrada.equals("MostrarDelitosSectorFechas")) {
             MostrarDelitosSectorFechas();
-        } else if (entrada.equals("MostrarParentescos")) {
+        } else if (entrada.equals("MostrarParentesco")) {
             MostrarParentesco();
+        } else if (entrada.equals("MostrarControles")) {
+            MostrarControles();
         }
 
     }
@@ -190,10 +192,15 @@ public class Tabla extends javax.swing.JFrame {
     public void MostrarDelitosSectorFechas() {
         c.cargarTablaDelitosSector(Tabla, comuna, this.filtro.getText(), desde, hasta);
     }
-    
+
     public void MostrarParentesco() {
         c.cargarTablaParentesco(Tabla, this.filtro.getText());
     }
+
+    public void MostrarControles() {
+        c.cargarTablaControles(Tabla, this.filtro.getText());
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
