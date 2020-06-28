@@ -70,9 +70,9 @@ public class Tabla extends javax.swing.JFrame {
         } else if (entrada.equals("MostrarInstitucionesAdministradorGeneral")) {
             MostrarInstitucionesAdministradorGeneral();
         } else if (entrada.equals("MostrarSectoresJefeDeZona")) {
-            MostrarInstitucionesJefeDeZona();
+            MostrarSectoresJefeDeZona();
         } else if (entrada.equals("MostrarSectoresAdministradorGeneral")) {
-            MostrarInstitucionesAdministradorGeneral();
+            MostrarSectoresAdministradorGeneral();
         } else if (entrada.equals("MostrarComunasJefeDeZona")) {
             MostrarComunasJefeDeZona();
         } else if (entrada.equals("MostrarComunasAdministradorGeneral")) {
@@ -80,6 +80,8 @@ public class Tabla extends javax.swing.JFrame {
         } else if (entrada.equals("MostrarDelincuentes")) {
             MostrarDelincuentes();
         } else if (entrada.equals("MostrarDelitos")) {
+            MostrarDelitos();
+        } else if (entrada.equals("MostrarDelitosJefeDeZona")) {
             MostrarDelitos();
         } else if (entrada.equals("MostrarDelincuentesOrdenAlfabetico")) {
             MostrarDelincuentesOrgenAlfabetico();
@@ -159,6 +161,10 @@ public class Tabla extends javax.swing.JFrame {
 
     public void MostrarDelitos() {
         c.cargarTablaDelitos(Tabla, this.filtro.getText());
+    }
+
+    public void MostrarDelitosJefeDeZona() {
+        c.cargarTablaDelitosJefeDeZona(Tabla, this.filtro.getText(),operador.getZona());
     }
 
     public void MostrarDelincuentesOrgenAlfabetico() {
@@ -316,11 +322,6 @@ public class Tabla extends javax.swing.JFrame {
         cargarTabla();
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-        cargarTabla();
-    }//GEN-LAST:event_jButton6ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             // TODO add your handling code here:
@@ -344,6 +345,12 @@ public class Tabla extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:.
+        this.filtro.setText("");
+        cargarTabla();
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

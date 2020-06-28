@@ -7,7 +7,6 @@ package view.reportes;
 
 import backend.Graficas;
 import backend.Operador;
-import com.toedter.calendar.JDateChooser;
 import javax.swing.JOptionPane;
 import view.Tabla;
 
@@ -89,7 +88,7 @@ public class SistemaRankings extends javax.swing.JFrame {
         jLabel4.setText("Hasta");
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jButton3.setText("Ranking sectores grafico dentro de un rango de fechas");
+        jButton3.setText("Ranking zona grafico dentro de un rango de fechas");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -97,7 +96,7 @@ public class SistemaRankings extends javax.swing.JFrame {
         });
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jButton4.setText("Ranking sectores grafico");
+        jButton4.setText("Ranking zona grafico");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -111,7 +110,7 @@ public class SistemaRankings extends javax.swing.JFrame {
         jLabel6.setText("Desde");
 
         jButton5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jButton5.setText("Ranking sectores ");
+        jButton5.setText("Ranking zonas ");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -119,7 +118,7 @@ public class SistemaRankings extends javax.swing.JFrame {
         });
 
         jButton6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jButton6.setText("Ranking sectores dentro de un rango de fechas");
+        jButton6.setText("Ranking zonas dentro de un rango de fechas");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);

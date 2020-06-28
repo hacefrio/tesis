@@ -28,21 +28,20 @@ Features :
 	* Delitos(✓) 
 	* Controles(✓) 
 	
-* Programacion sistema de generacion de reportes (✓)(✓) Validadores
-	* Mostrar delincuentes orden Alfabetico (✓) Validadores
-	* listado de delincuentes agrupado por delito cometido (✓) Validadores
-	* mostrar delincuentes por comuna de residencia (✓)  Validadores
-	* mostrar delincuentes por ultimo lugar visto  (✓)  Validadores
-	* mostrar delincuentes por parentezco entre ellos (✓) Validadores
-	* listado de delitos ocurrido por comuna o sector dentro de un rango de fechas (✓)  Validadores
-	* Listado histórico de delitos ocurridos por sectores (✓) Validadores
-	* Búsqueda en cualquier campo (✓) Validadores
-	* Mostrar ranking de comunas con mayor cantidad de delitos dentro de un rango de fechas (✓)(✓) Validadores
-	* Mostrar ranking de sectores con mayor cantidad de delitos dentro de un rango de fechas(✓) (✓) Validadores
+* Programacion sistema de generacion de reportes (✓)(✓) 	
+	* Mostrar delincuentes orden Alfabetico (✓) 
+	* listado de delincuentes agrupado por delito cometido (✓) 
+	* mostrar delincuentes por comuna de residencia (✓)
+	* mostrar delincuentes por ultimo lugar visto  (✓)  
+	* mostrar delincuentes por parentezco entre ellos (✓) 
+	* listado de delitos ocurrido por comuna o sector dentro de un rango de fechas (✓)  
+	* Listado histórico de delitos ocurridos por sectores (✓) 
+	* Búsqueda en cualquier campo (✓) 
+	* Mostrar ranking de comunas con mayor cantidad de delitos dentro de un rango de fechas (✓)(✓) 
+	* Mostrar ranking de sectores con mayor cantidad de delitos dentro de un rango de fechas(✓) (✓) 
 	
-* Validadores rut(❌) (✓)
-* funciones anti sqlinyection(❌)
-* validadores campos en blancos(❌)
+* Validadores rut (✓)
+* validadores campos en blancos(✓)
 	
 # Idea general del proyecto
 
@@ -62,3 +61,11 @@ Crear una aplicacion en java con todos los requisitos que pide el proyecto.
 * JCalendar : Libreria para utilizar un calendario
 * JFreeCharts: Libreria para generar graficos en java
 * IText: libreria para generar archivos pdf
+
+
+
+
+# anotaciones
+Rol de operador: Solo puede ingresar delitos, controles y parentescos pertenecientes a su comuna
+rol de jefe de zona: puede  editar, eliminar, y agregar delincuentes, delitos y comunas. Pertenecientes a su zona
+Administrador General: Puede hacer de todo

@@ -75,7 +75,7 @@ public class ListadoDelitos extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Sectores");
+        jLabel1.setText("Zonas");
 
         jButton9.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton9.setText("Listado de delitos con rango de fechas");
@@ -116,7 +116,7 @@ public class ListadoDelitos extends javax.swing.JFrame {
         sector.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel8.setText("Nombre de sector:");
+        jLabel8.setText("Nombre de Zona:");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setText("Hasta");
@@ -248,7 +248,7 @@ public class ListadoDelitos extends javax.swing.JFrame {
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
         if (this.sector.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ingrese nombre de la comuna");
+            JOptionPane.showMessageDialog(null, "Ingrese nombre de la Zona");
         } else if (this.sectorDesde.getDate().toGMTString().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese la fecha desde");
         } else if (this.sectorHasta.getDate().toGMTString().isEmpty()) {
@@ -265,7 +265,7 @@ public class ListadoDelitos extends javax.swing.JFrame {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
         if (this.sector.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ingrese nombre de sector");
+            JOptionPane.showMessageDialog(null, "Ingrese nombre de Zona");
         } else {
             Tabla tabla = new Tabla("MostrarDelitosSector", "", "", operador, sector.getText());
             tabla.setVisible(true);

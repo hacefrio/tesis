@@ -62,13 +62,13 @@ public class Connect {
             } catch (SQLException ex) {
                 // log an exception. fro example:
                 System.out.println(ex.getMessage());
-                JOptionPane.showMessageDialog(null, "Error al conectar a la Base de datos \n"+ ex.getMessage());
+                JOptionPane.showMessageDialog(null, "Error al conectar a la Base de datos \n" + ex.getMessage());
                 return false;
 
             }
         } catch (ClassNotFoundException ex) {
             // log an exception. for example:
-            JOptionPane.showMessageDialog(null, "Error librerias Base de datos \n"+ ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error librerias Base de datos \n" + ex.getMessage());
         }
         return true;
     }
@@ -172,66 +172,49 @@ public class Connect {
         }
     }
 
-    public String comprobarUsuariosRutPermisos(String rut, Operador operador) {
+    public void setUsuario(String rut, JTextField nombre, JTextField apellido, JTextField institucion) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from operador "
+                    + " where rut='" + rut + "';");
+            if (rs.next()) {
+                nombre.setText(rs.getString(3));
+                apellido.setText(rs.getString(4));
+                institucion.setText(rs.getString(6));
+                conn.close();
+                rs.close();
+                s.close();
+            }
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public String getRangoUsuario(String rut) {
         String salida = "nada";
         try {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
-            Connection conn2 = SQL.getConnection();
             Statement s = conn.createStatement();
-            Statement s2 = conn2.createStatement();
-            ResultSet rs2 = s2.executeQuery("SELECT * FROM `operador` "
+            ResultSet rs = s.executeQuery("SELECT * FROM `operador` "
                     + "where operador.rut= '" + rut + "';");
 
-            ResultSet rs = s.executeQuery("SELECT * FROM `operador`"
-                    + "join institucion\n"
-                    + "on institucion.codigo= operador.institucion\n"
-                    + "JOIN sector \n"
-                    + "on institucion.sector=sector.codigo \n"
-                    + "where operador.rut ='" + rut + "' and  sector.codigo=" + operador.getZona() + ";");
-
             if (rs.next()) {
-
-                if (operador.getRango().equals("JefeDeZona")) {
-                    if (rs.getString(5).equals("Operador")) {
-                        System.out.println("si puede editar a un operador de su zona");
-                        salida = "si";
-
-                    } else {
-                        System.out.println("no tiene permiso para esto");
-                        salida = "noPermisos";
-                    }
-                }
-                rs2.next();
-            } else {
-                if (rs2.next()) {
-                    System.out.println("si existe, pero en otra zona");
-                    salida = "otraZona";
-                } else {
-                    System.out.println("Usuario inexistente");
-                    salida = "noExiste";
-                    System.out.println("no existe 1");
-                }
-
+                salida = rs.getString(5);
             }
-
-            if (operador.getRango().equals("AdministradorGeneral") && rs2.getString(1).isEmpty() == false) {
-                salida = "si";
-            } else if (operador.getRango().equals("AdministradorGeneral")) {
-                System.out.println("no existe 2");
-                salida = "noExiste";
-            }
-            rs2.close();
             conn.close();
             rs.close();
-            s2.close();
             s.close();
-            conn2.close();
         } catch (SQLException e) {
             System.out.println("error " + e.getMessage());
             return salida;
         }
-        System.out.println("Salida del metodo comprobarUsuariosRutPermisos" + salida);
+        System.out.println("Salida del metodo getRangoUsuario" + salida);
         return salida;
     }
 
@@ -337,7 +320,7 @@ public class Connect {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
             Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("select * from institucion where codigo=" + codigo + " and  institucion.zona=" + zona + ";");
+            ResultSet rs = s.executeQuery("select * from institucion where codigo=" + codigo + " and  institucion.sector=" + zona + ";");
             if (rs.next()) {
                 salida = rs.getString(1);
             }
@@ -348,7 +331,57 @@ public class Connect {
             if (salida != "") {
                 return true;
             }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return false;
+    }
 
+    public boolean comprobarUsuario(String rut) {
+        String salida = "";
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from operador where rut='" + rut + "';");
+            if (rs.next()) {
+                salida = rs.getString(1);
+            }
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+            if (salida != "") {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return false;
+    }
+
+    public boolean comprobarUsuario(String rut,String zona) {
+        String salida = "";
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from operador "
+                    + "inner join institucion "
+                    + "on institucion.codigo= operador.institucion "
+                    + "where rut=" + rut + " and institucion.sector="+zona+";");
+            if (rs.next()) {
+                salida = rs.getString(1);
+            }
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+            if (salida != "") {
+                return true;
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return false;
@@ -365,7 +398,7 @@ public class Connect {
             pstm.execute();
             conn.close();
             pstm.close();
-            JOptionPane.showMessageDialog(null, "Sector creado exitosamente ");
+            JOptionPane.showMessageDialog(null, "Zona creada exitosamente ");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -380,7 +413,7 @@ public class Connect {
             pstm.execute();
             conn.close();
             pstm.close();
-            JOptionPane.showMessageDialog(null, "Sector eliminado exitosamente ");
+            JOptionPane.showMessageDialog(null, "Zona eliminada exitosamente ");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -396,7 +429,7 @@ public class Connect {
             pstm.execute();
             conn.close();
             pstm.close();
-            JOptionPane.showMessageDialog(null, "Comuna editada exitosamente ");
+            JOptionPane.showMessageDialog(null, "Zona editada exitosamente ");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -417,7 +450,7 @@ public class Connect {
         }
     }
 
-    public void setInstitucionesDatos(String codigo, JTextField nombre, JComboBox lista) {
+    public void setInstitucionesDatos(String codigo, JTextField nombre, JTextField lista) {
         try {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
@@ -425,7 +458,7 @@ public class Connect {
             ResultSet rs = s.executeQuery("select * from institucion where codigo=" + codigo + ";");
             if (rs.next()) {
                 nombre.setText(rs.getString(2));
-                lista.addItem(rs.getString(3));
+                lista.setText(rs.getString(3));
             }
             conn.close();
             rs.close();
@@ -613,7 +646,7 @@ public class Connect {
         }
     }
 
-    public void setComunaDatos(String codigo, JTextField nombre, JComboBox lista) {
+    public void setComunaDatos(String codigo, JTextField nombre, JTextField lista) {
         try {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
@@ -621,11 +654,52 @@ public class Connect {
             ResultSet rs = s.executeQuery("select * from comuna where codigo=" + codigo + ";");
             if (rs.next()) {
                 nombre.setText(rs.getString(2));
-                lista.addItem(rs.getString(3));
+                lista.setText(rs.getString(3));
             }
             conn.close();
             rs.close();
             s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void loadComunas(JComboBox entrada) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from comuna ;");
+            while (rs.next()) {
+                entrada.addItem(rs.getString(1));
+            }
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void loadComunas(JComboBox entrada, String sector) {
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from comuna "
+                    + "inner join sector "
+                    + "on sector.codigo= comuna.sector "
+                    + "where sector.codigo='" + sector + "';");
+            while (rs.next()) {
+                entrada.addItem(rs.getString(1));
+            }
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -863,6 +937,36 @@ public class Connect {
         return false;
     }
 
+    public boolean comprobarDelito(String codigo, String zona) {
+        String salida = "";
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from delito "
+                    + "inner join comuna "
+                    + "on comuna.codigo= delito.comuna "
+                    + "inner join sector "
+                    + "on sector.codigo= comuna.sector "
+                    + "where delito.codigo='" + codigo + "' and sector.codigo=" + zona + ";");
+            if (rs.next()) {
+                salida = rs.getString(1);
+            }
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+            if (salida != "") {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return false;
+    }
+
     public boolean comprobarParentesco(String codigo) {
         String salida = "";
         try {
@@ -962,6 +1066,34 @@ public class Connect {
             Statement s = conn.createStatement();
             ResultSet rs = s.executeQuery("select * from control \n"
                     + "where control.codigo=" + codigo + ";");
+            if (rs.next()) {
+                salida = rs.getString(1);
+            }
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+            if (salida != "") {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return false;
+    }
+
+    public boolean comprobarControl(String codigo, String sector) {
+        String salida = "";
+        try {
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from control "
+                    + "inner join comuna "
+                    + "on comuna.codiog=control.comuna "
+                    + "where control.codigo=" + codigo + " and comuna.sector= " + sector + ";");
             if (rs.next()) {
                 salida = rs.getString(1);
             }
@@ -1725,7 +1857,48 @@ public class Connect {
             System.out.println(e.getMessage());
         }
     }
+public void cargarTablaDelitosJefeDeZona(JTable tabla, String filtro, String zona) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            Connect SQL = new Connect();
+            Connection conn = SQL.getConnection();
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from delito "
+                    + "join comuna "
+                    + "on comuna.codigo=delito.comuna "
+                    + "where comuna.sector="+zona+";");
 
+            modelo.addColumn("codigo");
+            modelo.addColumn("descripcion");
+            modelo.addColumn("direccion");
+            modelo.addColumn("fecha");
+            modelo.addColumn("delincuente");
+            modelo.addColumn("comuna");
+
+            while (rs.next()) {
+                Object[] fila = new Object[6];
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+                fila[2] = rs.getString(3);
+                fila[3] = rs.getString(4);
+                fila[4] = rs.getString(5);
+                fila[5] = rs.getString(8);
+
+                if (filtro.isEmpty()) {
+                    modelo.addRow(fila);
+                } else if (fila[0].toString().contains(filtro) || fila[1].toString().contains(filtro) || fila[2].toString().contains(filtro) || fila[3].toString().contains(filtro) || fila[4].toString().contains(filtro) || fila[5].toString().contains(filtro)) {
+                    modelo.addRow(fila);
+                }
+            }
+            tabla.setModel(modelo);
+            conn.close();
+            conn.close();
+            rs.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     /*      FIN METODOS RELACIONADOS CON CRUD DELITOS*/
     public void cargarTablaDelincuentesOrdenAlfabetico(JTable tabla, String filtro) {
         try {
