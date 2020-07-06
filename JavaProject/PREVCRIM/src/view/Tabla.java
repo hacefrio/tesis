@@ -104,7 +104,6 @@ public class Tabla extends javax.swing.JFrame {
         } else if (entrada.equals("MostrarControles")) {
             MostrarControles();
         }
-
     }
 
     public void RankingComunas() {
