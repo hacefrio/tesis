@@ -371,7 +371,7 @@ public class Connect {
             ResultSet rs = s.executeQuery("select * from operador "
                     + "inner join institucion "
                     + "on institucion.codigo= operador.institucion "
-                    + "where rut=" + rut + " and institucion.sector="+zona+";");
+                    + "where rut='" + rut + "' and institucion.sector="+zona+";");
             if (rs.next()) {
                 salida = rs.getString(1);
             }
@@ -747,7 +747,7 @@ public class Connect {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();
             Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("select * from delincuente \n"
+            ResultSet rs = s.executeQuery("select * from delincuente "
                     + "where delincuente.rut='" + rut + "';");
             if (rs.next()) {
                 salida = rs.getString(1);
@@ -1173,7 +1173,7 @@ public class Connect {
     }
 
     public void setControlesDatos(String codigo, JTextField delincuente, JTextField comuna, JTextField direccion, JTextField motivo, JDateChooser fecha) throws ParseException {
-        String estado = "";
+       
         try {
             Connect SQL = new Connect();
             Connection conn = SQL.getConnection();

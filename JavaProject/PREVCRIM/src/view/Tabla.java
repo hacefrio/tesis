@@ -82,7 +82,7 @@ public class Tabla extends javax.swing.JFrame {
         } else if (entrada.equals("MostrarDelitos")) {
             MostrarDelitos();
         } else if (entrada.equals("MostrarDelitosJefeDeZona")) {
-            MostrarDelitos();
+            MostrarDelitosJefeDeZona();
         } else if (entrada.equals("MostrarDelincuentesOrdenAlfabetico")) {
             MostrarDelincuentesOrgenAlfabetico();
         } else if (entrada.equals("MostrarDelincuentesPorDelitoCometido")) {
